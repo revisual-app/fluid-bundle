@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+	<title>FluidMin Bundle</title>
+	<style>
+		.card {
+			max-width: 400px;
+			margin: auto;
+		}
+
+	</style>
+
+
+</head>
+<body>
+
+<div class="container mt-4">
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<form class="needs-validation" id="form">
+						<div class="mb-3">
+							<label for="email" class="form-label" data-i18n="email.label">Email</label>
+							<input type="email" id="email" placeholder="email@gmail.com" class="form-control" required/>
+							<div class="invalid-feedback" data-i18n="email.label.error">
+								Please enter your email.
+							</div>
+						</div>
+						<button id="submitbtn" class="btn btn-primary">Show prices</button>
+
+					</form>
+				</div>
+			</div>
+			<div class="status text-center mt-4" id="status"></div>
+		</div>
+	</div>
+</div>
+
+<script src="/app.js" type="application/javascript"></script>
+</body>
+</html>
