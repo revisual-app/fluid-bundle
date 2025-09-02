@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-				integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+		  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<title>FluidMin Bundle</title>
 	<style>
 		.card {
@@ -26,9 +26,17 @@
 					<form class="needs-validation" id="form">
 						<div class="mb-3">
 							<label for="email" class="form-label" data-i18n="email.label">Email</label>
-							<input type="email" id="email" placeholder="email@gmail.com" class="form-control" required/>
+							<input type="email" id="email" placeholder="email@gmail.com" class="form-control" value="piotr@revisual.io" required/>
 							<div class="invalid-feedback" data-i18n="email.label.error">
 								Please enter your email.
+							</div>
+						</div>
+
+						 <div class="mb-3">
+							<label for="ccb_account_name" class="form-label" data-i18n="email.label">CCB Account name</label>
+							<input type="text" id="ccb_account_name" placeholder="abc" class="form-control"/>
+							<div class="invalid-feedback" data-i18n="email.label.error">
+								Please enter Pushpay/CCB account name
 							</div>
 						</div>
 						<button id="submitbtn" class="btn btn-primary">Show prices</button>

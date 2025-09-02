@@ -1,7 +1,15 @@
-import {getToken} from "./endpoints/getToken";
+import { init, getEnv } from './context';
+
+
+import {getInfo} from "./endpoints/getInfo";
 
 export default {
+
+
 	async fetch(request, env, ctx) {
+
+		init(env);
+
 		if (request.method === 'OPTIONS') {
 			return new Response(null, {
 				status: 204,
@@ -15,9 +23,9 @@ export default {
 
 			let response = null;
 			switch (url.pathname) {
-				case '/get-token':
+				case '/get-info':
 					//...
-					response = getToken(request, env, ctx);
+					response = await getInfo(request);
 					break;
 
 				default:
