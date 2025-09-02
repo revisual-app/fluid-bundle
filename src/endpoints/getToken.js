@@ -1,5 +1,3 @@
-import {appendToGoogleSheet} from "../appendToGoogleSheet";
-import {sendConfirmationEmail} from "../sendConfirmationEmail";
 
 export async function getToken(req, res) {
 
