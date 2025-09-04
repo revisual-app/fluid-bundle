@@ -20,4 +20,8 @@ CB_API_ADDRESS = "https://my.bee.church"
 CB_API_KEY = ""
 CB_AUTH_KEY = ""
 
+
+STRIPE_API_KEY = ""
+STRIPE_PK_KEY = ""
+
 [secrets]

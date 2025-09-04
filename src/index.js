@@ -1,13 +1,10 @@
 import { init, getEnv } from './context';
 
-
-import {getInfo} from "./endpoints/getInfo";
+import { getInfo } from './endpoints/getInfo';
+import { listPlans } from './endpoints/listPlans';
 
 export default {
-
-
 	async fetch(request, env, ctx) {
-
 		init(env);
 
 		if (request.method === 'OPTIONS') {
@@ -20,7 +17,6 @@ export default {
 		const url = new URL(request.url);
 
 		try {
-
 			let response = null;
 			switch (url.pathname) {
 				case '/get-info':
@@ -28,10 +24,16 @@ export default {
 					response = await getInfo(request);
 					break;
 
+				case '/list-plans':
+					//...
+					response = await listPlans(request);
+					break;
+
 				default:
-					return new Response('Not Found', {status: 404});
+					return new Response('Not Found', { status: 404 });
 			}
 
+			console.log('response', response);
 			return new Response(JSON.stringify(response), {
 				headers: {
 					'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ export default {
 			});
 		} catch (err) {
 			console.error(err);
-			return new Response(JSON.stringify({success: false, error: err.message}), {
+			return new Response(JSON.stringify({ success: false, error: err.message }), {
 				status: 400,
 				headers: {
 					'Content-Type': 'application/json',
@@ -48,8 +50,6 @@ export default {
 				},
 			});
 		}
-
-
 	},
 };
 
