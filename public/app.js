@@ -86,10 +86,13 @@ function renderPlans() {
 }
 
 async function onSelectPlanClick(event) {
+	event.preventDefault();
 	const priceID = event.target.id;
 
 	const email = document.getElementById('email').value;
 	const ccbAccountName = document.getElementById('ccb_account_name').value;
 
 	const url = await getStripeCheckoutUrl(priceID, email, ccbAccountName);
+
+	return false;
 }

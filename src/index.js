@@ -2,6 +2,7 @@ import { init, getEnv } from './context';
 
 import { getInfo } from './endpoints/getInfo';
 import { listPlans } from './endpoints/listPlans';
+import { getCheckout } from './endpoints/getCheckout';
 
 export default {
 	async fetch(request, env, ctx) {
@@ -29,11 +30,17 @@ export default {
 					response = await listPlans(request);
 					break;
 
+				case '/get-checkout-url':
+					//...
+					response = await getCheckout(request);
+					break;
+
 				default:
 					return new Response('Not Found', { status: 404 });
 			}
 
-			console.log('response', response);
+			// console.log('response', response);
+
 			return new Response(JSON.stringify(response), {
 				headers: {
 					'Content-Type': 'application/json',

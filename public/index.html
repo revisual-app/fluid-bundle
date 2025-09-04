@@ -7,10 +7,6 @@
 		  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<title>FluidMin Bundle</title>
 	<style>
-		.card {
-			max-width: 400px;
-			margin: auto;
-		}
 
 	</style>
 
@@ -26,15 +22,17 @@
 					<form class="needs-validation" id="form">
 						<div class="mb-3">
 							<label for="email" class="form-label" data-i18n="email.label">Email</label>
-							<input type="email" id="email" placeholder="email@gmail.com" class="form-control" value="piotr@revisual.io" required/>
+							<input type="email" id="email" placeholder="email@gmail.com" class="form-control"
+								   value="" required/>
 							<div class="invalid-feedback" data-i18n="email.label.error">
 								Please enter your email.
 							</div>
 						</div>
 
-						 <div class="mb-3">
-							<label for="ccb_account_name" class="form-label" data-i18n="email.label">CCB Account name</label>
-							<input type="text" id="ccb_account_name" placeholder="abc" class="form-control"/>
+						<div class="mb-3">
+							<label for="ccb_account_name" class="form-label" data-i18n="email.label">CCB Account
+								name</label>
+							<input type="text" id="ccb_account_name" placeholder="abc" class="form-control" value=""/>
 							<div class="invalid-feedback" data-i18n="email.label.error">
 								Please enter Pushpay/CCB account name
 							</div>
@@ -45,8 +43,16 @@
 				</div>
 			</div>
 			<div class="status text-center mt-4" id="status"></div>
+
 		</div>
+
 	</div>
+
+
+</div>
+<div class="container">
+
+	<div id="plans" class="row"></div>
 </div>
 
 <script src="/app.js" type="application/javascript"></script>
