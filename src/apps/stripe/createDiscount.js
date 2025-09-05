@@ -1,4 +1,7 @@
+import { getEnv } from '../../context';
+
 export async function createDiscount(amount) {
+	const env = getEnv();
 	const resp = await fetch(`https://api.stripe.comv1/coupons`, {
 		method: 'POST',
 		headers: {

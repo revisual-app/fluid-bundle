@@ -7,7 +7,7 @@ export async function getPlans() {
 		const resp = await fetch(`https://api.stripe.com/v1/products?active=true`, {
 			method: 'GET',
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded',
 				Authorization: `Bearer ${env.STRIPE_API_KEY}`,
 				accept: 'application/json',
 			},

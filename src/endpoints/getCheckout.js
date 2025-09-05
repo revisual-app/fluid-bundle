@@ -1,5 +1,6 @@
 import { getInfo } from './getInfo';
 import { createCheckoutSession } from '../apps/stripe/createCheckoutSession';
+import { createDiscount } from '../apps/stripe/createDiscount';
 
 export async function getCheckout(request) {
 	if (request.method === 'POST') {
@@ -12,33 +13,42 @@ export async function getCheckout(request) {
 		const discountValue = getDiscountValue(appsInfo);
 		let discount = null;
 
-		console.log(appsInfo);
-		console.log('discount value', discountValue);
 		if (discountValue) {
-			discount = createDiscount(discountValue);
+			discount = await createDiscount(discountValue);
 			console.log(discount);
 		}
 
 		// add here any metadata you need
+		let metadataIdx = 0;
 		const metadata = [];
 
 		if (appsInfo.dc && appsInfo.dc.has_account) {
-			metadata.push({ dc_org_id: appsInfo.account.dc_org_id });
-		} /*
+			metadata.push([`metadata[dc_org_id]`, appsInfo.dc.account.org_id]);
+		}
 
-		const checkoutSession = createCheckoutSession({
+		const sessionData = {
 			client_reference_id: email,
 			customer_email: email,
-			line_items: [
-				{
-					price: price_id,
-				},
-			],
-			metadata,
-			discounts: discount ? { coupon: discount.id } : undefined,
-		});
+			success_url: 'http://localhost:8787/success',
+			cancel_url: 'http://localhost:8787/',
+			'line_items[0][price]': price_id,
+			'line_items[0][quantity]': 1,
+			mode: 'subscription',
+		};
 
-		return checkoutSession;*/
+		if (metadata.length) {
+			for (const item of metadata) {
+				sessionData[item[0]] = item[1];
+			}
+		}
+
+		if (discount) {
+			sessionData['discount[coupon]'] = discount.id;
+		}
+
+		const checkoutSession = await createCheckoutSession(new URLSearchParams(sessionData).toString());
+
+		return checkoutSession;
 	}
 
 	return null;
