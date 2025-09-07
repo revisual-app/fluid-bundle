@@ -1,0 +1,185 @@
+@use "../particles";
+@use "../vars" as v;
+
+
+.section.hero {
+  background: #74a2c4;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.5rem 30rem;
+
+  gap: 6rem;
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media #{v.$phone} {
+    .hero-overlay-mobile {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%) top left / auto auto no-repeat;
+    }
+  }
+
+  .hero-img-overlay {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    @media #{v.$phone} {
+      display: none;
+    }
+  }
+
+  .hero-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 0rem);
+    --minContent: 936;
+    --hSizing: FIXED;
+    --vSizing: FIXED;
+    --pConstraintHorizontal: MIN;
+    --pConstraintVertical: MAX;
+
+
+  }
+
+  .group {
+    position: relative;
+    z-index: 2;
+    max-width: 80rem;
+    align-items: center;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .logos {
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+      --minContent: 364;
+
+      @media #{v.$phone} {
+        gap: 1rem;
+      }
+
+      & > div:nth-child(2) {
+        margin-bottom: 1.25rem;
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+
+        @media #{v.$phone} {
+          width: 72px;
+          height: 72px;
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      align-self: stretch;
+
+      .heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        align-self: stretch;
+
+        button.btn-badge {
+          display: flex;
+          justify-content: center;
+          color: var(--Brand-700);
+          font-size: 0.75rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 1.5;
+          letter-spacing: 0rem;
+          text-align: center;
+          background-color: var(--Brand-50);
+          padding: 0.06rem 0.44rem;
+          border: 1px solid var(--Brand-200);
+          border-radius: 16px;
+
+          &:hover {
+            filter: brightness(0.85);
+          }
+        }
+
+        h1 {
+          color: var(--Gray-900);
+          --min-font-size: 2.06;
+          --max-font-size: 3.75;
+          font-size: var(--interpolate);
+          font-style: normal;
+          font-weight: 600;
+          line-height: 1.2;
+          letter-spacing: -0.074rem;
+
+          @media #{v.$phone} {
+            font-size: 1.88rem;
+          }
+        }
+
+        p {
+          --min-font-size: 1;
+          --max-font-size: 1.25;
+          font-size: var(--interpolate);
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1.5;
+        }
+      }
+
+      .buttons {
+
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+
+        @media #{v.$phone} {
+          flex-direction: column-reverse;
+          align-items: stretch;
+        }
+      }
+    }
+  }
+}
+
+
+@media #{v.$phone} {
+  .section.hero {
+    padding: 0.75rem 0 0;
+    gap: 0;
+
+    .container {
+      padding: 0 0.75rem;
+    }
+
+    .container .hero-img {
+      display: none;
+
+    }
+    .hero-img {
+      position: relative;
+    }
+  }
+}
+

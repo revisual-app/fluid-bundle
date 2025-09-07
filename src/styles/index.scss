@@ -1,0 +1,76 @@
+
+@use "vars";
+
+@use "landing/hero";
+
+
+.hover-dark:hover {
+  filter: brightness(0.85);
+}
+
+.hover-bright:hover {
+  filter: brightness(1.2);
+}
+
+.btn {
+  box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05),
+  inset 0px -2px 0px 0px rgba(10, 13, 18, 0.05),
+  inset 0px 0px 0px 1px rgba(10, 13, 18, 0.18);
+  display: flex;
+  justify-content: center;
+  color: var(--Gray-700);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0rem;
+  text-align: center;
+  background-color: var(--Base-White);
+  padding: 0.69rem 1.19rem;
+  border: 1px solid var(--Gray-300);
+  border-radius: 8px;
+  overflow: hidden;
+  --minContent: 265;
+  --hSizing: HUG;
+  --vSizing: HUG;
+  --pConstraintHorizontal: MIN;
+  --pConstraintVertical: MIN;
+}
+
+.btn-primary {
+  color: var(--Base-White);
+  background-color: var(--Brand-600);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-left: unset;
+  border-top: unset;
+  border-right: unset;
+  border-bottom: unset;
+}
+
+
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--Gray-600);
+  font-size: 1.12rem;
+  font-family: 'Inter';
+  font-weight: 700;
+  line-height: 1.556;
+  letter-spacing: 0rem;
+  text-align: center;
+  background-color: var(--Base-white);
+  overflow: auto;
+
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}

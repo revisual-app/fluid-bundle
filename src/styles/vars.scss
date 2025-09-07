@@ -1,0 +1,56 @@
+
+* {
+  --min-screen-size: 430;
+  --max-screen-size: 1440;
+  --interpolate-diff: calc(var(--max-font-size) * var(--base-font-size) - var(--min-font-size) * var(--base-font-size));
+  --interpolate: clamp(
+          calc(var(--min-font-size) * var(--base-font-size) * 1px),
+          calc(
+                  (var(--min-font-size) * var(--base-font-size) * 1px) + var(--interpolate-diff) *
+                  ((100vw - calc(var(--min-screen-size) * 1px)) / (var(--max-screen-size) - var(--min-screen-size)))
+          ),
+          calc(var(--max-font-size) * var(--base-font-size) * 1px)
+  );
+  --base-font-size: 16;
+}
+
+
+:root {
+  --Brand-25: #fafdf7;
+  --Brand-50: #f5fbee;
+  --Brand-100: #e6f4d7;
+  --Brand-200: #ceeab0;
+  --Brand-300: #acdc79;
+  --Brand-400: #86cb3c;
+  --Brand-500: #669f2a;
+  --Brand-600: #4f7a21;
+  --Brand-700: #3f621a;
+  --Brand-800: #335015;
+  --Brand-900: #2b4212;
+  --Brand-950: #1a280b;
+
+  --Gray-25: #fdfdfd;
+  --Gray-50: #fafafa;
+  --Gray-100: #f5f5f5;
+  --Gray-200: #e9eaeb;
+  --Gray-300: #d5d7da;
+  --Gray-400: #a4a7ae;
+  --Gray-500: #717680;
+  --Gray-600: #535862;
+  --Gray-700: #414651;
+  --Gray-800: #252b37;
+  --Gray-900: #181d27;
+  --Gray-950: #0a0d12;
+
+  --Base-White: #fff;
+  --Gradient-skeuemorphic-gradient-border: rgba(255, 255, 255, 0.12);
+}
+
+
+$phone-size: 375px;
+$tablet-size: 768px;
+$desktop-size: 1280px;
+
+$phone: "screen and (max-width: #{$tablet-size})";
+$tablet: "screen and (max-width: #{$desktop-size})";
+$desktop: "screen and (min-width: #{$desktop-size})";

@@ -1,7 +1,7 @@
 var PLANS = null;
 
 async function getStripeCheckoutUrl(priceId, email, ccbAccount) {
-	const checkout = await fetch('/get-checkout-url', {
+	const response = await fetch('/get-checkout-url', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -12,6 +12,8 @@ async function getStripeCheckoutUrl(priceId, email, ccbAccount) {
 			price_id: priceId,
 		}),
 	});
+
+	return await response.json();
 }
 
 async function getPlans() {
@@ -94,5 +96,7 @@ async function onSelectPlanClick(event) {
 
 	const url = await getStripeCheckoutUrl(priceID, email, ccbAccountName);
 
+	console.log(url);
+	window.open(url.url, '_newBundle');
 	return false;
 }

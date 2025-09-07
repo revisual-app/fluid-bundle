@@ -3,8 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-		  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/output.css">
 	<title>FluidMin Bundle</title>
 	<style>
 
@@ -14,47 +18,73 @@
 </head>
 <body>
 
-<div class="container mt-4">
-	<div class="card">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<form class="needs-validation" id="form">
-						<div class="mb-3">
-							<label for="email" class="form-label" data-i18n="email.label">Email</label>
-							<input type="email" id="email" placeholder="email@gmail.com" class="form-control"
-								   value="" required/>
-							<div class="invalid-feedback" data-i18n="email.label.error">
-								Please enter your email.
-							</div>
-						</div>
 
-						<div class="mb-3">
-							<label for="ccb_account_name" class="form-label" data-i18n="email.label">CCB Account
-								name</label>
-							<input type="text" id="ccb_account_name" placeholder="abc" class="form-control" value=""/>
-							<div class="invalid-feedback" data-i18n="email.label.error">
-								Please enter Pushpay/CCB account name
-							</div>
-						</div>
-						<button id="submitbtn" class="btn btn-primary">Show prices</button>
+<div class="page">
 
-					</form>
+	<div class="section hero">
+        <div class="hero-overlay-mobile"></div>
+		<div class="container">
+            <div id="particle-container">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+
+			<div class="group">
+				<div class="logos">
+					<div><img src="/img/circle_dc.png" alt="DisplayChurch logo" title="Logo of Display Church"/></div>
+					<div><img src="/img/circle_ccbchimp.png" alt="CCB Chimp logo" title="Logo of CCB Chimp"/></div>
+					<div><img src="/img/circle_cb.png" alt="Church Bee logo" title="Logo of Church Bee"/></div>
+				</div>
+				<div class="content">
+
+					<div class="heading">
+						<button class="btn-badge">Save More by Bundling Your Church Tools</button>
+						<h1>No switching. No starting over.<br/>Smarter billing and bigger impact.
+						</h1>
+						<p>Connect your favorite tools like DisplayChurch, ChurchBee, and CCBchimp;<br/>
+							save up to 50% yearly.
+						</p>
+					</div>
+					<div class="buttons">
+						<button class="btn hover-dark">See how much you can save</button>
+						<button class="btn btn-primary hover-bright">Get started</button>
+					</div>
 				</div>
 			</div>
-			<div class="status text-center mt-4" id="status"></div>
-
+			<img src="/img/splash_bg.png" class="hero-img">
+			<img src="/img/splash_bg_overlay.svg" class="hero-img-overlay">
 		</div>
-
+        <img src="/img/splash_bg.png" class="hero-img">
 	</div>
-
-
 </div>
-<div class="container">
-
-	<div id="plans" class="row"></div>
-</div>
-
 <script src="/app.js" type="application/javascript"></script>
 </body>
 </html>
