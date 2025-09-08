@@ -27,6 +27,13 @@
       font-weight: 500;
       line-height: 1.222;
       letter-spacing: -0.044rem;
+
+      @media #{vars.$phone} {
+        font-size: 1.88rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.267;
+      }
     }
 
     .content {
