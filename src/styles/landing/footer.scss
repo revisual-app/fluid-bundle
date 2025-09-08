@@ -1,0 +1,41 @@
+@use "../vars" as v;
+
+.footer {
+  width: 100%;
+  max-width: 80rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  align-content: flex-start;
+  row-gap: 24px;
+  align-self: center;
+  background-color: var(--Base-White);
+  padding: 5.5rem 7rem 2.62rem 6.44rem;
+
+  @media #{v.$phone} {
+    flex-direction: column;
+    padding: 3rem 1rem;
+    border-top: 1px solid var(--Gray-200);
+    align-items: flex-start;
+    gap: 1.12rem;
+    margin-top: 1.44rem;
+  }
+}
+
+.footer-logo {
+  margin-left: -0.56rem;
+  margin-top: -0.5rem;
+  width: 9.94rem;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: var(--Gray-500);
+  text-align: left;
+}

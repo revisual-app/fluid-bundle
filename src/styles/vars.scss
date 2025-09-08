@@ -48,8 +48,8 @@
 
 
 $phone-size: 375px;
-$tablet-size: 768px;
-$desktop-size: 1280px;
+$tablet-size: 767.9px;
+$desktop-size: 1279.9px;
 
 $phone: "screen and (max-width: #{$tablet-size})";
 $tablet: "screen and (max-width: #{$desktop-size})";

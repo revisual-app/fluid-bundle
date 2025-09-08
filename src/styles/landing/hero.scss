@@ -103,25 +103,7 @@
         gap: 3rem;
         align-self: stretch;
 
-        button.btn-badge {
-          display: flex;
-          justify-content: center;
-          color: var(--Brand-700);
-          font-size: 0.75rem;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 1.5;
-          letter-spacing: 0rem;
-          text-align: center;
-          background-color: var(--Brand-50);
-          padding: 0.06rem 0.44rem;
-          border: 1px solid var(--Brand-200);
-          border-radius: 16px;
 
-          &:hover {
-            filter: brightness(0.85);
-          }
-        }
 
         h1 {
           color: var(--Gray-900);
@@ -166,7 +148,7 @@
 
 @media #{v.$phone} {
   .section.hero {
-    padding: 0.75rem 0 0;
+    padding: 0 0 0;
     gap: 0;
 
     .container {
@@ -183,3 +165,9 @@
   }
 }
 
+
+@media #{v.$tablet} {
+  .section.hero {
+    gap: 4rem;
+  }
+}
