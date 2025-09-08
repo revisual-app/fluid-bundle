@@ -4,7 +4,9 @@
 @use "landing/hero";
 @use "landing/navigation";
 @use "landing/whatsincluded";
+@use "landing/testimonial";
 @use "landing/whoarewe";
+@use "landing/faq";
 @use "landing/footer";
 
 
@@ -97,5 +99,17 @@ button.btn-badge {
 
   &:hover {
     filter: brightness(0.85);
+  }
+}
+
+
+.section-divider {
+  margin: 0 7rem;
+  height: 0.06rem;
+  flex-shrink: 0;
+  background-color: var(--Gray-200);
+
+  @media #{vars.$phone} {
+    margin: 0 1rem;
   }
 }
