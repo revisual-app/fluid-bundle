@@ -1,0 +1,127 @@
+@use "../vars" as v;
+
+.section.whatsincluded {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  background-color: var(--Base-White);
+  padding: 6rem 1.5rem;
+
+
+  .heading {
+    width: calc(100% - 176px);
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    @media #{v.$tablet} {
+      width: 100%;
+    }
+
+    .heading-top {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      p {
+        color: var(--Brand-700);
+        --min-font-size: 0.94;
+        --max-font-size: 1;
+        font-size: var(--interpolate);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      h2 {
+        color: var(--Gray-900);
+        --min-font-size: 1.38;
+        --max-font-size: 2.25;
+        font-size: var(--interpolate);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.222;
+        letter-spacing: -0.044rem;
+      }
+    }
+
+    p {
+      --min-font-size: 1;
+      --max-font-size: 1.25;
+      font-size: var(--interpolate);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-left: 2rem;
+      margin-right: 2rem;
+
+      @media #{v.$tablet} {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .content {
+    width: calc(100% - 176px);
+    max-width: 80rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+
+    @media #{v.$tablet} {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .product {
+      width: 100%;
+      min-width: 20rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      flex-grow: 1;
+      padding-top: 0.62rem;
+
+      @media #{v.$tablet} {
+        max-width: 43%;
+      }
+
+      img {
+        height: 2rem;
+        flex-shrink: 0;
+        max-width: 7rem;
+        object-fit: contain;
+      }
+
+      .description-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        align-self: stretch;
+        margin-top: 0.62rem;
+      }
+
+      .description-title {
+        color: var(--Gray-900);
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .description-text {
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+    }
+  }
+}

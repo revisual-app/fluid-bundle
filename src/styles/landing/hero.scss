@@ -146,6 +146,14 @@
 }
 
 
+
+@media #{v.$tablet} {
+  .section.hero {
+    gap: 4rem;
+    padding: 0 0 30rem;
+  }
+}
+
 @media #{v.$phone} {
   .section.hero {
     padding: 0 0 0;
@@ -162,12 +170,5 @@
     .hero-img {
       position: relative;
     }
-  }
-}
-
-
-@media #{v.$tablet} {
-  .section.hero {
-    gap: 4rem;
   }
 }
