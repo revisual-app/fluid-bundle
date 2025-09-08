@@ -48,8 +48,8 @@ async function onGetAppsInfo(event) {
 }
 
 (function app() {
-	document.getElementById('submitbtn').addEventListener('click', onGetAppsInfo);
-	document.getElementById('form').addEventListener('submit', onGetAppsInfo);
+	// document.getElementById('submitbtn').addEventListener('click', onGetAppsInfo);
+	// document.getElementById('form').addEventListener('submit', onGetAppsInfo);
 })();
 
 function renderPlans() {
