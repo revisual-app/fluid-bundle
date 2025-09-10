@@ -181,6 +181,10 @@
     border: 1px solid var(--Gray-200);
     border-radius: 12px;
 
+    @media #{vars.$phone} {
+      flex-direction: column;
+    }
+
     .circle-featured-icon {
       flex-shrink: 0;
       background-color: var(--Brand-100);
