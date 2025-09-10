@@ -23,7 +23,7 @@ document.querySelectorAll('.more-features').forEach((link) => {
 });
 
 // check/uncheck bundle options
-document.querySelectorAll('.btn-table-cell.locking').forEach((btn) => {
+document.querySelectorAll('.btn-table-cell').forEach((btn) => {
 	btn.addEventListener('click', function (event) {
 		if (btn.classList.contains('unchecked')) {
 			btn.classList.remove('unchecked');
@@ -32,11 +32,40 @@ document.querySelectorAll('.btn-table-cell.locking').forEach((btn) => {
 		}
 
 		if (document.querySelectorAll('.btn-table-cell.locking.unchecked').length) {
-			console.log('linking');
 			document.querySelector('.cards-right').classList.add('unlocked');
 		} else {
-			console.log('unlinking');
 			document.querySelector('.cards-right').classList.remove('unlocked');
 		}
+
+		const item = document.querySelector('.btn-table-cell.unchecked');
+
+		if (item) {
+			console.log(item.id);
+			document.querySelector('.plans-col').style.display = 'flex';
+
+			document.querySelectorAll('.modern-screen-mockup-inner-shadow img').forEach((el) => {
+				el.style.display = 'none';
+			});
+			document.querySelector('#mockup-' + item.id).style.display = 'block';
+
+			document.querySelectorAll('.plans-col .plans-text').forEach((el) => {
+				el.style.display = 'none';
+			});
+
+			const plansText = document.querySelector('#select-' + item.id);
+
+			if (plansText) {
+				plansText.style.display = 'flex';
+			}
+		} else {
+			document.querySelector('.plans-col').style.display = 'none';
+		}
+	});
+
+	document.querySelectorAll('.plans-text button').forEach((btn) => {
+		btn.addEventListener('click', function (event) {
+			const id = btn.parentNode.id.split('-')[1];
+			document.getElementById(id).click();
+		});
 	});
 });
