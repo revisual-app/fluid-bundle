@@ -28,6 +28,11 @@
       gap: 0.75rem;
       width: calc(100% - 66px);
     }
+    @media #{vars.$phone} {
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0 1rem;
+    }
 
     .top {
 

@@ -94,6 +94,9 @@
       @media #{v.$tablet} {
         max-width: 43%;
       }
+      @media #{v.$phone} {
+        max-width: 100%;
+      }
 
       img {
         height: 2rem;
