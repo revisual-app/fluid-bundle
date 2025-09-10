@@ -10,6 +10,8 @@
 @use "landing/faq";
 @use "landing/footer";
 
+@use "checkout/checkout";
+
 
 .hover-dark:hover {
   filter: brightness(0.85);

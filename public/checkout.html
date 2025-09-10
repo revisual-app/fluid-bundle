@@ -18,15 +18,113 @@
 <body>
 
 
-<div class="page">
+<div class="checkout-page">
+
+    <div class="main-column">
+        <div class="checkout-header">
+            <img src="/img/fmin_logo.png" class="header-logo">
+            <a href="/" class="close-button">
+                <p class="">Close</p>
+                <object data="/img/checkout/close-button.svg" class="x-close buttons-button-x-close"
+                        type="image/svg+xml"></object>
+            </a>
+        </div>
+        <div class="stage">
 
 
-    <footer class="footer">
-        <img src="/img/fmin_logo.png" class="footer-logo">
-        <p class="footer-text text-md-regular1">© 2025 Fluidministery. All rights reserved.</p>
-    </footer>
+            <div class="stage-container" id="apps">
+
+                <div class="heading">
+                    <h2 class="">What apps do you use or plan on using?</h2>
+                    <p class="">
+                        This helps us check compatibility and show you the right bundle options.
+                    </p>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <div class="radio-group-item " data-integration="ccb">
+                            <div class="label">
+                                <div class="icon">
+                                    <object data="/img/checkout/featured-icon.svg" class=""
+                                            type="image/svg+xml"></object>
+                                </div>
+
+                                <p>Pushpay / CCB / ParishStaq (ChMS)</p>
+                            </div>
+
+                            <div class="checkbox">
+                                <object data="/img/checkout/checkbox-base-check.svg" type="image/svg+xml"></object>
+                            </div>
+                        </div>
+
+                        <div class="radio-group-item" data-integration="pco">
+                            <div class="label">
+                                <div class="icon">
+                                    <object data="/img/checkout/featured-icon.svg" class=""
+                                            type="image/svg+xml"></object>
+                                </div>
+
+                                <p class="">Planning Center</p>
+                            </div>
+
+                            <div class="checkbox">
+                                <object data="/img/checkout/checkbox-base-check.svg" type="image/svg+xml"></object>
+                            </div>
+                        </div>
+
+                        <div class="radio-group-item" data-integration="breeze">
+                            <div class="label">
+                                <div class="icon">
+                                    <object data="/img/checkout/featured-icon.svg" class=""
+                                            type="image/svg+xml"></object>
+                                </div>
+
+                                <p class="">Breeze</p>
+                            </div>
+
+                            <div class="checkbox">
+                                <object data="/img/checkout/checkbox-base-check.svg" type="image/svg+xml"></object>
+                            </div>
+                        </div>
+
+                        <div class="radio-group-item" data-integration="google">
+                            <div class="label">
+                                <div class="icon">
+                                    <object data="/img/checkout/featured-icon.svg" class=""
+                                            type="image/svg+xml"></object>
+                                </div>
+
+                                <p class="">Google Calendar</p>
+                            </div>
+
+                            <div class="checkbox">
+                                <object data="/img/checkout/checkbox-base-check.svg" type="image/svg+xml"></object>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary hover-bright">Continue</button>
+                </div>
+
+            </div>
+        </div>
+        <footer class="footer">
+            <p class="footer-text text-md-regular1">© Fluidministery 2025</p>
+            <p class="footer-text text-md-regular1">
+                <object data="/img/checkout/section-mail.svg" class="x-close section-mail"
+                        type="image/svg+xml"></object>
+                help@fluidministery.com
+            </p>
+        </footer>
+    </div>
+    <div class="checkout-banner">
+        <img src="/img/checkout/banner.png" alt=""/>
+
+    </div>
+
 </div>
+
 <script src="/app.js" type="application/javascript"></script>
-<script src="/ui-landing.js" type="application/javascript"></script>
+<script src="/ui-checkout.js" type="application/javascript"></script>
 </body>
 </html>

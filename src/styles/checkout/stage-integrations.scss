@@ -1,0 +1,100 @@
+@use "../vars" as v;
+
+#apps .content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+
+  .options {
+    width: 100%;
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .radio-group-item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      border-radius: 12px;
+      background-color: var(--Base-White);
+      border: 1px solid var(--Gray-200);
+      padding: 0.94rem;
+
+      &.checked {
+        background-color: var(--Base-White);
+        border: 2px solid var(--Brand-600);
+        padding: 0.88rem;
+
+      }
+
+      .label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-grow: 1;
+        padding-right: 14.56rem;
+
+        @media #{v.$tablet} {
+          padding: 0;
+        }
+
+        p {
+          color: var(--Gray-700);
+          font-size: 0.88rem;
+          font-style: normal;
+        }
+      }
+
+      .icon {
+        box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05), inset 0px -2px 0px 0px rgba(10, 13, 18, 0.05), inset 0px 0px 0px 1px rgba(10, 13, 18, 0.18);
+        background-color: var(--base-white);
+        aspect-ratio: 1 / 1;
+        padding: 0.44rem;
+        border: 1px solid var(--gray-300);
+        border-radius: 6px;
+        overflow: hidden;
+
+        object {
+          margin: 0 auto;
+          width: 1rem;
+          aspect-ratio: 1 / 1;
+        }
+      }
+
+      .checkbox {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        border: 1px solid var(--Gray-300);
+        border-radius: 4px;
+
+        object {
+          display: none;
+        }
+
+      }
+
+      &.checked {
+        .checkbox {
+
+          position: relative;
+          background-color: var(--Brand-600);
+          border: 1px solid var(--Brand-600);
+
+          object {
+            display: block;
+            position: absolute;
+            top: 7%;
+            left: 7%;
+            margin-left: unset;
+            margin-right: unset;
+            width: 86%;
+          }
+        }
+      }
+    }
+  }
+}

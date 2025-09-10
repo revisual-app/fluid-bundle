@@ -1,0 +1,172 @@
+@use "../vars" as v;
+
+@use "./stage-integrations";
+
+.checkout-page {
+  display: flex;
+  max-height: 100vh;
+  width: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+
+
+  .main-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media #{v.$tablet} {
+      width: 60vw;
+    }
+
+
+    @media #{v.$phone} {
+      width: 100%;
+    }
+  }
+
+  .stage {
+    display: flex;
+    min-width: 480px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    max-height: 100vh;
+    overflow-y: auto;
+
+    padding: 8rem 0 0;
+
+
+    @media #{v.$phone} {
+      overflow: initial;
+      min-width: 100%;
+      padding: 2rem 0 0;
+    }
+  }
+
+  .stage-container {
+    margin-left: 7.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media #{v.$tablet} {
+      padding: 0 2rem;
+      margin: 0
+    }
+
+    @media #{v.$phone} {
+      padding: 0 1rem;
+    }
+
+    .heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      h2 {
+        color: var(--Gray-900);
+        font-size: 1.88rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.267;
+        text-align: left;
+      }
+
+      p {
+        color: var(--Gray-600);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left
+      }
+    }
+  }
+
+  .checkout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+
+
+    @media #{v.$phone} {
+      padding: 1rem 1rem;
+    }
+
+    img {
+
+      width: 9.94rem;
+    }
+
+    .close-button {
+      max-width: 27.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.38rem;
+
+      p {
+
+        color: var(--Brand-700);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+.checkout-banner {
+
+  display: block;
+  max-width: 30vw;
+  width: 100%;
+  max-height: 100vh;
+
+  @media #{v.$tablet} {
+    width: 40vw;
+    max-width: 40vw;
+  }
+
+  @media #{v.$phone} {
+    display: none;
+  }
+
+
+  img {
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
+    object-position: top;
+  }
+}
+
+
+.checkout-page {
+  footer {
+    padding: 1rem 2rem;
+
+    @media #{v.$phone} {
+      padding: 1rem 1rem;
+      flex-direction: row;
+    }
+
+    p {
+      color: var(--Gray-600);
+      font-size: 0.88rem;
+      font-style: normal;
+      font-weight: 400;
+
+      object {
+        display: inline
+      }
+    }
+  }
+}
+
+
