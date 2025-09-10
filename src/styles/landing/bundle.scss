@@ -265,6 +265,19 @@
       margin-right: -0.06rem;
       margin-top: -0.06rem;
 
+      &.unchecked {
+
+        .icon-checkbox-base {
+          border: 1px solid var(--Gray-200);
+          background-color: var(--Base-White);
+
+          object {
+            display: none;
+          }
+        }
+      }
+
+
       .icon-checkbox-base {
         position: relative;
         width: 1.5rem;
@@ -273,6 +286,7 @@
         aspect-ratio: 1 / 1;
         border: 1px solid var(--Brand-600);
         border-radius: 6px;
+        pointer-events: none;
 
         object {
 
@@ -288,6 +302,7 @@
           stroke: var(--Base-White, #FFF);
         }
       }
+
 
       p {
         font-size: 1rem;
@@ -321,20 +336,6 @@
       }
 
 
-      .table-cell-a {
-        container: table-cell1 / inline-size;
-        margin: 0 -0.06rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.75rem;
-        flex-shrink: 0;
-        padding: 1.5rem 1rem 1rem 1rem;
-
-
-      }
-
-
     }
 
     .cards-right {
@@ -356,6 +357,57 @@
 
       @media #{vars.$phone} {
         flex-direction: column;
+      }
+
+      .table-cell-a {
+        display: none;
+      }
+
+      &.unlocked {
+        gap: 2rem;
+
+        @media #{vars.$phone} {
+          gap: 0;
+        }
+
+        .featured-icon-locked {
+          box-shadow: none;
+          position: initial;
+
+          .featured-icon-inner {
+            box-shadow: none;
+
+            .featured-icon-link {
+
+              display: none;
+            }
+
+            .featured-icon-unlink {
+
+              display: block;
+            }
+          }
+
+
+          .icon-checkbox-base {
+            border: 1px solid var(--Gray-300);
+            background-color: var(--Base-White);
+
+            object {
+              display: none;
+            }
+          }
+        }
+
+        .table-cell-merged,
+        .card-table-cell-empty {
+          display: none;
+        }
+
+        .table-cell-a {
+          display: flex;
+        }
+
       }
 
       .col-left {
@@ -426,6 +478,8 @@
       border: 1px solid var(--Gray-300);
       border-radius: 12px;
 
+      display: block;
+
       @media #{vars.$phone} {
         position: absolute;
         top: 19rem;
@@ -444,13 +498,21 @@
         overflow: hidden;
 
         @media #{vars.$phone} {
-            padding: 0.25rem;
+          padding: 0.25rem;
 
           object {
             width: 1rem;
           }
         }
       }
+    }
+
+    .featured-icon-link {
+      display: block;
+    }
+
+    .featured-icon-unlink {
+      display: none;
     }
 
     .table-cell-merged {
@@ -513,6 +575,18 @@
         padding: 0 1.12rem;
       }
     }
+  }
+
+  .table-cell-a {
+    margin: 0 -0.06rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    padding: 1.5rem 1rem 1rem 1rem;
+
+
   }
 
   .table-cell-b {

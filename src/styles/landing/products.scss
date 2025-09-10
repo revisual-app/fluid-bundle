@@ -14,6 +14,10 @@
     padding: 6rem 0;
   }
 
+  @media #{vars.$phone} {
+    gap: 3rem;
+  }
+
   .heading {
     width: calc(100% - 624px);
     display: flex;
@@ -54,6 +58,7 @@
           --min-font-size: 1.69;
           --max-font-size: 2.25;
         }
+
       }
     }
 
@@ -83,6 +88,10 @@
       padding-right: 2rem;
     }
 
+    @media #{vars.$phone} {
+      padding: 0 1rem;
+    }
+
     .product {
       width: 100%;
       max-width: 80rem;
@@ -95,6 +104,7 @@
 
       @media #{vars.$tablet} {
         gap: 2rem;
+        padding: 0;
       }
 
       &.product-revers {
@@ -132,10 +142,23 @@
             order: 3
           }
         }
+
+        @media #{vars.$phone} {
+
+          .info {
+            order: 1;
+          }
+
+          .image-placeholder {
+            order: 3;
+          }
+
+          .all-features {
+            order: 2;
+          }
+        }
       }
     }
-
-
 
 
     .info {
@@ -148,6 +171,10 @@
 
       @media #{vars.$tablet} {
         order: 1;
+      }
+
+      @media #{vars.$phone} {
+        width: 100%;
       }
 
       .details {
@@ -180,12 +207,21 @@
             font-weight: 600;
             line-height: 1.267;
             text-align: left;
+
+            @media #{vars.$phone} {
+              font-size: 1.5rem;
+              line-height: 1.333;
+            }
           }
 
           p {
             font-style: normal;
             font-weight: 400;
             text-align: left;
+
+            @media #{vars.$phone} {
+              font-size: 1rem;
+            }
           }
         }
       }
@@ -213,6 +249,10 @@
             font-style: normal;
             font-weight: 400;
             text-align: left;
+
+            @media #{vars.$phone} {
+              font-size: 1rem;
+            }
           }
         }
       }
@@ -357,6 +397,11 @@
 
       max-height: 30rem;
     }
+
+    @media #{vars.$phone} {
+
+      max-height: 35rem;
+    }
   }
 
   //border: 1px solid var(--Brand-100);
@@ -378,23 +423,39 @@
   p {
     text-align: left;
     color: var(--Gray-600);
-    font-size: 18px;
+    font-size: 1.125rem;
     font-style: normal;
     font-weight: 400;
     line-height: 28px; /* 155.556% */
+    @media #{vars.$phone} {
+      font-size: 1rem;
+    }
   }
+
 
   .benefits {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding-left: 16px;
+    gap: 1rem;
+    padding-left: 1rem;
+
+    @media #{vars.$phone} {
+      padding-left: 0;
+      gap: 0.5rem;
+    }
   }
 
   .benefit {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
+
+    .icon {
+      @media #{vars.$phone} {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
   }
 }
 

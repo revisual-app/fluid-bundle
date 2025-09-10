@@ -100,25 +100,3 @@ async function onSelectPlanClick(event) {
 	window.open(url.url, '_newBundle');
 	return false;
 }
-
-document.querySelectorAll('.nav-mobile-toggle a').forEach((link) => {
-	link.addEventListener('click', function (event) {
-		document.getElementById('nav-toggle').checked = false;
-	});
-});
-
-document.querySelectorAll('.more-features').forEach((link) => {
-	link.addEventListener('click', function (event) {
-		// get link's child node "label" and set innerHTML to Hide Features
-		console.log(link.childNodes);
-		if (document.getElementById(link.dataset.target).classList.contains('expanded')) {
-			document.getElementById(link.dataset.target).classList.remove('expanded');
-			link.childNodes[1].innerHTML = 'Show Features';
-			link.childNodes[1].classList.add('show');
-		} else {
-			link.childNodes[1].innerHTML = 'Hide Features';
-			document.getElementById(link.dataset.target).classList.add('expanded');
-			link.childNodes[1].classList.remove('show');
-		}
-	});
-});
