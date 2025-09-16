@@ -1,5 +1,13 @@
 @use "../vars" as v;
 
+
+#apps {
+  .heading {
+    padding: 8rem 0 32px;
+
+  }
+}
+
 #apps .content {
   display: flex;
   flex-direction: column;

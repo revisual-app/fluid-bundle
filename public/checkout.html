@@ -32,7 +32,7 @@
         <div class="stage">
 
 
-            <div class="stage-container" id="apps">
+            <div class="stage-container" id="apps" style="display: none">
 
                 <div class="heading">
                     <h2 class="">What apps do you use or plan on using?</h2>
@@ -107,6 +107,109 @@
                 </div>
 
             </div>
+
+            <div class="stage-container" id="apps-unsupported" style="display: none">
+                <a href="#">
+
+                    <div class="back-to">
+                        <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
+                        <p class="">Back to Integrations</p>
+                    </div>
+                </a>
+
+                <div class="heading">
+                    <h2 class="">We’re currently starting bundle support with Pushpay/CCB.</h2>
+                    <p class="">
+                        You’re a little early but we’d love to let you know when support expands to other platforms.
+                    </p>
+                </div>
+                <div class="content">
+
+                    <div class="section-form">
+                        <div class="input-group-field">
+                            <label for="name">Name</label>
+                            <input placeholder="Enter your name" id="name">
+                        </div>
+
+                        <div class="input-group-field">
+                            <label for="email">Email</label>
+                            <input placeholder="Enter your email" id="email">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary hover-bright">Notify me</button>
+                </div>
+
+            </div>
+
+
+            <div class="stage-container" id="pushpayform" style="display: none">
+                <a href="#">
+
+                    <div class="back-to">
+                        <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
+                        <p class="">Back to Integrations</p>
+                    </div>
+                </a>
+
+                <div class="heading">
+                    <h4>
+                        We’re currently starting bundle support with Pushpay/CCB. We’ll let you know when support
+                        expands to Breeze.
+                    </h4>
+                    <h2 class="">Let’s see what you’re already using</h2>
+                    <p class="">
+                        We’ll check your existing subscriptions to prefill your bundle and help you avoid paying twice.
+                    </p>
+                </div>
+                <div class="content">
+
+                    <div class="section-form">
+                        <div class="input-group-field">
+                            <label for="ccb-name">Name</label>
+                            <input placeholder="Enter your name" id="ccb-name">
+                        </div>
+
+                        <div class="input-group-field">
+                            <label for="ccb-email">Email</label>
+                            <input placeholder="Enter your email" id="ccb-email">
+                        </div>
+
+                        <div class="input-group-field">
+                            <label for="ccb-account">Pushpay/CCB Account URL</label>
+                            <input placeholder="Enter your URL" id="ccb-account">
+                            <p class="example">e.g., grace.ccbchurch.com</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary hover-bright">Continue</button>
+                </div>
+
+            </div>
+
+            <div class="stage-container" id="purchase" style="display: flex">
+                <a href="#">
+
+                    <div class="back-to">
+                        <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
+                        <p class="">Back to My Informations</p>
+                    </div>
+                </a>
+
+                <div class="heading">
+                    <h2 id="header-tools-found">We’ve found your active tools</h2>
+                    <h2 id="header-tools-not-found" style="display: none">Pick what you need, save as you
+                        go</h2>
+
+                    <p id="p-tools-found"> Good news: we’re applying your bundle discount to all products, including the
+                        one you
+                        already have.</p>
+                    <p id="p-tools-not-found" style="display: none"> We’ve optimized your pricing to give you more value
+                        across tools.</p>
+                </div>
+                <div class="content">
+
+                </div>
+
+            </div>
         </div>
         <footer class="footer">
             <p class="footer-text text-md-regular1">© Fluidministery 2025</p>
@@ -117,10 +220,55 @@
             </p>
         </footer>
     </div>
-    <div class="checkout-banner">
+    <div class="checkout-banner" style="display: none">
         <img src="/img/checkout/banner.png" alt=""/>
 
     </div>
+
+    <div class="checkout-summary" style="display: flex">
+        <p class="">Order Summary</p>
+        <div class="card-summary">
+            <p class="card-summary-header-items">3 items</p>
+
+            <div class="card-content">
+                <div class="card-summary-row">
+                    <p class="label">Subtotal</p>
+                    <p class="value" id="subtotal-value">$960</p>
+                </div>
+
+                <div class="card-summary-row">
+                    <div class="card-summary-row-expandable">
+                        <p class="label">Promotions</p>
+                        <object data="/img/checkout/chevron-down.svg" type="image/svg+xml"></object>
+                    </div>
+
+                    <p class="value" id="promotion-value">-$360</p>
+                </div>
+
+                <div class="card-summary-row">
+                    <div class="card-summary-row-expandable">
+                        <p class="label">Refund</p>
+                        <object data="/img/checkout/chevron-down.svg"
+                                type="image/svg+xml"></object>
+                    </div>
+
+                    <p class="value" id="discount-value">-$100</p>
+                </div>
+            </div>
+
+            <div class="card-summary-row-total">
+                <div class="card-summary-row-total-summary">
+                    <p class="card-summary-row-total-header">Total Billed Annually</p>
+                    <p class="next-charge">Next charge date <span id="next-payment-date">Jan 11, 2027</span></p>
+                </div>
+
+                <h2 id="grand-total">$500</h2>
+            </div>
+
+            <button class="btn btn-primary hover-bright">Proceed to Checkout</button>
+        </div>
+    </div>
+
 
 </div>
 

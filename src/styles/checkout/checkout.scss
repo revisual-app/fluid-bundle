@@ -1,6 +1,8 @@
 @use "../vars" as v;
 
 @use "./stage-integrations";
+@use "./unsupported-apps";
+@use "./pushpayform";
 
 .checkout-page {
   display: flex;
@@ -35,8 +37,6 @@
     align-self: stretch;
     max-height: 100vh;
     overflow-y: auto;
-
-    padding: 8rem 0 0;
 
 
     @media #{v.$phone} {
@@ -82,6 +82,15 @@
         font-weight: 400;
         line-height: 1.5;
         text-align: left
+      }
+
+      h4 {
+        color: var(--Gray-900);
+        font-size: 1.12rem;
+        font-style: normal;
+        line-height: 1.556;
+        text-align: left;
+        font-weight: 500;
       }
     }
   }
@@ -146,6 +155,149 @@
   }
 }
 
+.checkout-summary {
+
+  width: 100%;
+  max-width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%) top left / auto auto no-repeat, linear-gradient(#bedbed, #bedbed) top left / auto auto no-repeat;
+  padding: 13.56rem 2.5rem;
+  height: 100vh;
+
+  p {
+    color: var(--Gray-600);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0rem;
+    text-align: left;
+  }
+
+  .card-summary {
+    container: card-header / inline-size;
+    box-shadow: 0px 2px 2px -1px rgba(10, 13, 18, 0.04), 0px 4px 6px -2px rgba(10, 13, 18, 0.03), 0px 12px 16px -4px rgba(10, 13, 18, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #fff;
+    padding: 1.44rem;
+    border: 1px solid var(--Gray-200);
+    border-radius: 12px;
+
+
+    .card-summary-header-items {
+      color: var(--Gray-600);
+      font-size: 1.12rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.556;
+      letter-spacing: 0rem;
+
+      text-align: left;
+      padding-bottom: 0.69rem;
+      border-bottom: 1px solid var(--Gray-200);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+
+      .label {
+        font-size: 1.12rem;
+        font-style: normal;
+        line-height: 1.556;
+        letter-spacing: 0;
+        font-weight: 500;
+        text-align: center;
+        color: var(--Gray-600);
+
+      }
+
+      .value {
+        color: var(--Gray-900);
+        text-align: right;
+      }
+
+
+      .card-summary-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+      }
+
+
+      .card-summary-row-expandable {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-grow: 1;
+
+        object {
+          width: 1.5rem;
+          flex-shrink: 0;
+          aspect-ratio: 1 / 1;
+        }
+      }
+
+
+    }
+
+    .card-summary-row-total {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding-top: 1.19rem;
+      border-top: 1px solid var(--Gray-200);
+
+      .card-summary-row-total-summary {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.12rem;
+        flex-grow: 1;
+      }
+
+      p {
+        font-style: normal;
+        letter-spacing: 0;
+        text-align: left;;
+
+      }
+
+      .card-summary-row-total-header {
+        color: var(--Gray-900);
+        font-size: 1.12rem;
+        font-weight: 600;
+        line-height: 1.556;
+      }
+
+      .next-charge {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--Gray-900);
+      }
+
+      h2 {
+        color: var(--Gray-900);
+        font-size: 1.88rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.267;
+        letter-spacing: 0;
+      }
+    }
+  }
+
+}
+
 
 .checkout-page {
   footer {
@@ -169,4 +321,25 @@
   }
 }
 
+.back-to {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  align-self: center;
+  padding-bottom: 2rem;
 
+  object {
+    width: 1.25rem;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  p {
+    color: var(--Brand-700);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+}

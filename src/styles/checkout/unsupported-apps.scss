@@ -1,0 +1,53 @@
+@use "../vars" as v;
+
+
+#apps-unsupported {
+  max-width: 30rem;
+}
+
+#apps-unsupported .content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+
+  .section-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .input-group-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+
+      label {
+        color: var(--Gray-700);
+        font-size: 0.88rem;
+        font-style: normal;
+        text-align: left;
+      }
+
+      input {
+        box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);
+        background-color: var(--Base-White);
+        padding: 0.56rem 0.81rem;
+        border: 1px solid var(--Gray-300);
+        border-radius: 8px;
+
+        color: var(--Gray-700);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0rem;
+        text-align: left;
+
+        &::placeholder {
+          color: var(--Gray-400);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
