@@ -5,8 +5,6 @@ export async function checkAddress(request) {
 
     const response = await fetch('http://' + address);
 
-    const ccbBody = await response.text();
-    console.log('body', ccbBody);
     if (!response.ok) {
       return {
         success: false,

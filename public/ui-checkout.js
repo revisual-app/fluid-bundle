@@ -100,6 +100,7 @@ function byId(id) {
       console.log(accountInfo);
     } catch (e) {
       console.log('apps info error', e);
+    } finally {
       $name.disabled = false;
       $email.disabled = false;
       $ccbAccount.disabled = false;
@@ -107,6 +108,12 @@ function byId(id) {
 
       $submit.style.display = 'block';
       $loader.style.display = 'none';
+
+      byId('pushpayform').style.display = 'none';
+      byId('purchase').style.display = 'flex';
+
+      byId('checkout-banner').classList.remove('show');
+      byId('checkout-summary').classList.add('show');
     }
   });
 
@@ -119,6 +126,21 @@ function byId(id) {
       });
 
       byId('apps').style.display = 'flex';
+    });
+  });
+
+  /** back buttons */
+  document.querySelectorAll('.back-to-my-data').forEach(function (el) {
+    el.addEventListener('click', function (event) {
+      event.preventDefault();
+      document.querySelectorAll('.stage-container').forEach(function (el) {
+        el.style.display = 'none';
+      });
+
+      byId('pushpayform').style.display = 'flex';
+
+      byId('checkout-banner').classList.add('show');
+      byId('checkout-summary').classList.remove('show');
     });
   });
 })();

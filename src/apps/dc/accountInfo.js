@@ -1,28 +1,31 @@
 import { getEnv } from '../../context';
 
 export async function getAccountInfo(email, ccbAccountName) {
-	try {
-		const env = getEnv();
+  try {
+    const env = getEnv();
 
-		const resp = await fetch(env.DC_API_ADDRESS + '/api4/public/find_ccb.json', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Api-key': env.DC_API_KEY,
-				accept: 'application/json',
-			},
-			body: JSON.stringify({
-				email,
-				ccb_account: ccbAccountName,
-			}),
-		});
+    const resp = await fetch(env.DC_API_ADDRESS + '/api4/public/find_ccb.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Api-key': env.DC_API_KEY,
+        accept: 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        ccb_account: ccbAccountName,
+      }),
+    });
 
-		const json = await resp.json();
+    if (resp.ok) {
+      const json = await resp.json();
 
-		console.log('DC getAccountInfo', json);
+      console.log('DC getAccountInfo', json);
 
-		return json;
-	} catch (e) {
-		console.error(e);
-	}
+      return json;
+    }
+    return null;
+  } catch (e) {
+    console.error(e);
+  }
 }

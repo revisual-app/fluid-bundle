@@ -109,9 +109,9 @@
             </div>
 
             <div class="stage-container" id="apps-unsupported" style="display: none">
-                <a href="#">
+                <a href="#" class="back-to-integrations">
 
-                    <div class="back-to" id="back-to-integrations">
+                    <div class="back-to">
                         <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
                         <p class="">Back to Integrations</p>
                     </div>
@@ -125,25 +125,49 @@
                 </div>
                 <div class="content">
 
-                    <div class="section-form">
+                    <form class="section-form" id="signup-for-updates-form" action="#">
                         <div class="input-group-field">
-                            <label for="name">Name</label>
-                            <input placeholder="Enter your name" id="name">
+                            <label for="name-for-updates">Name</label>
+                            <input placeholder="Enter your name" id="name-for-updates" required="required">
                         </div>
 
                         <div class="input-group-field">
-                            <label for="email">Email</label>
-                            <input placeholder="Enter your email" id="email">
+                            <label for="email-for-updates">Email</label>
+                            <input placeholder="Enter your email" id="email-for-updates" type="email"
+                                   required="required">
                         </div>
+                        <button class="btn btn-primary hover-bright" id="signup-for-updates" type="submit">Notify me
+                        </button>
+                        <div class="lds-ellipsis" id="signup-for-updates-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="stage-container" id="apps-unsupported-thankyou" style="display: none">
+
+                <div class="heading">
+                    <div class="circle-icon">
+                        <object data="/img/checkout/check-icon.svg" class="circle-check-icon-icon"
+                                type="image/svg+xml"></object>
                     </div>
-                    <button class="btn btn-primary hover-bright">Notify me</button>
+                    <h2 class="">Thanks! You’re on the list.</h2>
+                    <p class="">
+                        We’ll keep you updated as soon as bundles become available for your platform.
+                    </p>
                 </div>
 
             </div>
 
 
             <div class="stage-container" id="pushpayform" style="display: none">
-                <a href="#">
+                <a href="#" class="back-to-integrations">
 
                     <div class="back-to">
                         <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
@@ -152,7 +176,7 @@
                 </a>
 
                 <div class="heading">
-                    <h4>
+                    <h4 id="pushpayform-subtitle">
                         We’re currently starting bundle support with Pushpay/CCB. We’ll let you know when support
                         expands to Breeze.
                     </h4>
@@ -163,30 +187,37 @@
                 </div>
                 <div class="content">
 
-                    <div class="section-form">
+                    <form class="section-form" id="pushpay-form" action="#">
                         <div class="input-group-field">
                             <label for="ccb-name">Name</label>
-                            <input placeholder="Enter your name" id="ccb-name">
+                            <input placeholder="Enter your name" id="ccb-name" required="required" value="">
                         </div>
 
                         <div class="input-group-field">
                             <label for="ccb-email">Email</label>
-                            <input placeholder="Enter your email" id="ccb-email">
+                            <input placeholder="Enter your email" id="ccb-email" type="email" required="required" value="">
                         </div>
 
                         <div class="input-group-field">
                             <label for="ccb-account">Pushpay/CCB Account URL</label>
-                            <input placeholder="Enter your URL" id="ccb-account">
+                            <input placeholder="Enter your URL" id="ccb-account" required="required" value="">
+                            <span class="form-error ccb-account-error">Provided Pushpay/CCB address does not exits.</span>
                             <p class="example">e.g., grace.ccbchurch.com</p>
                         </div>
-                    </div>
-                    <button class="btn btn-primary hover-bright">Continue</button>
+                        <button class="btn btn-primary hover-bright" id="sumbit-pushpay" type="submit">Continue</button>
+                        <div class="lds-ellipsis" id="pushpayform-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </form>
                 </div>
 
             </div>
 
             <div class="stage-container" id="purchase" style="display: none">
-                <a href="#">
+                <a href="#" class="back-to-my-data">
 
                     <div class="back-to">
                         <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
@@ -498,12 +529,11 @@
             </p>
         </footer>
     </div>
-    <div class="checkout-banner" style="display: flex">
+    <div class="checkout-banner show" id="checkout-banner">
         <img src="/img/checkout/banner.png" alt=""/>
-
     </div>
 
-    <div class="checkout-summary" style="display: none">
+    <div class="checkout-summary" id="checkout-summary">
         <p class="">Order Summary</p>
         <div class="card-summary">
             <p class="card-summary-header-items">3 items</p>
