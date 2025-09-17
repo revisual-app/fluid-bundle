@@ -12,14 +12,15 @@
   justify-content: flex-start;
   overflow: hidden;
 
+  flex-direction: row;
 
   .main-column {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70vw;
 
     @media #{v.$tablet} {
-      width: 60vw;
+      width: 100%;
     }
 
 
@@ -29,10 +30,24 @@
   }
 
   &.stage-checkout {
-    flex-direction: column;
+    overflow: initial;
+
+    flex-direction: row;
+    max-height: initial;
+
+    .main-column {
+      //width: 100%;
+    }
+
+
+    @media #{v.$tablet} {
+
+      flex-direction: column;
+    }
 
     .stage {
       overflow: initial;
+      max-height: initial;
     }
   }
 
@@ -175,7 +190,6 @@
   flex-shrink: 0;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%) top left / auto auto no-repeat, linear-gradient(#bedbed, #bedbed) top left / auto auto no-repeat;
   padding: 13.56rem 2.5rem;
-  height: 100vh;
 
   @media #{v.$tablet} {
     width: 100%;
@@ -320,6 +334,14 @@
   footer {
     padding: 1rem 2rem;
 
+    display: flex;
+
+    @media #{v.$tablet} {
+      display: none;
+
+    }
+
+
     @media #{v.$phone} {
       padding: 1rem 1rem;
       flex-direction: row;
@@ -335,6 +357,17 @@
         display: inline
       }
     }
+  }
+
+  footer.footer.responsive {
+    display: none;
+    background-color: transparent;
+    padding: 1rem 0;
+
+    @media #{v.$tablet} {
+      display: flex;
+    }
+
   }
 }
 

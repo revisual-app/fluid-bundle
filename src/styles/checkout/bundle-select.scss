@@ -1,14 +1,50 @@
+@use "../vars";
+
 #purchase {
   margin: 0;
   padding: 0 2rem 2rem;
 
   .section.bundle {
-    padding:0;
+    padding: 0;
     background: var(--Base-White);
 
 
     .container {
-        padding: 0;
+      padding: 0;
+
+      .plans {
+
+        align-items: stretch;
+
+        .cards-right {
+          overflow: initial;
+          align-items: stretch;
+
+          .col-left,
+          .col-right {
+            height: initial;
+          }
+        }
+        @media #{vars.$tablet} {
+          padding: 0;
+          margin: 0;
+
+          .card-left {
+            margin-top: 0;
+          }
+
+
+        }
+
+        .card-frame {
+          img {
+            height: 37px;
+            object-fit: contain;
+          }
+        }
+      }
+
+
     }
   }
 }
