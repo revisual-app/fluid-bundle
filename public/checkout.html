@@ -18,7 +18,7 @@
 <body>
 
 
-<div class="checkout-page stage-checkout">
+<div class="checkout-page">
 
     <div class="main-column">
         <div class="checkout-header">
@@ -32,7 +32,7 @@
         <div class="stage">
 
 
-            <div class="stage-container" id="apps" style="display: none">
+            <div class="stage-container" id="apps" style="display: flex">
 
                 <div class="heading">
                     <h2 class="">What apps do you use or plan on using?</h2>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary hover-bright">Continue</button>
+                    <button class="btn btn-primary hover-bright" id="apps-continue">Continue</button>
                 </div>
 
             </div>
@@ -111,7 +111,7 @@
             <div class="stage-container" id="apps-unsupported" style="display: none">
                 <a href="#">
 
-                    <div class="back-to">
+                    <div class="back-to" id="back-to-integrations">
                         <object data="/img/checkout/arrow-left.svg" type="image/svg+xml"></object>
                         <p class="">Back to Integrations</p>
                     </div>
@@ -185,7 +185,7 @@
 
             </div>
 
-            <div class="stage-container" id="purchase" style="display: flex">
+            <div class="stage-container" id="purchase" style="display: none">
                 <a href="#">
 
                     <div class="back-to">
@@ -498,12 +498,12 @@
             </p>
         </footer>
     </div>
-    <div class="checkout-banner" style="display: none">
+    <div class="checkout-banner" style="display: flex">
         <img src="/img/checkout/banner.png" alt=""/>
 
     </div>
 
-    <div class="checkout-summary" style="display: flex">
+    <div class="checkout-summary" style="display: none">
         <p class="">Order Summary</p>
         <div class="card-summary">
             <p class="card-summary-header-items">3 items</p>
