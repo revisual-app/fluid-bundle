@@ -3,6 +3,7 @@
 @use "./stage-integrations";
 @use "./unsupported-apps";
 @use "./pushpayform";
+@use "./bundle-select";
 
 .checkout-page {
   display: flex;
@@ -24,6 +25,14 @@
 
     @media #{v.$phone} {
       width: 100%;
+    }
+  }
+
+  &.stage-checkout {
+    flex-direction: column;
+
+    .stage {
+      overflow: initial;
     }
   }
 
@@ -167,6 +176,14 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%) top left / auto auto no-repeat, linear-gradient(#bedbed, #bedbed) top left / auto auto no-repeat;
   padding: 13.56rem 2.5rem;
   height: 100vh;
+
+  @media #{v.$tablet} {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    padding: 2rem;
+  }
 
   p {
     color: var(--Gray-600);
