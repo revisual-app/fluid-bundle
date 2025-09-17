@@ -50,4 +50,30 @@
       }
     }
   }
+
+
+
+}
+
+#apps-unsupported-thankyou {
+  .heading {
+    height: 60vh;
+    justify-content: center;
+  }
+
+  .circle-icon {
+    position: relative;
+    width: 2rem;
+    flex-shrink: 0;
+    background-color: var(--Brand-100);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+
+    object {
+      position: absolute;
+      top: 30%;
+      left: 27%;
+      width: 50%;
+    }
+  }
 }
