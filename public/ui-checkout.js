@@ -114,6 +114,25 @@ function byId(id) {
 
       byId('checkout-banner').classList.remove('show');
       byId('checkout-summary').classList.add('show');
+
+      qs('.checkout-page').classList.add('stage-checkout');
+
+      updateBundlePricing();
+
+      Object.keys(accountInfo).forEach((key) => {
+        const app = accountInfo[key];
+
+        if (!app) {
+          return;
+        }
+
+        if (app.has_subscription) {
+          qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Already in use';
+          const btn = qs('#bundle_' + key);
+          btn.style.pointerEvents = 'none';
+          btn.parentNode.style.filter = 'grayscale(1)';
+        }
+      });
     }
   });
 
@@ -141,6 +160,8 @@ function byId(id) {
 
       byId('checkout-banner').classList.add('show');
       byId('checkout-summary').classList.remove('show');
+
+      qs('.checkout-page').classList.remove('stage-checkout');
     });
   });
 })();

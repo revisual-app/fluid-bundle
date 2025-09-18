@@ -74,25 +74,28 @@ function qsa(q) {
       });
       const item = document.querySelector('.btn-table-cell.unchecked');
 
-      if (item) {
-        document.querySelector('.plans-col').style.display = 'flex';
+      const plansCol = document.querySelector('.plans-col');
+      if (plansCol) {
+        if (item) {
+          plansCol.style.display = 'flex';
 
-        document.querySelectorAll('.modern-screen-mockup-inner-shadow img').forEach((el) => {
-          el.style.display = 'none';
-        });
-        document.querySelector('#mockup-' + item.id).style.display = 'block';
+          document.querySelectorAll('.modern-screen-mockup-inner-shadow img').forEach((el) => {
+            el.style.display = 'none';
+          });
+          document.querySelector('#mockup-' + item.id).style.display = 'block';
 
-        document.querySelectorAll('.plans-col .plans-text').forEach((el) => {
-          el.style.display = 'none';
-        });
+          document.querySelectorAll('.plans-col .plans-text').forEach((el) => {
+            el.style.display = 'none';
+          });
 
-        const plansText = document.querySelector('#select-' + item.id);
+          const plansText = document.querySelector('#select-' + item.id);
 
-        if (plansText) {
-          plansText.style.display = 'flex';
+          if (plansText) {
+            plansText.style.display = 'flex';
+          }
+        } else {
+          document.querySelector('.plans-col').style.display = 'none';
         }
-      } else {
-        document.querySelector('.plans-col').style.display = 'none';
       }
 
       getMatchingBundleProduct();
@@ -108,21 +111,27 @@ function qsa(q) {
 })();
 
 async function getPlans() {
-  const plans = await fetch('/list-plans', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  try {
+    const plans = await fetch('/list-plans', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  PLANS = await plans.json();
+    PLANS = await plans.json();
 
-  console.log('getPlans');
-  getMatchingBundleProduct();
+    console.log('getPlans');
+    getMatchingBundleProduct();
+  } catch (err) {
+    console.error('getPlans failed', err);
+  }
 }
 
 function getMatchingBundleProduct() {
-  console.log('SELECTED_APPS', SELECTED_APPS);
+  if (!PLANS) {
+    return;
+  }
   const result = PLANS.filter((obj) => {
     // turn apps string into array
     const apps = obj.metadata.apps.split(',').map((a) => a.trim());
@@ -139,7 +148,62 @@ function getMatchingBundleProduct() {
   } else {
     SELECTED_PLAN = null;
   }
-  console.log(SELECTED_PLAN);
+
+  updateBundlePricing();
 }
 
-function updateBundlePricing() {}
+function updateBundlePricing() {
+  console.log('updateBundlePricing', SELECTED_PLAN);
+
+  if (!qs('.stage-checkout')) {
+    return;
+  }
+
+  let selectedApps = [];
+  let subtotal = 0;
+  qsa('.btn-table-cell:not(.unchecked)').forEach((btn) => {
+    let appId = btn.id.split('_')[1];
+    selectedApps.push(appId);
+
+    subtotal += BP[appId].yearly;
+  });
+
+  const itemsNumber = selectedApps.length;
+  qs('.card-summary-header-items .value').innerHTML = itemsNumber;
+  qs('#subtotal-value .value').innerHTML = subtotal;
+
+  let refunds = 0;
+
+  if (accountInfo) {
+    Object.keys(accountInfo).forEach((key) => {
+      const app = accountInfo[key];
+
+      if (!app) {
+        return;
+      }
+
+      if (app.has_subscription) {
+        refunds += Number(app.current_credit / 100);
+      }
+    });
+  }
+
+  if (SELECTED_PLAN) {
+    let bundlePrice = Number(SELECTED_PLAN.price.unit_amount / 100);
+    let promotions = subtotal - bundlePrice;
+
+    bundlePrice -= refunds;
+    qs('#grand-total .value').innerHTML = bundlePrice;
+
+    qs('#promotion-value .value').innerHTML = promotions;
+
+    qs('#discount-value .value').innerHTML = refunds;
+  }
+}
+
+// checkout prices
+document.querySelectorAll('.btn-table-cell').forEach((btn) => {
+  btn.addEventListener('click', function (event) {
+    updateBundlePricing();
+  });
+});
