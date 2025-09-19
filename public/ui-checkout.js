@@ -57,6 +57,7 @@ function byId(id) {
   });
   /** stage ccb account continue */
   byId('pushpay-form').addEventListener('submit', async function (event) {
+    byId('checkout-btn').removeEventListener('click', onCheckoutButtonClick);
     const $name = byId('ccb-name');
     const $email = byId('ccb-email');
     const $ccbAccount = byId('ccb-account');
@@ -159,6 +160,8 @@ function byId(id) {
 
       const dateFormatter = new Intl.DateTimeFormat(navigator.languages, { year: 'numeric', month: 'long', day: 'numeric' });
       byId('next-payment-date').innerHTML = dateFormatter.format(new Date());
+
+      byId('checkout-btn').addEventListener('click', onCheckoutButtonClick);
     }
   });
 
@@ -189,19 +192,6 @@ function byId(id) {
 
       qs('.checkout-page').classList.remove('stage-checkout');
     });
-  });
-
-  byId('checkout-btn').addEventListener('click', async function (event) {
-    console.log('on checkout click', SELECTED_PLAN);
-    if (!SELECTED_PLAN) {
-      return true;
-    }
-
-    const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.name, userInfo.ccnAccount);
-
-    if (link) {
-      window.location.href = link.url;
-    }
   });
 })();
 
@@ -294,4 +284,17 @@ async function getStripeCheckoutUrl(priceId, email, ccbAccount, name) {
   });
 
   return await response.json();
+}
+
+async function onCheckoutButtonClick(event) {
+  console.log('on checkout click', SELECTED_PLAN);
+  if (!SELECTED_PLAN) {
+    return true;
+  }
+
+  const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.name, userInfo.ccnAccount);
+
+  if (link) {
+    window.location.href = link.url;
+  }
 }
