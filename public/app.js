@@ -1,65 +1,49 @@
 var PLANS = null;
 
-async function getStripeCheckoutUrl(priceId, email, ccbAccount) {
-	const response = await fetch('/get-checkout-url', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			email,
-			ccb_account: ccbAccount,
-			price_id: priceId,
-		}),
-	});
-
-	return await response.json();
-}
-
 async function getPlans() {
-	const plans = await fetch('/list-plans', {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
+  const plans = await fetch('/list-plans', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-	PLANS = await plans.json();
+  PLANS = await plans.json();
 
-	renderPlans();
+  renderPlans();
 }
 
 async function onGetAppsInfo(event) {
-	event.preventDefault();
+  event.preventDefault();
 
-	getPlans();
+  getPlans();
 
-	const response = await fetch('/get-info', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			email,
-			ccb_account: ccbAccountName,
-		}),
-	});
-	return false;
+  const response = await fetch('/get-info', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      ccb_account: ccbAccountName,
+    }),
+  });
+  return false;
 }
 
 (function app() {
-	// document.getElementById('submitbtn').addEventListener('click', onGetAppsInfo);
-	// document.getElementById('form').addEventListener('submit', onGetAppsInfo);
+  // document.getElementById('submitbtn').addEventListener('click', onGetAppsInfo);
+  // document.getElementById('form').addEventListener('submit', onGetAppsInfo);
 })();
 
 function renderPlans() {
-	const row = document.getElementById('plans');
-	row.innerHTML = ''; // clear first
-	for (const plan of PLANS) {
-		const price = plan.price;
-		const priceFormatted = (price.unit_amount / 100).toFixed(2);
+  const row = document.getElementById('plans');
+  row.innerHTML = ''; // clear first
+  for (const plan of PLANS) {
+    const price = plan.price;
+    const priceFormatted = (price.unit_amount / 100).toFixed(2);
 
-		const cardHTML = `
+    const cardHTML = `
           <div class="col-md-4 mb-4">
             <div class="card shadow-lg border-0 rounded-3 h-100">
               <div class="card-body text-center p-4 d-flex flex-column">
@@ -77,26 +61,26 @@ function renderPlans() {
           </div>
         `;
 
-		row.insertAdjacentHTML('beforeend', cardHTML);
+    row.insertAdjacentHTML('beforeend', cardHTML);
 
-		const planButtons = document.querySelectorAll('.selectPlan');
+    const planButtons = document.querySelectorAll('.selectPlan');
 
-		planButtons.forEach((button) => {
-			button.addEventListener('click', onSelectPlanClick);
-		});
-	}
+    planButtons.forEach((button) => {
+      button.addEventListener('click', onSelectPlanClick);
+    });
+  }
 }
 
 async function onSelectPlanClick(event) {
-	event.preventDefault();
-	const priceID = event.target.id;
+  event.preventDefault();
+  const priceID = event.target.id;
 
-	const email = document.getElementById('email').value;
-	const ccbAccountName = document.getElementById('ccb_account_name').value;
+  const email = document.getElementById('email').value;
+  const ccbAccountName = document.getElementById('ccb_account_name').value;
 
-	const url = await getStripeCheckoutUrl(priceID, email, ccbAccountName);
+  const url = await getStripeCheckoutUrl(priceID, email, ccbAccountName);
 
-	console.log(url);
-	window.open(url.url, '_newBundle');
-	return false;
+  console.log(url);
+  window.open(url.url, '_newBundle');
+  return false;
 }

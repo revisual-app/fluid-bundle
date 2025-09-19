@@ -16,9 +16,15 @@
 
         align-items: stretch;
 
+        .card-left {
+          flex: 1;
+
+        }
+
         .cards-right {
           overflow: initial;
           align-items: stretch;
+          flex: 2;
 
           .col-left,
           .col-right {
@@ -32,6 +38,7 @@
           .card-left {
             margin-top: 0;
           }
+
 
 
         }

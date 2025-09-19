@@ -1,6 +1,7 @@
 var usedApps = [];
 var accountInfo = {};
 
+var userInfo = {};
 function byId(id) {
   return document.getElementById(id);
 }
@@ -119,6 +120,13 @@ function byId(id) {
 
       updateBundlePricing();
 
+      const discountItems = qs('.card-summary-header-items .discount-item');
+
+      if (discountItems) {
+        discountItems.forEach(function (item, index) {
+          item.remove();
+        });
+      }
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];
 
@@ -131,8 +139,26 @@ function byId(id) {
           const btn = qs('#bundle_' + key);
           btn.style.pointerEvents = 'none';
           btn.parentNode.style.filter = 'grayscale(1)';
+
+          qs('.card-summary .card-content').insertAdjacentHTML(
+            'beforeend',
+            '<div class="discount-item"><span>' +
+              DISPLAY_NAMES_MAPPING[key] +
+              ' ' +
+              app.subscription.plan_name +
+              '</span> <span>$' +
+              Number(app.current_credit / 100) +
+              '</span></div>',
+          );
         }
       });
+
+      userInfo.email = $email.value;
+      userInfo.name = $name.value;
+      userInfo.ccnAccount = $ccbAccount.value;
+
+      const dateFormatter = new Intl.DateTimeFormat(navigator.languages, { year: 'numeric', month: 'long', day: 'numeric' });
+      byId('next-payment-date').innerHTML = dateFormatter.format(new Date());
     }
   });
 
@@ -163,6 +189,19 @@ function byId(id) {
 
       qs('.checkout-page').classList.remove('stage-checkout');
     });
+  });
+
+  byId('checkout-btn').addEventListener('click', async function (event) {
+    console.log('on checkout click', SELECTED_PLAN);
+    if (!SELECTED_PLAN) {
+      return true;
+    }
+
+    const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.name, userInfo.ccnAccount);
+
+    if (link) {
+      window.location.href = link.url;
+    }
   });
 })();
 
@@ -234,6 +273,23 @@ async function getAppsInfo(name, email, ccbAccountName) {
       name,
       email,
       ccb_account: ccbAccountName,
+    }),
+  });
+
+  return await response.json();
+}
+
+async function getStripeCheckoutUrl(priceId, email, ccbAccount, name) {
+  const response = await fetch('/get-checkout-url', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      name,
+      ccb_account: ccbAccount,
+      price_id: priceId,
     }),
   });
 

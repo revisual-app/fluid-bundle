@@ -288,6 +288,19 @@
         }
       }
 
+      .discount-item {
+        display: flex;
+        margin-top: -2rem;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        font-weight: 400;
+
+        &:first-child {
+          margin-top: -2rem;
+        }
+
+      }
+
 
     }
 

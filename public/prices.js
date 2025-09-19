@@ -19,8 +19,14 @@ var SELECTED_APPS = ['displaychurch', 'ccbchimp', 'churchbee'];
 
 var APPS_NAMES_MAPPING = {
   ['dc']: 'displaychurch',
-  ['ccb']: 'ccbchimp',
+  ['ccbchimp']: 'ccbchimp',
   ['cb']: 'churchbee',
+};
+
+var DISPLAY_NAMES_MAPPING = {
+  ['dc']: 'DisplayChurch',
+  ['ccbchimp']: 'CCBChimp',
+  ['cb']: 'ChurchBee',
 };
 
 function qs(q) {
@@ -136,6 +142,7 @@ function getMatchingBundleProduct() {
     // turn apps string into array
     const apps = obj.metadata.apps.split(',').map((a) => a.trim());
 
+    console.log(apps, SELECTED_APPS);
     if (apps.length !== SELECTED_APPS.length) {
       return false;
     }
@@ -143,6 +150,7 @@ function getMatchingBundleProduct() {
     return apps.every((app) => SELECTED_APPS.includes(app));
   });
 
+  console.log('result', result);
   if (result.length > 0) {
     SELECTED_PLAN = result[0];
   } else {
@@ -198,6 +206,9 @@ function updateBundlePricing() {
     qs('#promotion-value .value').innerHTML = promotions;
 
     qs('#discount-value .value').innerHTML = refunds;
+    byId('checkout-btn').disabled = false;
+  } else {
+    byId('checkout-btn').disabled = true;
   }
 }
 
