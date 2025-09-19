@@ -5,23 +5,4 @@ compatibility_date = "2024-07-23"
 [assets]
 directory = "./public"
 
-[vars]
-GOOGLE_SERVICE_ACCOUNT_EMAIL = ""
-SPREADSHEET_ID = ""
-
-
-DC_API_ADDRESS = "https://my.display.church"
-DC_API_KEY = ""
-
-CCBCHIMP_API_ADDRESS = "https://sync.ccbchimp.com"
-CCBCHIMP_API_KEY = ""
-
-CB_API_ADDRESS = "https://my.bee.church"
-CB_API_KEY = ""
-CB_AUTH_KEY = ""
-
-
-STRIPE_API_KEY = ""
-STRIPE_PK_KEY = ""
-
 [secrets]
