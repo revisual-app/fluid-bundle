@@ -52,11 +52,10 @@ function byId(id) {
     onSubmitSingupForUpdates();
   });
 
-  byId('sumbit-pushpay').addEventListener('click', async function (event) {
-    byId('pushpay-form').submit();
-  });
   /** stage ccb account continue */
   byId('pushpay-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
     byId('checkout-btn').removeEventListener('click', onCheckoutButtonClick);
     const $name = byId('ccb-name');
     const $email = byId('ccb-email');
@@ -196,20 +195,24 @@ function byId(id) {
 })();
 
 async function checkCCBAddress(address) {
-  const response = await fetch('/check-ccb-address', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ address }),
-  });
+  try {
+    const response = await fetch('/check-ccb-address', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ address }),
+    });
 
-  if (!response.ok) {
-    return false;
+    if (!response.ok) {
+      return false;
+    }
+
+    const json = await response.json();
+    return json.success;
+  } catch (e) {
+    console.error(e);
   }
-
-  const json = await response.json();
-  return json.success;
 }
 
 async function onSubmitSingupForUpdates() {

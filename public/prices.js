@@ -1,4 +1,6 @@
 var PLANS = [];
+
+// base prices
 var BP = {
   dc: {
     monthly: 35,
@@ -9,8 +11,8 @@ var BP = {
     yearly: 306,
   },
   cb: {
-    monthly: 10,
-    yearly: 100,
+    monthly: 20,
+    yearly: 200,
   },
 };
 
