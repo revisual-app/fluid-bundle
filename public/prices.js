@@ -201,11 +201,21 @@ function updateBundlePricing() {
     let promotions = subtotal - bundlePrice;
 
     bundlePrice -= refunds;
-    qs('#grand-total .value').innerHTML = bundlePrice;
+    if (bundlePrice <= 0) {
+      qs('#grand-total .value').innerHTML = 0;
+      qs('.credit-on-file').display = 'block';
+      byId('credit-on-file-value').innerHTML = -1 * bundlePrice;
+    } else {
+      qs('#grand-total .value').innerHTML = bundlePrice;
+      qs('.credit-on-file').display = 'none';
+    }
 
     qs('#promotion-value .value').innerHTML = promotions;
 
     qs('#discount-value .value').innerHTML = refunds;
+
+    byId('next-payment-quote').innerHTML = Number(SELECTED_PLAN.price.unit_amount / 100);
+
     byId('checkout-btn').disabled = false;
   } else {
     byId('checkout-btn').disabled = true;

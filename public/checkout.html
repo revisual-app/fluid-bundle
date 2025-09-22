@@ -566,7 +566,7 @@
 
                 <div class="card-summary-row">
                     <div class="card-summary-row-expandable refund">
-                        <p class="label">Refund</p>
+                        <p class="label">Prorated Credits</p>
                         <!--<object data="/img/checkout/chevron-down.svg"
                                 type="image/svg+xml"></object>-->
                     </div>
@@ -576,13 +576,23 @@
 
             </div>
 
-            <div class="card-summary-row-total">
-                <div class="card-summary-row-total-summary">
-                    <p class="card-summary-row-total-header">Total Billed Annually</p>
-                    <p class="next-charge">Next charge date <span id="next-payment-date">Jan 11, 2027</span></p>
-                </div>
+            <div>
 
-                <h2 id="grand-total">$<span class="value">500</span></h2>
+                <div class="card-summary-row-total">
+                    <div class="card-summary-row-total-summary">
+                        <p class="card-summary-row-total-header">Today's total</p>
+
+                    </div>
+
+                    <h2 id="grand-total">$<span class="value">500</span></h2>
+                </div>
+                <p class="credit-on-file">You have $<span
+                        id="credit-on-file-value"></span> in credits, which will be automatically applied to your next
+                    payment. </p>
+
+                <p class="next-charge">Next charge will be $<span id="next-payment-quote"></span> on <span
+                        id="next-payment-date">Jan 11, 2027</span>. Cancel or adjust anytime.</p>
+
             </div>
 
             <button class="btn btn-primary hover-bright" id="checkout-btn">Proceed to Checkout</button>
