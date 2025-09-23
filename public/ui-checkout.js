@@ -39,14 +39,14 @@ var userInfo = {};
     }
   });
 
-  byId('signup-for-updates-form').addEventListener('submit', function (event) {
+  document.getElementById('signup-for-updates-form').addEventListener('submit', function (event) {
     event.preventDefault();
     // event.preventDefault();
     onSubmitSingupForUpdates();
   });
 
   /** stage ccb account continue */
-  byId('pushpay-form').addEventListener('submit', async function (event) {
+  document.getElementById('pushpay-form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
     byId('checkout-btn').removeEventListener('click', onCheckoutButtonClick);
