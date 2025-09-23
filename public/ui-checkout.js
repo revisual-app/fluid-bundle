@@ -155,7 +155,7 @@ function byId(id) {
 
       userInfo.email = $email.value;
       userInfo.name = $name.value;
-      userInfo.ccnAccount = $ccbAccount.value;
+      userInfo.ccnAccount = ccbAccount;
 
       const dateFormatter = new Intl.DateTimeFormat(navigator.languages, { year: 'numeric', month: 'long', day: 'numeric' });
       byId('next-payment-date').innerHTML = dateFormatter.format(new Date());
@@ -295,7 +295,7 @@ async function onCheckoutButtonClick(event) {
     return true;
   }
 
-  const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.name, userInfo.ccnAccount);
+  const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.ccnAccount, userInfo.name);
 
   if (link) {
     window.location.href = link.url;

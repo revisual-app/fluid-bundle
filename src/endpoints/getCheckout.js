@@ -5,6 +5,7 @@ import { createDiscount } from '../apps/stripe/createDiscount';
 export async function getCheckout(request) {
   if (request.method === 'POST') {
     const body = await request.clone().json();
+    console.log(body);
     const appsInfo = await getInfo(request);
     // const plans = await listPlans(request); // todo any validation?
 
@@ -13,7 +14,7 @@ export async function getCheckout(request) {
     const discountValue = getDiscountValue(appsInfo);
     let discount = null;
 
-    console.log('discount value');
+    console.log('discount value', discountValue);
     if (discountValue) {
       discount = await createDiscount(discountValue);
       console.log(discount);
@@ -56,10 +57,11 @@ export async function getCheckout(request) {
 }
 
 function getDiscountValue(appsInfo) {
-  const currentTime = Math.floor(new Date().getTime() / 1000);
+  // const currentTime = Math.floor(new Date().getTime() / 1000);
 
   return Object.values(appsInfo)
     .map((app, idx) => {
+      console.log('app', app);
       if (!app) {
         return 0;
       }
