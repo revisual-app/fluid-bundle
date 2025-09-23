@@ -5,6 +5,7 @@ export async function createDiscount(amount) {
 
   const body = new URLSearchParams({
     amount_off: amount,
+    currency: 'usd',
     name: 'Bundle purchase pro-rate discount',
     max_redemptions: 1,
   }).toString();
@@ -24,10 +25,9 @@ export async function createDiscount(amount) {
 
     if (resp.ok) {
       const json = await resp.json();
-
-      return json.data;
+      return json;
     }
-    console.log(resp.text());
+    console.log(await resp.text());
   } catch (e) {
     console.log('error: >>>');
     console.error(e);

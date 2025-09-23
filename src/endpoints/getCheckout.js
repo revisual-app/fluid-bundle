@@ -17,7 +17,7 @@ export async function getCheckout(request) {
     console.log('discount value', discountValue);
     if (discountValue) {
       discount = await createDiscount(discountValue);
-      console.log(discount);
+      console.log('stripe discount', discount);
     }
 
     // add here any metadata you need
@@ -45,7 +45,7 @@ export async function getCheckout(request) {
     }
 
     if (discount) {
-      sessionData['discount[coupon]'] = discount.id;
+      sessionData['discounts[0][coupon]'] = discount.id;
     }
 
     const checkoutSession = await createCheckoutSession(new URLSearchParams(sessionData).toString());

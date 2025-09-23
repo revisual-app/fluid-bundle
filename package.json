@@ -21,9 +21,5 @@
     "sass": "^1.92.1",
     "vitest": "~3.2.0",
     "wrangler": "^4.25.1"
-  },
-  "dependencies": {
-    "google-auth-library": "^10.1.0",
-    "googleapis": "^153.0.0"
   }
 }
