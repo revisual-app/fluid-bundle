@@ -8,6 +8,10 @@ directory = "./public"
 
 [vars]
 MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
+DC_API_ADDRESS = ""
+CCBCHIMP_API_ADDRESS = ""
+CB_API_ADDRESS = ""
+
 
 # Production environment
 [env.production.vars]
