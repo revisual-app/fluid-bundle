@@ -42,12 +42,8 @@ function byId(id) {
     }
   });
 
-  /** stage no ccb continue */
-  byId('signup-for-updates').addEventListener('click', function (event) {
-    byId('signup-for-updates-form').submit();
-  });
-
   byId('signup-for-updates-form').addEventListener('submit', function (event) {
+    event.preventDefault();
     // event.preventDefault();
     onSubmitSingupForUpdates();
   });
@@ -222,6 +218,8 @@ async function onSubmitSingupForUpdates() {
   const $name = byId('name-for-updates');
   const $submit = byId('signup-for-updates');
 
+  qs('.waitlist-error').display = 'none';
+
   $email.disabled = true;
   $name.disabled = true;
 
@@ -244,15 +242,24 @@ async function onSubmitSingupForUpdates() {
       }),
     });
 
-    return await response.json();
-  } catch (e) {
-    // show error
-    console.log(e);
-  } finally {
-    // ...
-    console.log('hide loader');
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error('Could not add contact to waitlist.');
+    }
+
     byId('apps-unsupported').style.display = 'none';
     byId('apps-unsupported-thankyou').style.display = 'flex';
+  } catch (e) {
+    // show error
+    qs('.waitlist-error').style.display = 'block';
+    console.log(e);
+  } finally {
+    $email.disabled = false;
+    $name.disabled = false;
+
+    $submit.style.display = 'flex';
+    byId('signup-for-updates-loader').style.display = 'none';
   }
 }
 
