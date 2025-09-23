@@ -5,4 +5,19 @@ compatibility_date = "2024-07-23"
 [assets]
 directory = "./public"
 
-[secrets]
+
+[vars]
+MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
+
+# Production environment
+[env.production.vars]
+DC_API_ADDRESS = "https://my.display.church"
+CCBCHIMP_API_ADDRESS = "https://sync.ccbchimp.com"
+CB_API_ADDRESS = "https://my.bee.church"
+
+# Production environment
+[env.stage.vars]
+DC_API_ADDRESS = "https://dev.display.church"
+CCBCHIMP_API_ADDRESS = "https://stage.ccbchimp.com"
+CB_API_ADDRESS = "https://dev.bee.church"
+
