@@ -2,9 +2,6 @@ var usedApps = [];
 var accountInfo = {};
 
 var userInfo = {};
-function byId(id) {
-  return document.getElementById(id);
-}
 
 (function () {
   /** stage apps radio buttons*/
@@ -297,7 +294,6 @@ async function getStripeCheckoutUrl(priceId, email, ccbAccount, name) {
 }
 
 async function onCheckoutButtonClick(event) {
-  console.log('on checkout click', SELECTED_PLAN);
   if (!SELECTED_PLAN) {
     return true;
   }

@@ -1,0 +1,202 @@
+@use '../vars';
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Gray-950);
+  padding: 20.56rem 32.5rem;
+  z-index: 1000;
+
+  @media #{vars.$tablet} {
+    padding: 0;
+  }
+
+  .card {
+    box-shadow: 0px 3px 3px -1.5px rgba(10, 13, 18, 0.04), 0px 8px 8px -4px rgba(10, 13, 18, 0.03), 0px 20px 24px -4px rgba(10, 13, 18, 0.08);
+    width: 100%;
+    max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background-color: var(--Base-White);
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    border-radius: 16px;
+    //overflow: hidden;
+
+    .modal-header {
+      position: relative;
+      padding: 0.5rem 1.5rem 0 1.5rem;
+
+      .modal-header-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.12rem;
+
+        p:first-child {
+          color: var(--Gray-900);
+          text-align: left;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 1.5;
+          letter-spacing: 0rem;
+        }
+
+        p:last-child {
+          text-align: left;
+          color: var(--Gray-600);
+          font-size: 0.88rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1.429;
+          letter-spacing: 0rem;
+        }
+      }
+
+      #modal-header-btn-close {
+        position: absolute;
+        top: -.5rem;
+        right: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+        z-index: 1001;
+        padding: 1rem;
+
+        object {
+          pointer-events: none;
+        }
+      }
+    }
+
+    .card-content {
+      margin: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .input-group-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.38rem;
+      }
+
+      label {
+        color: var(--Gray-700);
+        font-size: 0.88rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.429;
+        letter-spacing: 0rem;
+        text-align: left;
+      }
+
+      input {
+        box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);
+        background-color: var(--Base-White);
+        padding: 0.56rem 0.81rem;
+        border: 1px solid var(--Gray-300);
+        border-radius: 8px;
+        color: var(--Gray-900);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0rem;
+        text-align: left;
+      }
+
+
+    }
+
+    button {
+      margin: 0.75rem 0;
+      justify-content: center;
+    }
+  }
+}
+
+.modal-open {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+
+.toast {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 3rem;
+  left: 50%;
+  translate: -50% 0;
+  box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);
+  width: max-content;
+  align-items: flex-start;
+  gap: 0.56rem;
+  background-color: var(--Base-White);
+  padding: 0.5rem 2.94rem 0.5rem 0.5rem;
+  border: 1px solid var(--Gray-300);
+  border-radius: 12px;
+
+  /* Shadows/shadow-xs */
+  box-shadow: 0 1px 2px 0 rgba(10, 13, 18, 0.05);
+
+
+  p {
+    margin-top: 0.5rem;
+    color: var(--Gray-700);
+    text-align: left;
+    font-size: 0.88rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.429;
+    letter-spacing: 0;
+  }
+
+
+  .icon-outline {
+    position: relative;
+    width: 2.19rem;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+
+
+    .icon-outline-inner {
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      opacity: 0.3;
+      width: 76%;
+      height: 76%;
+      border: 2px solid var(--Success-600);
+      border-radius: 50%;
+    }
+
+    .icon-outline-circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2.19rem;
+      height: 2.19rem;
+      border: 2px solid var(--Success-600);
+      border-radius: 50%;
+
+      object {
+        position: absolute;
+        top: 18%;
+        left: 18%;
+        width: 63%;
+        aspect-ratio: 1 / 1;
+      }
+    }
+  }
+}

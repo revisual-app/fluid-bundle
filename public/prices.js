@@ -39,6 +39,10 @@ function qsa(q) {
   return document.querySelectorAll(q);
 }
 
+function byId(id) {
+  return document.getElementById(id);
+}
+
 (function () {
   getPlans();
 

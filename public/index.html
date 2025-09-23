@@ -621,7 +621,8 @@
                             <a href="https://confirmed.church/" target="_confirmed">
                                 <div class="more-features">Learn more</div>
                             </a>
-                            <button class="btn hover-dark">Notify me when it's live</button>
+                            <button class="btn hover-dark" id="confirmed-church-waitlist">Notify me when it's live
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -824,7 +825,8 @@
                         <div class="merged merged3">
                             <div class="row-year">
                                 <p class="text-grey">(</p>
-                                <p class="text-grey strikethrough">$<span class="ccbchimp-and-cb-price-yearly">1020</span>/year</p>
+                                <p class="text-grey strikethrough">$<span
+                                        class="ccbchimp-and-cb-price-yearly">1020</span>/year</p>
                                 <p class="text-bold">$600/year</p>
                                 <p class="text-grey">)</p>
                             </div>
@@ -855,7 +857,8 @@
                             </div>
 
                             <div class="row-month">
-                                <p class="text-supporting-b table-cell-text1">$<span class="cb-price-monthly">85</span>/mth</p>
+                                <p class="text-supporting-b table-cell-text1">$<span class="cb-price-monthly">85</span>/mth
+                                </p>
                                 <h2 class="table-cell-subtitle1 display-sm-medium">$60/mth</h2>
                             </div>
 
@@ -1209,7 +1212,60 @@
         <p class="footer-text text-md-regular1">© 2025 Fluidministery. All rights reserved.</p>
     </footer>
 </div>
-<script src="/app.js" type="application/javascript"></script>
+
+<div class="modal" style="display: none">
+    <div class="card">
+        <div class="modal-header modal-header1">
+            <div class="modal-header-content">
+                <p class="modal-header-text1 text-md-semibold1">Notify Me When It’s Live</p>
+                <p class="modal-header-text2 text-sm-regular">
+                    You’re a little early but we’d love to let you know when this product goes live.
+                </p>
+            </div>
+
+            <div id="modal-header-btn-close">
+
+                <object data="/img/checkout/close-button.svg"
+                        type="image/svg+xml"></object>
+            </div>
+        </div>
+
+        <form class="card-content" action="#" id="confirmed-form">
+            <div class="input-group-field">
+                <label for="waitlist-name" class="input-group-field-text">Name</label>
+                <input id="waitlist-name" class="input-group-field-input input-white" placeholder="Alfredo"
+                       required="required" minlength="2">
+            </div>
+
+            <div class="input-group-field">
+                <label for="waitlist-email" class="input-group-field-text">Email</label>
+                <input id="waitlist-email" class="input-group-field-input input-white"
+                       placeholder="alfredo@studioscale.co" required="required" type="email">
+            </div>
+            <span class="form-error waitlist-error">We couldn't add you to the list. Please try again.</span>
+            <button class="btn btn-primary hover-bright" type="submit" id="waitlist-submit">Notify Me</button>
+            <div class="lds-ellipsis" id="signup-for-updates-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="toast" id="signup-success">
+    <div class="icon-outline">
+        <div class="icon-outline-inner"></div>
+
+        <div class="icon-outline-circle">
+            <object data="/img/checkout/check-icon.svg" type="image/svg+xml"></object>
+        </div>
+    </div>
+    <p>Thanks! We’ll notify you when it’s live.</p></div>
+
+</div>
 <script src="/ui-landing.js" type="application/javascript"></script>
 <script src="/prices.js" type="application/javascript"></script>
 </body>
