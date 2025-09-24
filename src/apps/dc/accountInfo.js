@@ -4,6 +4,8 @@ export async function getAccountInfo(email, ccbAccountName) {
   try {
     const env = getEnv();
 
+    console.log('Requesting info from', env.DC_API_ADDRESS);
+
     const resp = await fetch(env.DC_API_ADDRESS + '/api4/public/find_ccb.json', {
       method: 'POST',
       headers: {

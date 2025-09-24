@@ -2,35 +2,37 @@ import { getEnv } from '../../context';
 import { objectToURLQuery } from '../../helpers';
 
 export async function getAccountInfo(email, ccbAccountName) {
-	try {
-		const env = getEnv();
+  try {
+    const env = getEnv();
 
-		const paramsString = objectToURLQuery({
-			email,
-			ccb_account_name: ccbAccountName,
-		});
+    console.log('Requesting info from', env.CCBCHIMP_API_ADDRESS);
 
-		const resp = await fetch(`${env.CCBCHIMP_API_ADDRESS}/v1/api/bundle/check-user?${paramsString}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'Api-key': env.CCBCHIMP_API_KEY,
-				accept: 'application/json',
-			},
-		});
+    const paramsString = objectToURLQuery({
+      email,
+      ccb_account_name: ccbAccountName,
+    });
 
-		if (resp.ok) {
-			const json = await resp.json();
+    const resp = await fetch(`${env.CCBCHIMP_API_ADDRESS}/v1/api/bundle/check-user?${paramsString}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Api-key': env.CCBCHIMP_API_KEY,
+        accept: 'application/json',
+      },
+    });
 
-			if (json && json.status !== undefined && json.status === 0) {
-				return null;
-			}
-			return json;
-		}
+    if (resp.ok) {
+      const json = await resp.json();
 
-		return null;
-	} catch (e) {
-		console.error(e);
-		return null;
-	}
+      if (json && json.status !== undefined && json.status === 0) {
+        return null;
+      }
+      return json;
+    }
+
+    return null;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }

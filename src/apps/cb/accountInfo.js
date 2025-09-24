@@ -2,34 +2,36 @@ import { getEnv } from '../../context';
 import { objectToURLQuery } from '../../helpers';
 
 export async function getAccountInfo(email, ccbAccountName) {
-	try {
-		const env = getEnv();
+  try {
+    const env = getEnv();
 
-		const paramsString = objectToURLQuery({
-			email,
-			ccb_account_name: ccbAccountName,
-		});
+    console.log('Requesting info from', env.CB_API_ADDRESS);
 
-		const resp = await fetch(`${env.CB_API_ADDRESS}/api/users/check?${paramsString}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-API-KEY': env.CB_API_KEY,
-				Authorization: env.CB_AUTH_KEY,
-				accept: 'application/json',
-			},
-		});
+    const paramsString = objectToURLQuery({
+      email,
+      ccb_account_name: ccbAccountName,
+    });
 
-		if (resp.ok) {
-			const json = await resp.json();
-			console.log('CB getAccountInfo', json);
+    const resp = await fetch(`${env.CB_API_ADDRESS}/api/users/check?${paramsString}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-KEY': env.CB_API_KEY,
+        Authorization: env.CB_AUTH_KEY,
+        accept: 'application/json',
+      },
+    });
 
-			return json;
-		}
+    if (resp.ok) {
+      const json = await resp.json();
+      console.log('CB getAccountInfo', json);
 
-		return null;
-	} catch (e) {
-		console.error(e);
-		return null;
-	}
+      return json;
+    }
+
+    return null;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }
