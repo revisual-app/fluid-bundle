@@ -86,6 +86,7 @@ var userInfo = {};
 
       $submit.style.display = 'block';
       $loader.style.display = 'none';
+      return;
     }
 
     let ccbAccount = $ccbAccount.value.split('.')[0].trim();

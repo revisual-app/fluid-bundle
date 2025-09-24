@@ -1,11 +1,13 @@
 import { getInfo } from './getInfo';
 import { createCheckoutSession } from '../apps/stripe/createCheckoutSession';
 import { createDiscount } from '../apps/stripe/createDiscount';
+import { getEnv } from '../context';
 
 export async function getCheckout(request) {
   if (request.method === 'POST') {
     const body = await request.clone().json();
     console.log(body);
+    const env = getEnv();
     const appsInfo = await getInfo(request);
     // const plans = await listPlans(request); // todo any validation?
 
@@ -31,8 +33,8 @@ export async function getCheckout(request) {
     const sessionData = {
       client_reference_id: email,
       customer_email: email,
-      success_url: 'http://localhost:8787/success',
-      cancel_url: 'http://localhost:8787/',
+      success_url: `${env.BASE_URL}/thankyou.html`,
+      cancel_url: env.BASE_URL,
       'line_items[0][price]': price_id,
       'line_items[0][quantity]': 1,
       mode: 'subscription',

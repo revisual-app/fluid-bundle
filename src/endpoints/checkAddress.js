@@ -3,7 +3,7 @@ export async function checkAddress(request) {
     const body = await request.json();
     const { address } = body;
 
-    const response = await fetch('http://' + address);
+    const response = await fetch(`http://${address}.ccbchurch.com`);
 
     if (!response.ok) {
       return {
