@@ -70,6 +70,7 @@ var userInfo = {};
     try {
       const isCCBAddressValid = await checkCCBAddress($ccbAccount.value);
 
+      console.log('isCCBAddressValid', isCCBAddressValid);
       if (!isCCBAddressValid) {
         throw new Error('CCBAddress requires CCBAddress');
       }
@@ -87,8 +88,8 @@ var userInfo = {};
       $loader.style.display = 'none';
     }
 
+    let ccbAccount = $ccbAccount.value.split('.')[0].trim();
     try {
-      const ccbAccount = $ccbAccount.value.split('.')[0].trim();
       accountInfo = await getAppsInfo($name.value, $email.value, ccbAccount);
 
       console.log(accountInfo);
@@ -205,7 +206,10 @@ async function checkCCBAddress(address) {
     return json.success;
   } catch (e) {
     console.error(e);
+    return false;
   }
+
+  return false;
 }
 
 async function onSubmitSingupForUpdates() {
