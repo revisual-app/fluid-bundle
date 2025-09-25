@@ -66,9 +66,10 @@ var userInfo = {};
 
     $submit.style.display = 'none';
     $loader.style.display = 'inline-block';
+    let ccbAccount = $ccbAccount.value.split('.')[0].trim();
 
     try {
-      const isCCBAddressValid = await checkCCBAddress($ccbAccount.value);
+      const isCCBAddressValid = await checkCCBAddress(ccbAccount);
 
       console.log('isCCBAddressValid', isCCBAddressValid);
       if (!isCCBAddressValid) {
@@ -89,7 +90,6 @@ var userInfo = {};
       return;
     }
 
-    let ccbAccount = $ccbAccount.value.split('.')[0].trim();
     try {
       accountInfo = await getAppsInfo($name.value, $email.value, ccbAccount);
 
@@ -153,7 +153,7 @@ var userInfo = {};
       userInfo.ccnAccount = ccbAccount;
 
       const dateFormatter = new Intl.DateTimeFormat(navigator.languages, { year: 'numeric', month: 'long', day: 'numeric' });
-      byId('next-payment-date').innerHTML = dateFormatter.format(new Date());
+      byId('next-payment-date').innerHTML = dateFormatter.format(new Date().setFullYear(new Date().getFullYear() + 1));
 
       byId('checkout-btn').addEventListener('click', onCheckoutButtonClick);
     }
@@ -299,6 +299,7 @@ async function getStripeCheckoutUrl(priceId, email, ccbAccount, name) {
 }
 
 async function onCheckoutButtonClick(event) {
+  console.log('onCheckoutButtonClick', SELECTED_PLAN);
   if (!SELECTED_PLAN) {
     return true;
   }
