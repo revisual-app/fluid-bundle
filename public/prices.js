@@ -226,17 +226,23 @@ function processUncheckedApps() {
     if(qs('.monthly-saving')) {
       qs('.monthly-saving') .style.display = 'inline-block';
      qs('.yearly-saving') .style.display = 'inline-block';
-
+    }
+  if(qs('.bundle-save-base-price-monthly')) {
      qs('.bundle-save-base-price-monthly').innerHTML = ( (fullYearly / 12).toFixed(2) );
      qs('.bundle-save-base-price-yearly').innerHTML = ( fullYearly.toFixed(2)  );
-
+}
+  if(qs('.bundle-new-monthly-price')) {
      qs('.bundle-new-monthly-price').style.display = 'inline-block';
      qs('.bundle-new-yearly-price').style.display = 'inline-block';
 
      qs('.bundle-new-monthly-price').innerHTML = "$"+fullPriceMonthly+"/mth";
      qs('.bundle-new-yearly-price').innerHTML = "$"+fullPriceYearly+"/year";
 
-      if(bundleType === 4) {
+
+    }
+
+    if(qs('.discounted-ccbchimp-and-cb-price-monthly')) {
+     if(bundleType === 4) {
        var yearly = BP['ccbchimp'].yearly  + BP['cb'].yearly;
        var newYearly = yearly * (100 - discountRate) / 100;
        qs('.discounted-ccbchimp-and-cb-price-monthly').innerHTML = '$'+(newYearly / 12).toFixed(2)+'/mth';
@@ -248,7 +254,6 @@ function processUncheckedApps() {
     }
 
 
-
   } else if( qsa('.btn-table-cell:not(.unchecked)').length === 1 ) {
 
     qsa('.btn-table-cell:not(.unchecked)').forEach((btn) => {
@@ -256,7 +261,8 @@ function processUncheckedApps() {
       if(qs('.monthly-saving')) {
        qs('.monthly-saving') .style.display = 'none';
        qs('.yearly-saving') .style.display = 'none';
-
+      }
+      if(qs('.discounted-ccbchimp-and-cb-price-monthly')) {
        qs('.discounted-ccbchimp-and-cb-price-monthly').innerHTML = '$'+(BP[appId].yearly / 12).toFixed(2)+'/mth';
        qs('.discounted-ccbchimp-and-cb-price-yearly').innerHTML = '$'+BP[appId].yearly+'/year';
       }
