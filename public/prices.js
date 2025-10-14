@@ -93,29 +93,29 @@ function byId(id) {
       });
       const item = document.querySelector('.btn-table-cell.unchecked');
 
-      const plansCol = document.querySelector('.plans-col');
-      if (plansCol) {
-        if (item) {
-          plansCol.style.display = 'flex';
+      // const plansCol = document.querySelector('.plans-col');
+      // if (plansCol) {
+      //   if (item) {
+      //     plansCol.style.display = 'flex';
 
-          document.querySelectorAll('.modern-screen-mockup-inner-shadow img').forEach((el) => {
-            el.style.display = 'none';
-          });
-          document.querySelector('#mockup-' + item.id).style.display = 'block';
+      //     document.querySelectorAll('.modern-screen-mockup-inner-shadow img').forEach((el) => {
+      //       el.style.display = 'none';
+      //     });
+      //     document.querySelector('#mockup-' + item.id).style.display = 'block';
 
-          document.querySelectorAll('.plans-col .plans-text').forEach((el) => {
-            el.style.display = 'none';
-          });
+      //     document.querySelectorAll('.plans-col .plans-text').forEach((el) => {
+      //       el.style.display = 'none';
+      //     });
 
-          const plansText = document.querySelector('#select-' + item.id);
+      //     const plansText = document.querySelector('#select-' + item.id);
 
-          if (plansText) {
-            plansText.style.display = 'flex';
-          }
-        } else {
-          document.querySelector('.plans-col').style.display = 'none';
-        }
-      }
+      //     if (plansText) {
+      //       plansText.style.display = 'flex';
+      //     }
+      //   } else {
+      //     document.querySelector('.plans-col').style.display = 'none';
+      //   }
+      // }
 
       getMatchingBundleProduct();
     });
@@ -151,27 +151,31 @@ async function getPlans() {
 
 function selectDisplayChurch() {
   qsa('.btn-table-cell#bundle_dc').forEach((btn) => {
-    btn.classList.remove('unchecked');
+    //btn.classList.remove('unchecked');
+    btn.click();
   });
-  updateBundlePricing();
+  //getMatchingBundleProduct();
 }
 function selectChurchbee() {
   qsa('.btn-table-cell#bundle_cb').forEach((btn) => {
-    btn.classList.remove('unchecked');
+     //btn.classList.remove('unchecked');
+     btn.click();
   });
-  updateBundlePricing();
+  //getMatchingBundleProduct();
 }
 function selectCcb() {
   qsa('.btn-table-cell#bundle_ccbchimp').forEach((btn) => {
-    btn.classList.remove('unchecked');
+     //btn.classList.remove('unchecked');
+     btn.click();
   });
-  updateBundlePricing();
+  //getMatchingBundleProduct();
 }
 function selectAll() {
   qsa('.btn-table-cell.unchecked').forEach((btn) => {
-    btn.classList.remove('unchecked');
+     //btn.classList.remove('unchecked');
+     btn.click();
   });
-  updateBundlePricing();
+  //getMatchingBundleProduct();
 }
 function processUncheckedApps() {
 
