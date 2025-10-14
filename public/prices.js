@@ -149,6 +149,30 @@ async function getPlans() {
   }
 }
 
+function selectDisplayChurch() {
+  qsa('.btn-table-cell#bundle_dc').forEach((btn) => {
+    btn.classList.remove('unchecked');
+  });
+  updateBundlePricing();
+}
+function selectChurchbee() {
+  qsa('.btn-table-cell#bundle_cb').forEach((btn) => {
+    btn.classList.remove('unchecked');
+  });
+  updateBundlePricing();
+}
+function selectCcb() {
+  qsa('.btn-table-cell#bundle_ccbchimp').forEach((btn) => {
+    btn.classList.remove('unchecked');
+  });
+  updateBundlePricing();
+}
+function selectAll() {
+  qsa('.btn-table-cell.unchecked').forEach((btn) => {
+    btn.classList.remove('unchecked');
+  });
+  updateBundlePricing();
+}
 function processUncheckedApps() {
 
   qsa('.btn-table-cell.unchecked').forEach((btn) => {
@@ -193,6 +217,11 @@ function processUncheckedApps() {
 
     var discountRate = bundleDiscounts[SELECTED_PLAN.metadata.apps].discount;
     var bundleType = bundleDiscounts[SELECTED_PLAN.metadata.apps].bundle_type;
+
+    console.log('bundleType', bundleType);
+    if(bundleType < 4) {
+       qs('.bundle-banner.bundle-'+bundleType).classList.remove('hide');
+    }
 
     var fullYearly = 0;
     qsa('.btn-table-cell:not(.unchecked)').forEach((btn) => {
@@ -269,11 +298,23 @@ function processUncheckedApps() {
     });
   }
 
+  if( qsa('.btn-table-cell:not(.unchecked)').length === 1 ) {
 
+    qsa('.btn-table-cell:not(.unchecked)').forEach((btn) => {
+      let appId = btn.id.split('_')[1];
+      if(appId == 'cb') {
+        qs('.bundle-banner.churchbee-only').classList.remove('hide');
+      }
+    });
+  }
 
 }
 
 function getMatchingBundleProduct() {
+
+  qsa('.bundle-banner').forEach((div) => {
+   div.classList.add('hide');
+  });
 
   if (!PLANS) {
     return;
