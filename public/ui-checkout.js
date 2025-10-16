@@ -142,7 +142,7 @@ var userInfo = {};
               ' ' +
               app.subscription.plan_name +
               '</span> <span>$' +
-              Number(app.current_credit / 100) +
+              Number((app.current_credit || 0) / 100) +
               '</span></div>',
           );
         }
