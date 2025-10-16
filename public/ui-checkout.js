@@ -115,13 +115,15 @@ var userInfo = {};
 
       updateBundlePricing();
 
-      const discountItems = qs('.card-summary-header-items .discount-item');
+      const discountItems = qsa('.card-summary .discount-item');
 
       if (discountItems) {
         discountItems.forEach(function (item, index) {
           item.remove();
         });
       }
+
+
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];
 
