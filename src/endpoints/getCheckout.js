@@ -72,7 +72,7 @@ function getDiscountValue(appsInfo) {
         return 0;
       }
 
-      return app.current_credit;
+      return app.current_credit || 0;
       /*
 
 			const subscriptionEnd = app.subscription.subscription_end;

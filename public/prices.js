@@ -378,7 +378,7 @@ function updateBundlePricing() {
       }
 
       if (app.has_subscription) {
-        refunds += Number(app.current_credit / 100);
+        refunds += Number((app.current_credit || 0) / 100);
       }
     });
   }
@@ -390,11 +390,14 @@ function updateBundlePricing() {
     bundlePrice -= refunds;
     if (bundlePrice <= 0) {
       qs('#grand-total .value').innerHTML = 0;
-      qs('.credit-on-file').display = 'block';
+      qs('.credit-on-file').style.display = 'block';
       byId('credit-on-file-value').innerHTML = -1 * bundlePrice;
+      qs('.card-summary-row-base-rate').style.display = 'flex';
+      qs('#base-rate .value').innerHTML = Number(SELECTED_PLAN.price.unit_amount / 100);
     } else {
       qs('#grand-total .value').innerHTML = bundlePrice;
-      qs('.credit-on-file').display = 'none';
+      qs('.credit-on-file').style.display = 'none';
+      qs('.card-summary-row-base-rate').style.display = 'none';
     }
 
     qs('#promotion-value .value').innerHTML = promotions;
