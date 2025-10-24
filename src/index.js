@@ -5,6 +5,7 @@ import { listPlans } from './endpoints/listPlans';
 import { getCheckout } from './endpoints/getCheckout';
 import { addToWaitlist } from './endpoints/addToWaitlist';
 import { checkAddress } from './endpoints/checkAddress';
+import { stripeWebhook } from './endpoints/stripeWebhook';
 
 export default {
   async fetch(request, env, ctx) {
@@ -21,7 +22,14 @@ export default {
 
     try {
       let response = null;
+      let useCors = true;
+
       switch (url.pathname) {
+        case '/webhook/stripe':
+          useCors = false;
+          response = await stripeWebhook(request);
+          break;
+
         case '/get-info':
           //...
           response = await getInfo(request);
@@ -54,7 +62,7 @@ export default {
       return new Response(JSON.stringify(response), {
         headers: {
           'Content-Type': 'application/json',
-          ...corsHeaders(),
+          ...(useCors ? corsHeaders() : {}),
         },
       });
     } catch (err) {

@@ -25,6 +25,9 @@ export async function getCheckout(request) {
     // add here any metadata you need
     let metadataIdx = 0;
     const metadata = [];
+    if (ccb_account) {
+      metadata.push([`metadata[ccb_account_name]`, ccb_account]);
+    }
 
     if (appsInfo.dc && appsInfo.dc.has_account) {
       metadata.push([`metadata[dc_org_id]`, appsInfo.dc.account.org_id]);
