@@ -97,7 +97,7 @@
 
     border-radius: 12px;
     border: 1px solid var(--Gray-200_alpha, rgba(0, 0, 0, 0.08));
-    background: url("/img/jumbo_bg.png") 0px -274.11px / 100% 185.592% no-repeat;
+    background: linear-gradient(rgba(255,255,255,0.48), rgba(255,255,255,0.48)), url("/img/jumbo_bg.png") 0px -274.11px / 100% 185.592% no-repeat;
 
     /* Shadows/shadow-lg */
     box-shadow: 0 12px 16px -4px rgba(10, 13, 18, 0.08), 0 4px 6px -2px rgba(10, 13, 18, 0.03), 0 2px 2px -1px rgba(10, 13, 18, 0.04);
@@ -891,4 +891,21 @@
       }
     }
   }
+}
+
+.plans.show-features .col-left, .plans.show-features .col-right {
+	height: 49rem !important;
+}
+.plans .check-item.hidden-feature {
+	 display: none;
+}
+.plans.show-features .check-item.hidden-feature {
+	 display: inline-flex;
+}
+
+ .show-more-bundle-features, .hide-more-bundle-features {
+    display: none;
+}
+.show-more-bundle-features.show, .hide-more-bundle-features.show {
+    display: inline-flex;
 }
