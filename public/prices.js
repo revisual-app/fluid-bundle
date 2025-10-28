@@ -177,6 +177,28 @@ function selectAll() {
   });
   //getMatchingBundleProduct();
 }
+function clickUnlink() {
+  //alert('unlink clicked');
+
+  qsa('.btn-table-cell.locking.unchecked').forEach((btn) => {
+     //btn.classList.remove('unchecked');
+     btn.click();
+  });
+}
+
+const svgObject = document.getElementById('featured-icon-unlink');
+  svgObject.addEventListener('load', function() {
+    //alert('loaded');
+    const svgDoc = svgObject.contentDocument; // access inner SVG document
+    const shape = svgDoc.querySelector('svg'); // element inside SVG
+    if (shape) {
+      shape.addEventListener('click', () => {
+        //alert('SVG clicked!');
+        clickUnlink();
+      });
+    }
+  });
+
 function processUncheckedApps() {
 
   qsa('.btn-table-cell.unchecked').forEach((btn) => {
@@ -308,6 +330,10 @@ function processUncheckedApps() {
       let appId = btn.id.split('_')[1];
       if(appId == 'cb') {
         qs('.bundle-banner.churchbee-only').classList.remove('hide');
+      } else if(appId == 'dc') {
+        qs('.bundle-banner.dc-only').classList.remove('hide');
+      } else if(appId == 'ccbchimp') {
+        qs('.bundle-banner.ccb-only').classList.remove('hide');
       }
     });
   }
