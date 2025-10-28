@@ -83,3 +83,15 @@
     }
   });
 })();
+
+function showBundleFeatures() {
+  document.querySelector('.plans').classList.add('show-features');
+  document.querySelector('.show-more-bundle-features').classList.remove('show');
+  document.querySelector('.hide-more-bundle-features').classList.add('show');
+
+}
+function hideBundleFeatures() {
+  document.querySelector('.plans').classList.remove('show-features');
+  document.querySelector('.show-more-bundle-features').classList.add('show');
+  document.querySelector('.hide-more-bundle-features').classList.remove('show');
+}
