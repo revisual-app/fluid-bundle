@@ -27,6 +27,7 @@ export async function getCheckout(request) {
     const metadata = [];
     if (ccb_account) {
       metadata.push([`metadata[ccb_account_name]`, ccb_account]);
+      metadata.push([`subscription_data[metadata][ccb_account_name]`, ccb_account]);
     }
 
     if (appsInfo.dc && appsInfo.dc.has_account) {
