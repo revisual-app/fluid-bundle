@@ -1,6 +1,34 @@
 // navigation, hide navigation on menu item click
 
+let v;
 (function () {
+
+   tippy('#prorated-credits', {
+        content: 'If you already have a subscription for these products, you’ll receive a discount.',
+                theme: 'white',        // 👈 use our custom white theme
+
+      });
+    v = tippy('#tooltip-displaychurch', {
+      content: '<div style=" margin: 15px; margin-left: 0px;"><img src="/img/displaychurch-logo.png"></div><div style="text-align: left;">DisplayChurch transforms your calendar and group data into beautifully designed components you can embed, share, or link. No manual updates needed.</div><br><div data-hierarchy="Link color" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="overflow: hidden; justify-content: center; align-items: center; gap: 4px; "><div style="color: #3F621A; font-size: 14px; font-family: Inter; font-weight: 600; text-decoration: underline; line-height: 20px; word-wrap: break-word; text-align: left;">Learn more</div></div>',
+      allowHTML: true,
+      theme: 'white',        // 👈 use our custom white theme
+      interactive: true,
+    });
+
+      v = tippy('#tooltip-ccbchimp', {
+      content: '<div style=" margin: 15px; margin-left: 0px;"><img src="/img/card-ccbchimp.png"></div><div style="text-align: left;">CCBchimp makes syncing your audience painless, so you can focus on building real connections through targeted email outreach.</div><br><div data-hierarchy="Link color" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="overflow: hidden; justify-content: center; align-items: center; gap: 4px; "><div style="color: #3F621A; font-size: 14px; font-family: Inter; font-weight: 600; text-decoration: underline; line-height: 20px; word-wrap: break-word; text-align: left;">Learn more</div></div>',
+      allowHTML: true,
+      theme: 'white',        // 👈 use our custom white theme
+      interactive: true,
+    });
+
+     v = tippy('#tooltip-churchbee', {
+      content: '<div style=" margin: 15px; margin-left: 0px;"><img src="/img/card-churchbee.svg"></div><div style="text-align: left;">ChurchBee lives right where you already communicate, helping you design polished email campaigns effortlessly.</div><br><div data-hierarchy="Link color" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="overflow: hidden; justify-content: center; align-items: center; gap: 4px; "><div style="color: #3F621A; font-size: 14px; font-family: Inter; font-weight: 600; text-decoration: underline; line-height: 20px; word-wrap: break-word; text-align: left;">Learn more</div></div>',
+      allowHTML: true,
+      theme: 'white',        // 👈 use our custom white theme
+      interactive: true,
+    });
+
   document.querySelectorAll('.nav-mobile-toggle a').forEach((link) => {
     link.addEventListener('click', function (event) {
       document.getElementById('nav-toggle').checked = false;

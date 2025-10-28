@@ -8,6 +8,10 @@
             rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/output.css">
+
+    <script src="//unpkg.com/@popperjs/core@2"></script>
+    <script src="//unpkg.com/tippy.js@6"></script>
+
     <title>FluidMin Bundle</title>
     <style>
 
@@ -24,6 +28,19 @@
     }
     .bundle-banner.hide {
         display: none;
+    }
+    .tippy-box[data-theme~='white'] {
+      background-color: white;
+      color: #333;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .tippy-arrow {
+        width: 16px;
+        height: 16px;
+        color: #dedede;
     }
 </style>
 
@@ -673,8 +690,13 @@
                         <span class="grey">)</span>
                     </p>
                     <p class="">+ Prorated Credits</p>
-                    <object data="/img/row-help-icon.svg" class="header-help-icon"
-                            type="image/svg+xml"></object>
+
+                    <svg id="prorated-credits" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                        <path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    <!-- <object data="/img/row-help-icon.svg" class="header-help-icon"
+                            type="image/svg+xml"></object> -->
                 </div>
                 <a href="/checkout.html">
                     <button class="btn btn-primary hover-bright">Get started</button>
@@ -852,8 +874,11 @@
                     <div class="table-cell-a">
                         <div class="row-top">
                             <p class="">Pro</p>
-                            <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                    type="image/svg+xml"></object>
+                            <svg id="tooltip-displaychurch" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                            <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                    type="image/svg+xml"></object> -->
                         </div>
 
                         <div class="row-month">
@@ -930,8 +955,12 @@
                         <div class="table-cell-a">
                             <div class="row-top">
                                 <p class="">CCBChimp Pro</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+<svg id="tooltip-ccbchimp" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
+
                             </div>
 
                             <div class="row-month">
@@ -1002,16 +1031,22 @@
 
                             <div class="row-top">
                                 <p class="">CCBChimp Pro</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-ccbchimp" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
 
                             <p class="text-heading table-cell-text-heading">+</p>
 
                             <div class="row-top">
                                 <p class="">Churchbee Campus</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-churchbee" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
                         </div>
 
@@ -1053,8 +1088,13 @@
                         <div class="table-cell-a">
                             <div class="row-top">
                                 <p class="">Churchbee Campus</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+
+                                <svg id="tooltip-churchbee" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
 
                             <div class="row-month">
@@ -1114,16 +1154,23 @@
 
                             <div class="row-top">
                                 <p class="">CCBChimp Pro</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-ccbchimp" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
 
                             <p class="text-heading table-cell-text-heading">+</p>
 
                             <div class="row-top">
                                 <p class="">Churchbee Campus</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-churchbee" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
                         </div>
 
