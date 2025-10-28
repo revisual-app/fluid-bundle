@@ -39,15 +39,23 @@ let v;
   document.querySelectorAll('.more-features').forEach((link) => {
     link.addEventListener('click', function (event) {
       // get link's child node "label" and set innerHTML to Hide Features
-      console.log(link.childNodes);
+      //console.log(link.childNodes);
       if (document.getElementById(link.dataset.target).classList.contains('expanded')) {
         document.getElementById(link.dataset.target).classList.remove('expanded');
         link.childNodes[1].innerHTML = 'Show Features';
         link.childNodes[1].classList.add('show');
+
       } else {
         link.childNodes[1].innerHTML = 'Hide Features';
         document.getElementById(link.dataset.target).classList.add('expanded');
         link.childNodes[1].classList.remove('show');
+
+        setTimeout(() => {
+                window.location.href = '#' + link.dataset.target;
+                        window.scrollBy(0, -250); // scrolls up slightly for spacing
+
+        }, 10); // delay to let expansion animation finish
+
       }
     });
   });
