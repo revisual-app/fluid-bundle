@@ -329,11 +329,11 @@ function processUncheckedApps() {
     qsa('.btn-table-cell:not(.unchecked)').forEach((btn) => {
       let appId = btn.id.split('_')[1];
       if(appId == 'cb') {
-        qs('.bundle-banner.churchbee-only').classList.remove('hide');
+        qs('.bundle-banner.churchbee-only')?.classList.remove('hide');
       } else if(appId == 'dc') {
-        qs('.bundle-banner.dc-only').classList.remove('hide');
+        qs('.bundle-banner.dc-only')?.classList.remove('hide');
       } else if(appId == 'ccbchimp') {
-        qs('.bundle-banner.ccb-only').classList.remove('hide');
+        qs('.bundle-banner.ccb-only')?.classList.remove('hide');
       }
     });
   }
