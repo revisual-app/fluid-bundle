@@ -246,7 +246,7 @@ function processUncheckedApps() {
 
     console.log('bundleType', bundleType);
     if(bundleType < 4) {
-       qs('.bundle-banner.bundle-'+bundleType).classList.remove('hide');
+       qs('.bundle-banner.bundle-'+bundleType)?.classList.remove('hide');
     }
 
     var fullYearly = 0;
