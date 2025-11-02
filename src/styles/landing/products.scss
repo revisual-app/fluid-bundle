@@ -19,7 +19,7 @@
   }
 
   .heading {
-    width: calc(100% - 624px);
+    max-width: 1216px; // calc(100% - 624px);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
