@@ -264,7 +264,9 @@ function processUncheckedApps() {
       fullYearly += BP[appId].yearly;
     });
 
-    if(SELECTED_PLAN.metadata.apps  === 'churchbee,displaychurch') {
+    if(SELECTED_PLAN.metadata.apps  === 'churchbee,displaychurch'
+      || SELECTED_PLAN.metadata.apps  === 'churchbee'
+    ) {
       let appId = 'ccbchimp';
 
 
@@ -320,6 +322,17 @@ function processUncheckedApps() {
       if(qs('.discounted-ccbchimp-and-cb-price-monthly')) {
        qs('.discounted-ccbchimp-and-cb-price-monthly').innerHTML = '$'+(BP[appId].yearly / 12).toFixed(2)+'/mth';
        qs('.discounted-ccbchimp-and-cb-price-yearly').innerHTML = '$'+BP[appId].yearly+'/year';
+      }
+
+      if(appId == 'cb') {
+        let appId1 = 'ccbchimp';
+
+
+        qs('.'+appId1+' .row-month p').style.display = 'block';
+        qs('.'+appId1+' .row-month h2').innerHTML = "Free";
+
+        qs('.'+appId1+' .row-year .strikethrough').style.display = 'block';
+        qs('.'+appId1+' .row-year .text-bold').innerHTML = "Free";
       }
     });
   }
