@@ -52,6 +52,8 @@
         height: 16px;
         color: #dedede;
     }
+    .testimonial-item { display: none !important; }
+    .testimonial-item.is-active { display: flex !important; }
 </style>
 
 <div class="page">
@@ -1228,7 +1230,7 @@
 
     </div>
     <div class="section testimonial">
-        <div class="testimonial-item">
+        <div class="testimonial-item is-active">
             <h2>“Switching to the bundle saved our church over $200 this year and made our workflows way easier.”</h2>
             <div class="content">
                 <div class="person">
@@ -1236,6 +1238,21 @@
                     <div class="details">
                         <p class="name">Sarah J.</p>
                         <p class="about">Communications Director, Grace Church</p>
+                    </div>
+                </div>
+                <object data="/img/testimonial_five_stars.svg" class="graphic frame-stars"
+                        type="image/svg+xml"></object>
+            </div>
+        </div>
+
+        <div class="testimonial-item">
+            <h2>“Switching to the bundle helped our clients save hundreds—some as much as $600 per year—while unlocking more features and simplifying their workflows.”</h2>
+            <div class="content">
+                <div class="person">
+                    <img src="/img/testimonial_avatar2.png" class="person-logo">
+                    <div class="details">
+                        <p class="name">Jason Alexis</p>
+                        <p class="about">Founder, Fluid Ministry</p>
                     </div>
                 </div>
                 <object data="/img/testimonial_five_stars.svg" class="graphic frame-stars"
