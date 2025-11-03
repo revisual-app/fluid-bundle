@@ -131,3 +131,66 @@ function hideBundleFeatures() {
   document.querySelector('.show-more-bundle-features').classList.add('show');
   document.querySelector('.hide-more-bundle-features').classList.remove('show');
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.section.testimonial').forEach(initTestimonial);
+});
+
+function initTestimonial(root) {
+  const items = Array.from(root.querySelectorAll('.testimonial-item'));
+  let current = Math.max(0, items.findIndex(el => el.classList.contains('is-active')));
+  if (current === -1) current = 0;
+
+  // Build/normalize dots
+  const dotsWrap = root.querySelector('.slides');
+  if (!dotsWrap) return;
+
+  // If dot count doesn't match, rebuild to match items
+  if (dotsWrap.children.length !== items.length) {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i < items.length; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot';
+      d.type = 'button';
+      d.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
+
+  function goTo(i) {
+    current = (i + items.length) % items.length;
+
+    items.forEach((el, idx) => {
+      const active = idx === current;
+      el.classList.toggle('is-active', active);
+      el.setAttribute('aria-hidden', active ? 'false' : 'true');
+      el.tabIndex = active ? 0 : -1;
+    });
+
+    dots.forEach((d, idx) => {
+      d.classList.toggle('active', idx === current);
+      d.setAttribute('aria-selected', idx === current ? 'true' : 'false');
+    });
+  }
+
+  // Hook up dot clicks
+  dots.forEach((d, idx) => d.addEventListener('click', () => goTo(idx)));
+
+  // Keyboard support (left/right)
+  dotsWrap.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); dots[current].focus(); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); dots[current].focus(); }
+  });
+
+  // Initial state
+  goTo(current);
+
+  // OPTIONAL: autoplay (uncomment to enable)
+  // let timer = setInterval(() => goTo(current + 1), 6000);
+  // root.addEventListener('mouseenter', () => clearInterval(timer));
+  // root.addEventListener('mouseleave', () => timer = setInterval(() => goTo(current + 1), 6000));
+}
