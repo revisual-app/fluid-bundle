@@ -246,7 +246,9 @@ function processUncheckedApps() {
 
     console.log('bundleType', bundleType);
     if(bundleType < 4) {
+      if(qs('.bundle-banner')) {
        qs('.bundle-banner.bundle-'+bundleType).classList.remove('hide');
+      }
     }
 
     var fullYearly = 0;
@@ -341,12 +343,14 @@ function processUncheckedApps() {
 
     qsa('.btn-table-cell:not(.unchecked)').forEach((btn) => {
       let appId = btn.id.split('_')[1];
-      if(appId == 'cb') {
-        qs('.bundle-banner.churchbee-only').classList.remove('hide');
-      } else if(appId == 'dc') {
-        qs('.bundle-banner.dc-only').classList.remove('hide');
-      } else if(appId == 'ccbchimp') {
-        qs('.bundle-banner.ccb-only').classList.remove('hide');
+      if(qs('.bundle-banner')) {
+        if(appId == 'cb') {
+          qs('.bundle-banner.churchbee-only').classList.remove('hide');
+        } else if(appId == 'dc') {
+          qs('.bundle-banner.dc-only').classList.remove('hide');
+        } else if(appId == 'ccbchimp') {
+          qs('.bundle-banner.ccb-only').classList.remove('hide');
+        }
       }
     });
   }
@@ -443,11 +447,21 @@ function updateBundlePricing() {
 
     qs('#discount-value .value').innerHTML = refunds;
 
+
+
     byId('next-payment-quote').innerHTML = Number(SELECTED_PLAN.price.unit_amount / 100);
 
     byId('checkout-btn').disabled = false;
   } else {
     byId('checkout-btn').disabled = true;
+
+    qs('#promotion-value').innerHTML = "$<span class='value'>0</span>";
+    qs('#grand-total .value').innerHTML = subtotal - refunds;
+
+  }
+
+  if(refunds == 0) {
+      qs('#discount-value').innerHTML = "$<span class='value'>0</span>";
   }
 }
 
