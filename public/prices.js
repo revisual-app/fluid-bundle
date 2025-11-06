@@ -448,6 +448,14 @@ function updateBundlePricing() {
     byId('checkout-btn').disabled = false;
   } else {
     byId('checkout-btn').disabled = true;
+
+    qs('#promotion-value').innerHTML = "$<span class='value'>0</span>";
+    qs('#grand-total .value').innerHTML = subtotal - refunds;
+
+  }
+
+  if(refunds == 0) {
+      qs('#discount-value').innerHTML = "$<span class='value'>0</span>";
   }
 }
 

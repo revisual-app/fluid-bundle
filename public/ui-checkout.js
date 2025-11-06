@@ -66,7 +66,7 @@ var userInfo = {};
 
     $submit.style.display = 'none';
     $loader.style.display = 'inline-block';
-    let ccbAccount = $ccbAccount.value.split('.')[0].trim();
+    let ccbAccount = $ccbAccount.value.replace(/^https?:\/\//, "").split('.')[0].trim();
 
     try {
       const isCCBAddressValid = await checkCCBAddress(ccbAccount);
