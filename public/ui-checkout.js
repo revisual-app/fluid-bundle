@@ -123,6 +123,15 @@ var userInfo = {};
         });
       }
 
+      // Reset all bundle buttons to their default state
+      Object.keys(DISPLAY_NAMES_MAPPING).forEach((key) => {
+        const btn = qs('#bundle_' + key);
+        if (btn) {
+          qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Selected';
+          btn.style.pointerEvents = '';
+          btn.parentNode.style.filter = '';
+        }
+      });
 
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];

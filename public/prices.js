@@ -24,6 +24,9 @@ var bundleDiscounts = {
   ['ccbchimp,displaychurch'] : {'discount' : 45, 'bundle_type' : 2},
   ['churchbee,displaychurch'] : {'discount' : 45, 'bundle_type' : 3},
   ['ccbchimp,churchbee,displaychurch'] : {'discount' : 50, 'bundle_type' : 4},
+  ['ccbchimp'] : {'discount' : 0, 'bundle_type' : 5},
+  ['displaychurch'] : {'discount' : 0, 'bundle_type' : 6},
+  ['churchbee'] : {'discount' : 0, 'bundle_type' : 7},
 };
 
 var APPS_NAMES_MAPPING = {
@@ -439,7 +442,11 @@ function updateBundlePricing() {
       qs('.card-summary-row-base-rate').style.display = 'none';
     }
 
-    qs('#promotion-value .value').innerHTML = promotions;
+    if (promotions > 0) {
+      qs('#promotion-value').innerHTML = "-$<span class='value'>" + promotions + "</span>";
+    } else {
+      qs('#promotion-value').innerHTML = "$<span class='value'>0</span>";
+    }
 
     qs('#discount-value .value').innerHTML = refunds;
 
