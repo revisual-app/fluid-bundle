@@ -71,7 +71,7 @@ var userInfo = {};
     try {
       const isCCBAddressValid = await checkCCBAddress(ccbAccount);
 
-      console.log('isCCBAddressValid', isCCBAddressValid);
+      //console.log('isCCBAddressValid', isCCBAddressValid);
       if (!isCCBAddressValid) {
         throw new Error('CCBAddress requires CCBAddress');
       }
@@ -123,7 +123,7 @@ var userInfo = {};
         });
       }
 
-
+      let has_subscription = false;
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];
 
@@ -132,6 +132,7 @@ var userInfo = {};
         }
 
         if (app.has_subscription) {
+          has_subscription = true;
           qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Already in use';
           const btn = qs('#bundle_' + key);
           btn.style.pointerEvents = 'none';
@@ -149,6 +150,20 @@ var userInfo = {};
           );
         }
       });
+
+      if(has_subscription) {
+        byId('header-tools-found').classList.remove('hide');
+        byId('p-tools-found').classList.remove('hide');
+
+        byId('header-tools-not-found').classList.add('hide');
+        byId('p-tools-not-found').classList.add('hide');
+      } else {
+        byId('header-tools-found').classList.add('hide');
+        byId('p-tools-found').classList.add('hide');
+
+        byId('header-tools-not-found').classList.remove('hide');
+        byId('p-tools-not-found').classList.remove('hide');
+      }
 
       userInfo.email = $email.value;
       userInfo.name = $name.value;

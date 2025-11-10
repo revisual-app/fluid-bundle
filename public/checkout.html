@@ -17,7 +17,11 @@
 </head>
 <body>
 
-
+<style>
+    .hide {
+        display: none;
+    }
+</style>
 <div class="checkout-page">
 
     <div class="main-column">
@@ -229,14 +233,14 @@
                 </a>
 
                 <div class="heading">
-                    <h2 id="header-tools-found">We’ve found your active tools</h2>
-                    <h2 id="header-tools-not-found" style="display: none">Pick what you need, save as you
+                    <h2 id="header-tools-found" class="hide">We’ve found your active tools</h2>
+                    <h2 id="header-tools-not-found" class="hide">Pick what you need, save as you
                         go</h2>
 
-                    <p id="p-tools-found"> Good news: we’re applying your bundle discount to all products, including the
+                    <p id="p-tools-found" class="hide"> Good news: we’re applying your bundle discount to all products, including the
                         one you
                         already have.</p>
-                    <p id="p-tools-not-found" style="display: none"> We’ve optimized your pricing to give you more value
+                    <p id="p-tools-not-found" class="hide"> We’ve optimized your pricing to give you more value
                         across tools.</p>
                 </div>
                 <div class="content">
