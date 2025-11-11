@@ -190,7 +190,7 @@ function clickUnlink() {
 }
 
 const svgObject = document.getElementById('featured-icon-unlink');
-  svgObject.addEventListener('load', function() {
+  svgObject?.addEventListener('load', function() {
     //alert('loaded');
     const svgDoc = svgObject.contentDocument; // access inner SVG document
     const shape = svgDoc.querySelector('svg'); // element inside SVG
