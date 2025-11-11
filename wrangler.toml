@@ -7,7 +7,7 @@ directory = "./public"
 
 [observability]
 [observability.logs]
-enabled = false
+enabled = true
 head_sampling_rate = 1
 invocation_logs = true
 persist = true
@@ -22,6 +22,7 @@ BASE_URL = ""
 
 # Production environment
 [env.production.vars]
+MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
 DC_API_ADDRESS = "https://my.display.church"
 CCBCHIMP_API_ADDRESS = "https://sync.ccbchimp.com"
 CB_API_ADDRESS = "https://my.bee.church"
@@ -29,6 +30,7 @@ BASE_URL = "https://fmbundle.com/"
 
 # Staging environment
 [env.stage.vars]
+MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
 DC_API_ADDRESS = "https://dev.display.church"
 CCBCHIMP_API_ADDRESS = "https://staging.ccbchimp.com"
 CB_API_ADDRESS = "https://dev.bee.church"
