@@ -28,8 +28,12 @@ export async function addSubscriber(email, name, tags) {
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Mailchimp API error: ${error}`);
+    const error = await response.json();
+    if (error.title === 'Member Exists') {
+      // If the member already exists, we don't treat it as an error
+      return error;
+    }
+    throw new Error(`Mailchimp API error: ${JSON.stringify(error)}`);
   }
 
   const data = await response.json();
