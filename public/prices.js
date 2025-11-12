@@ -462,7 +462,9 @@ function updateBundlePricing() {
   }
 
   if(refunds == 0) {
-      qs('#discount-value').innerHTML = "$<span class='value'>0</span>";
+    qs('#discount-value').parentElement.style.display = 'none';
+  } else {
+    qs('#discount-value').parentElement.style.display = 'flex';
   }
 }
 
