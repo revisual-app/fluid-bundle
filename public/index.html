@@ -57,6 +57,17 @@
     button {
         text-transform: capitalize;
     }
+
+    .tippy-box[data-theme~='custom-width'] {
+        width: 370px;
+        max-width: 370px !important;
+        background-color: #E6F4D7;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn-table-cell [data-tippy-root]{
+        width: 400px;
+    }
 </style>
 
 <div class="page">
@@ -703,7 +714,7 @@
                     <button class="btn btn-primary hover-bright">Get started</button>
                 </a>
             </div>
-
+            <div style="display: none">
             <div class="bundle-banner bundle-1 hide">
                 <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #E6F4D7; overflow: hidden; justify-content: flex-start; align-items: center; gap: 20px; display: inline-flex">
                     <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #E6F4D7; border-radius: 28px; outline: 8px #F5FBEE solid; outline-offset: -4px">
@@ -856,10 +867,10 @@
                     </div>
                 </div>
             </div>
-
+            </div>
             <div class="plans">
                 <div class="card-left dc">
-                    <button class="btn-table-cell hover-dark" id="bundle_dc">
+                    <button   class="btn-table-cell hover-dark" id="bundle_dc">
                         <div class="icon-checkbox-base">
                             <object data="/img/icon-checkbox-base-check.svg" class="palette icon-checkbox-base-check"
                                     type="image/svg+xml"></object>
@@ -941,7 +952,7 @@
 
                     <div class="col-left ccbchimp">
                         <button class="btn-table-cell locking hover-dark" id="bundle_ccbchimp">
-                            <div class="icon-checkbox-base">
+                            <div id="ccbchimp-checkbox" class="icon-checkbox-base">
                                 <object data="/img/icon-checkbox-base-check.svg"
                                         class="palette icon-checkbox-base-check"
                                         type="image/svg+xml"></object>
@@ -1074,7 +1085,7 @@
 
                     <div class="col-right cb">
                         <button class="btn-table-cell locking hover-dark" id="bundle_cb">
-                            <div class="icon-checkbox-base">
+                            <div id="churchbee-checkbox" class="icon-checkbox-base">
                                 <object data="/img/icon-checkbox-base-check.svg"
                                         class="palette icon-checkbox-base-check"
                                         type="image/svg+xml"></object>

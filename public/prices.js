@@ -201,6 +201,13 @@ const svgObject = document.getElementById('featured-icon-unlink');
 
 function processUncheckedApps() {
 
+  if(dcTippy) {
+    dcTippy.hide();
+    churchbeeTippy.hide();
+    ccbchimpTippy.hide();
+
+  }
+
   qsa('.btn-table-cell.unchecked').forEach((btn) => {
     let appId = btn.id.split('_')[1];
     console.log('unchecked', appId);
@@ -212,6 +219,13 @@ function processUncheckedApps() {
       qs('.'+appId+' .row-year .text-bold').innerHTML = "$"+BP[appId].yearly+"/year";
 
 
+      if(appId == 'cb') {
+        churchbeeTippy.show();
+      } else if(appId == 'dc') {
+        dcTippy.show();
+      } else if(appId == 'ccbchimp') {
+        ccbchimpTippy.show();
+      }
 
   });
 
