@@ -3,11 +3,13 @@ import { addSubscriber } from '../apps/mailchimp/addToList';
 export async function addToWaitlist(request) {
   if (request.method === 'POST') {
     const body = await request.json();
-    const { email, name, integrations } = body;
+    const { email, name, integrations, isWaitlist } = body;
 
     const tags = integrations && Array.isArray(integrations) ? integrations : [];
 
-    tags.push('waitlist');
+    if (isWaitlist) {
+      tags.push('waitlist');
+    }
 
     try {
       await addSubscriber(email, name, tags);

@@ -91,6 +91,7 @@ let v;
           email: $email.value,
           name: $name.value,
           integrations: ['confirmedchurch'],
+          isWaitlist: true,
         }),
       });
 

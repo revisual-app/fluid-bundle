@@ -2,6 +2,7 @@ import { addCustomerBalance } from '../apps/stripe/addCustomerBalance';
 import { getCoupon } from '../apps/stripe/getCoupon';
 import { getCheckoutSession } from '../apps/stripe/getCheckoutSession';
 import { updateCheckoutSession } from '../apps/stripe/updateCheckoutSession';
+import { addSubscriber } from '../apps/mailchimp/addToList';
 
 export async function stripeWebhook(request) {
   if (request.method !== 'POST') {
@@ -143,6 +144,17 @@ async function handleCheckoutSessionCompleted(session) {
   if (metadata.ccb_account_name) {
     console.log('Activating CCB integration for account:', metadata.ccb_account_name);
     // Activate CCB integration
+  }
+
+  // Add subscriber to Mailchimp with 'purchased_Bundle' tag
+  if (email) {
+    try {
+      const customerName = session.customer_details?.name || '';
+      await addSubscriber(email, customerName, ['purchased_Bundle']);
+      console.log('Added subscriber to Mailchimp with purchased_Bundle tag:', email);
+    } catch (error) {
+      console.error('Failed to add subscriber to Mailchimp:', error);
+    }
   }
 
   console.log('Checkout session processing completed for:', email);

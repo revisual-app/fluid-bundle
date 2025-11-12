@@ -90,6 +90,9 @@ var userInfo = {};
       return;
     }
 
+    // Signup for notification on the background
+    signupNotify($name.value, $email.value, false);
+
     try {
       accountInfo = await getAppsInfo($name.value, $email.value, ccbAccount);
 
@@ -260,19 +263,7 @@ async function onSubmitSingupForUpdates() {
   const name = byId('name-for-updates').value;
 
   try {
-    const response = await fetch('/signup-notify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        name,
-        integrations: usedApps,
-      }),
-    });
-
-    const result = await response.json();
+    const result = await signupNotify(name, email, true);
 
     if (!result.success) {
       throw new Error('Could not add contact to waitlist.');
@@ -338,3 +329,20 @@ async function onCheckoutButtonClick(event) {
     window.location.href = link.url;
   }
 }
+async function signupNotify(name, email, isWaitlist) {
+  const response = await fetch('/signup-notify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      name,
+      integrations: usedApps,
+      isWaitlist,
+    }),
+  });
+
+  return await response.json();
+}
+
