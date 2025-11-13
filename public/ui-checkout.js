@@ -60,6 +60,8 @@ let ccbchimpTippy;
     const $submit = byId('sumbit-pushpay');
     const $loader = byId('pushpayform-loader');
 
+    byId('active-plans').classList.add('hide');
+
     document.querySelector('.ccb-account-error').style.display = 'none';
     $ccbAccount.classList.remove('input-error');
 
@@ -127,6 +129,7 @@ let ccbchimpTippy;
         });
       }
 
+      const items = [];
       let has_subscription = false;
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];
@@ -141,6 +144,8 @@ let ccbchimpTippy;
           const btn = qs('#bundle_' + key);
           btn.style.pointerEvents = 'none';
           btn.parentNode.style.filter = 'grayscale(1)';
+
+          items.push(DISPLAY_NAMES_MAPPING[key]);
 
           qs('.card-summary .card-content').insertAdjacentHTML(
             'beforeend',
@@ -161,6 +166,10 @@ let ccbchimpTippy;
 
         byId('header-tools-not-found').classList.add('hide');
         byId('p-tools-not-found').classList.add('hide');
+
+        byId('active-plans').classList.remove('hide');
+        byId('product-names').innerHTML = joinWithAnd(items);
+
       } else {
         byId('header-tools-found').classList.add('hide');
         byId('p-tools-found').classList.add('hide');
@@ -330,4 +339,11 @@ async function onCheckoutButtonClick(event) {
   if (link) {
     window.location.href = link.url;
   }
+}
+
+function joinWithAnd(list) {
+  if (list.length === 0) return "";
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return list.join(" and ");
+  return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
 }
