@@ -3,6 +3,10 @@ var accountInfo = {};
 
 var userInfo = {};
 
+let dcTippy;
+let churchbeeTippy;
+let ccbchimpTippy;
+
 (function () {
   /** stage apps radio buttons*/
   document.querySelectorAll('.radio-group-item').forEach(function (el) {
