@@ -202,6 +202,7 @@ const svgObject = document.getElementById('featured-icon-unlink');
     }
   });
 
+
 function processUncheckedApps() {
 
   if(dcTippy) {
@@ -258,8 +259,8 @@ function processUncheckedApps() {
     //console.log(SELECTED_PLAN.metadata.apps);
     //console.log(bundleDiscounts[SELECTED_PLAN.metadata.apps]);
 
-    var discountRate = bundleDiscounts[SELECTED_PLAN.metadata.apps].discount;
-    var bundleType = bundleDiscounts[SELECTED_PLAN.metadata.apps].bundle_type;
+    var discountRate = bundleDiscounts[SELECTED_PLAN.metadata.apps] ? bundleDiscounts[SELECTED_PLAN.metadata.apps].discount : 0;
+    var bundleType = bundleDiscounts[SELECTED_PLAN.metadata.apps] ? bundleDiscounts[SELECTED_PLAN.metadata.apps].bundle_type : 0;
 
     console.log('bundleType', bundleType);
     if(bundleType < 4) {
