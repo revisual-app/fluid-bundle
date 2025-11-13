@@ -6,6 +6,7 @@ var userInfo = {};
 let dcTippy;
 let churchbeeTippy;
 let ccbchimpTippy;
+let hasSubscription = false;
 
 (function () {
 
@@ -216,7 +217,6 @@ let ccbchimpTippy;
       }
 
       const items = [];
-      let has_subscription = false;
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];
 
@@ -225,7 +225,7 @@ let ccbchimpTippy;
         }
 
         if (app.has_subscription) {
-          has_subscription = true;
+          hasSubscription = true;
           qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Already in use';
           const btn = qs('#bundle_' + key);
           btn.style.pointerEvents = 'none';
@@ -246,7 +246,7 @@ let ccbchimpTippy;
         }
       });
 
-      if(has_subscription) {
+      if(hasSubscription) {
         byId('header-tools-found').classList.remove('hide');
         byId('p-tools-found').classList.remove('hide');
 
@@ -301,6 +301,13 @@ let ccbchimpTippy;
       byId('checkout-summary').classList.remove('show');
 
       qs('.checkout-page').classList.remove('stage-checkout');
+
+       if(dcTippy) {
+        dcTippy.hide();
+        churchbeeTippy.hide();
+        ccbchimpTippy.hide();
+
+      }
     });
   });
 })();
