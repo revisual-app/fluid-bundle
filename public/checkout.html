@@ -8,6 +8,10 @@
             rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/output.css">
+
+    <script src="//unpkg.com/@popperjs/core@2"></script>
+    <script src="//unpkg.com/tippy.js@6"></script>
+
     <title>FluidMin Bundle - checkout</title>
     <style>
 
@@ -20,6 +24,16 @@
 <style>
     .hide {
         display: none;
+    }
+    .tippy-box[data-theme~='custom-width'] {
+        width: 370px;
+        max-width: 370px !important;
+        background-color: #E6F4D7;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn-table-cell [data-tippy-root]{
+        width: 400px;
     }
 </style>
 <div class="checkout-page">
