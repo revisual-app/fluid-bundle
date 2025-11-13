@@ -407,6 +407,23 @@ function updateBundlePricing() {
 
   processUncheckedApps();
 
+  if(qs('.stage-checkout')) {
+    if(qsa('.btn-table-cell:not(.unchecked)').length === 0) {
+      selectAll();
+    } else {
+      qsa('.extra-row').forEach((row) => {
+        row.classList.remove('hide');
+      });
+      if(hasSubscription === false) {
+         if(qsa('.btn-table-cell:not(.unchecked)').length === 1) {
+            qsa('.extra-row').forEach((row) => {
+              row.classList.add('hide');
+            });
+         }
+      }
+    }
+  }
+
   if (!qs('.stage-checkout')) {
     return;
   }

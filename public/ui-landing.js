@@ -4,6 +4,7 @@ let v;
 let dcTippy;
 let churchbeeTippy;
 let ccbchimpTippy;
+let hasSubscription = false;
 
 (function () {
 
