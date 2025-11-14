@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/output.css">
+
+    <title>FluidMin Bundle - Login</title>
+</head>
+
+<body>
+<div class="login-page">
+    <div class="main-column">
+        <div class="checkout-header">
+            <img src="/img/fmin_logo.png" class="header-logo">
+            <a href="/" class="close-button">
+                <p class="">Close</p>
+                <object data="/img/checkout/close-button.svg" class="x-close buttons-button-x-close"
+                        type="image/svg+xml"></object>
+            </a>
+        </div>
+
+        <div class="stage">
+            <div class="stage-container" id="login-stage" style="display: flex">
+                <div class="heading">
+                    <h2 class="">Login to access your bundle account.</h2>
+                    <p class="">
+                        Open your secure billing portal in Stripe. You'll be able to update your payment method, view invoices, and change your subscription.
+                    </p>
+                </div>
+
+                <div class="content">
+                    <div class="login-form">
+                        <div class="success-message" id="success-message" style="display: none;">
+                            <h3>Your subscription is active!</h3>
+                            <p>You can manage your billing details, update payment methods, and view invoices anytime.</p>
+                        </div>
+                        
+                        <a href="/login/stripe-portal" class="btn btn-primary hover-bright" id="stripe-portal-btn">Manage Billing</a>
+                        
+                        <div class="divider">
+                            <span>OR LOGIN YOUR APPS</span>
+                        </div>
+                        
+                        <div class="app-login-buttons">
+                            <a href="/login/displaychurch" class="app-login-btn">
+                                <img src="/img/displaychurch-logo.png" alt="DisplayChurch">
+                            </a>
+                            
+                            <a href="/login/ccbchimp" class="app-login-btn">
+                                <img src="/img/card-ccbchimp.png" alt="CCB Chimp">
+                            </a>
+                            
+                            <a href="/login/churchbee" class="app-login-btn">
+                                <img src="/img/churchbee-logo.svg" alt="ChurchBee">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer responsive">
+            <p class="footer-text text-md-regular1">© Fluidministry 2025</p>
+            <p class="footer-text text-md-regular1">
+                <object data="/img/checkout/section-mail.svg" class="x-close section-mail"
+                        type="image/svg+xml"></object>
+                help@fluidministry.com
+            </p>
+        </footer>
+    </div>
+
+    <div class="checkout-banner show" id="checkout-banner">
+        <img src="/img/checkout/banner.png" alt=""/>
+    </div>
+</div>
+
+<script src="/ui-login.js" type="application/javascript"></script>
+</body>
+</html>

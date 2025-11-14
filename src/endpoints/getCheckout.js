@@ -37,7 +37,7 @@ export async function getCheckout(request) {
     const sessionData = {
       client_reference_id: email,
       customer_email: email,
-      success_url: `${env.BASE_URL}/thankyou.html`,
+      success_url: `${env.BASE_URL}/login?thankyou`,
       cancel_url: env.BASE_URL,
       'line_items[0][price]': price_id,
       'line_items[0][quantity]': 1,

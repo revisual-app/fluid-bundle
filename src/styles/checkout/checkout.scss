@@ -4,6 +4,7 @@
 @use "./unsupported-apps";
 @use "./pushpayform";
 @use "./bundle-select";
+@use "./login";
 
 .checkout-page {
   display: flex;
