@@ -25,6 +25,10 @@
     .hide {
         display: none !important;
     }
+    .btn-disabled {
+        cursor: not-allowed;
+        background-color: var(--Gray-600) !important;
+    }
     .tippy-box[data-theme~='custom-width'] {
         width: 370px;
         max-width: 370px !important;
@@ -34,6 +38,33 @@
     }
     .btn-table-cell [data-tippy-root]{
         width: 400px;
+    }
+    #refund-policy-link {
+        color: #2563EB !important;
+    }
+    .card-refund-policy {
+        max-width: 100% !important;
+    }
+
+    .card-refund-policy .card-content{
+        text-align: left;
+    }
+
+    .card-refund-policy ol{
+        list-style: number;
+        margin-left: 20px;
+    }
+
+    .card-refund-policy ol li{
+    margin-bottom: 20px;
+    }
+
+    .cancel-access-terms{
+        list-style: disc;
+        margin-left: 40px;
+    }
+    .cancel-access-terms li{
+        margin-bottom: 0px !important;
     }
 </style>
 <div class="checkout-page">
@@ -622,6 +653,17 @@
 
             <button class="btn btn-primary hover-bright" id="checkout-btn">Proceed to Checkout</button>
 
+
+            <div>
+
+                <label class="refund-consent" style="display: -webkit-inline-box;">
+                <input type="checkbox" id="refund-consent" checked="" style="margin-right: 10px;">
+                <p>
+                    I have read and agree to the <button type="button" id="refund-policy-link" class="link-button">Bundle Refund Policy</button> and the individual terms for each included product.
+                </p>
+                </label>
+
+            </div>
         </div>
         <footer class="footer responsive">
             <p class="footer-text text-md-regular1">© Fluidministery 2025</p>
@@ -635,6 +677,65 @@
 
 
 </div>
+
+
+<div class="modal" style="display: none">
+    <div class="card card-refund-policy">
+        <div class="modal-header modal-header1">
+            <div class="modal-header-content">
+                <p class="modal-header-text1 text-md-semibold1"></p>
+                <p class="modal-header-text2 text-sm-regular">
+                </p>
+            </div>
+
+            <div id="modal-header-btn-close">
+
+                <object data="/img/checkout/close-button.svg"
+                        type="image/svg+xml"></object>
+            </div>
+
+            <div  class="card-content" style="">
+                <h3>Bundle Refund Policy</h3>
+                <p>Because this bundle includes <strong>exclusive pricing and discounts of up to 50%</strong>, the following refund terms apply:</p>
+                <ol>
+                    <li>
+                        <strong>No Refunds After Purchase</strong>
+                        <p>All bundle purchases are <strong>final</strong> No refunds will be issued once the subscription has been purchased.</p>
+                    </li>
+
+                    <li>
+                        <strong>No Prorated Refunds</strong>
+                        <p>If you cancel during the subscription period, you will <strong>not receive a prorated refund</strong> for unused time.</p>
+                    </li>
+
+                    <li>
+                        <strong>Cancel Anytime, Keep Access for the Full Term</strong>
+                        <ul class="cancel-access-terms">
+                            <li>Your subscription will remain active for the full 12-month term.</li>
+                            <li>You will continue to have access to all services until your yearly plan ends.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>One-Year Commitment Across All Products</strong>
+                        <p>By choosing the discounted bundle pricing, you agree to a <strong>minimum one-year plan</strong> for all included apps.</p>
+                    </li>
+
+                    <li>
+                        <strong>Additional Terms for Each Product</strong>
+                        <p>Each product or website in this bundle is provided by its own service.</p>
+                        <p>Your use of each product is also governed by that product’s <strong>own Terms of Service, Privacy Policy, and any other applicable agreements</strong>.</p>
+                        <p>This site functions as a <strong>bundle and billing portal</strong> to help you save money by combining these services; it does not replace or override the individual terms of each product.</p>
+                    </li>
+                    </ol>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
 
 <script src="/ui-checkout.js" type="application/javascript"></script>
 <script src="/prices.js" type="application/javascript"></script>

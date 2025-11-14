@@ -8,6 +8,9 @@ let churchbeeTippy;
 let ccbchimpTippy;
 let hasSubscription = false;
 
+const consentCheckbox = document.getElementById('refund-consent');
+const checkoutBtn = document.getElementById('checkout-btn');
+
 (function () {
 
 
@@ -428,6 +431,9 @@ async function onCheckoutButtonClick(event) {
   if (!SELECTED_PLAN) {
     return true;
   }
+  if(consentCheckbox.checked === false) {
+    return;
+  }
 
   const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.ccbAccount, userInfo.name);
 
@@ -451,6 +457,43 @@ async function signupNotify(name, email, isWaitlist) {
 
   return await response.json();
 }
+
+
+
+
+function updateCheckoutState() {
+  const enabled = consentCheckbox.checked;
+
+  checkoutBtn.disabled = !enabled;
+  checkoutBtn.classList.toggle('btn-disabled', !enabled);
+
+  checkoutBtn.title = enabled
+    ? ''
+    : 'Please agree to the refund policy to proceed.';
+}
+
+(function () {
+
+  // initial state on load
+  updateCheckoutState();
+
+  // update when user toggles checkbox
+  consentCheckbox.addEventListener('change', updateCheckoutState);
+
+  document.getElementById('refund-policy-link').addEventListener('click', function (event) {
+    qs('.modal').style.display = 'flex';
+    document.body.classList.add('modal-open');
+  });
+
+  document.getElementById('modal-header-btn-close').addEventListener('click', function (event) {
+    qs('.modal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+  });
+
+})();
+
+
+
 
 function joinWithAnd(list) {
   if (list.length === 0) return "";
