@@ -4,7 +4,7 @@ export async function getPrices() {
 	const env = getEnv();
 
 	try {
-		const resp = await fetch(`https://api.stripe.com/v1/prices?active=true`, {
+		const resp = await fetch(`https://api.stripe.com/v1/prices?active=true&type=recurring`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

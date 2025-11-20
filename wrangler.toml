@@ -5,6 +5,13 @@ compatibility_date = "2024-07-23"
 [assets]
 directory = "./public"
 
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
+
 
 [vars]
 MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
@@ -15,14 +22,16 @@ BASE_URL = ""
 
 # Production environment
 [env.production.vars]
+MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
 DC_API_ADDRESS = "https://my.display.church"
 CCBCHIMP_API_ADDRESS = "https://sync.ccbchimp.com"
 CB_API_ADDRESS = "https://my.bee.church"
 BASE_URL = "https://fmbundle.com/"
 
-# Production environment
+# Staging environment
 [env.stage.vars]
+MAILCHIMP_AUDIENCE_ID = "5c08b07f08"
 DC_API_ADDRESS = "https://dev.display.church"
 CCBCHIMP_API_ADDRESS = "https://staging.ccbchimp.com"
 CB_API_ADDRESS = "https://dev.bee.church"
-BASE_URL = "https://stage.fmbundle.com/"
+BASE_URL = "https://staging.fmbundle.com/"

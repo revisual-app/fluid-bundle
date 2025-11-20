@@ -3,6 +3,100 @@ var accountInfo = {};
 
 var userInfo = {};
 
+let dcTippy;
+let churchbeeTippy;
+let ccbchimpTippy;
+let hasSubscription = false;
+
+const consentCheckbox = document.getElementById('refund-consent');
+const checkoutBtn = document.getElementById('checkout-btn');
+
+(function () {
+
+
+  const tip0 = tippy('#bundle_dc', {
+    content: '<div style="">'
+            +'        <div style="display: -webkit-inline-box; color: black; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">'
+                +'    <svg style="position: relative;    top: 2px;    left: -7px;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                +'    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4F7A21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
+                +'    </svg>'
+                +'Select Display Church for 22&cent;/day more.</div>'
+    +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
+  +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
+                +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
+                +'            <div onclick="selectDisplayChurch()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Display Church</div>'
+                +'        </div>'
+                +'    </div>'
+                                +'</div>',
+    allowHTML: true,
+      placement: 'top', // 👈 this is the key
+        appendTo: document.body, // optional, prevents positioning glitches
+
+    interactive: true,
+    hideOnClick: false,   // prevent auto-hide when clicking inside
+    theme: 'custom-width', // add a custom theme name
+    trigger: 'manual', // disables automatic hover/focus triggers
+  });
+
+  // Access the instance
+  dcTippy = tip0[0];
+
+
+  const tip1 = tippy('#bundle_cb', {
+    content: '<div style="">'
+            +'        <div style="display: -webkit-inline-box; color: black; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">'
+                +'    <svg style="position: relative;    top: 2px;    left: -7px;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                +'    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4F7A21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
+                +'    </svg>'
+                +'Select Churchbee for 60&cent;/day more.</div>'
+    +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
+  +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
+                +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
+                +'            <div onclick="selectChurchbee()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Display Church</div>'
+                +'        </div>'
+                +'    </div>'
+                                +'</div>',
+    allowHTML: true,
+      placement: 'top', // 👈 this is the key
+        appendTo: document.body, // optional, prevents positioning glitches
+
+    interactive: true,
+    hideOnClick: false,   // prevent auto-hide when clicking inside
+    theme: 'custom-width', // add a custom theme name
+    trigger: 'manual', // disables automatic hover/focus triggers
+  });
+
+  // Access the instance
+  churchbeeTippy = tip1[0];
+
+  const tip2 = tippy('#bundle_ccbchimp', {
+    content: '<div style="">'
+            +'        <div style="margin-left: -80px; display: -webkit-inline-box; color: black; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">'
+                +'    <svg style="position: relative;    top: 2px;    left: -7px;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                +'    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4F7A21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>'
+                +'    </svg>'
+                +'Select CCB Chimp for free.</div>'
+    +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
+  +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
+                +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
+                +'            <div onclick="selectCcb()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Display Church</div>'
+                +'        </div>'
+                +'    </div>'
+                                +'</div>',
+    allowHTML: true,
+      placement: 'top', // 👈 this is the key
+        appendTo: document.body, // optional, prevents positioning glitches
+
+    interactive: true,
+    hideOnClick: false,   // prevent auto-hide when clicking inside
+    theme: 'custom-width', // add a custom theme name
+    trigger: 'manual', // disables automatic hover/focus triggers
+  });
+
+  // Access the instance
+  ccbchimpTippy = tip2[0];
+})();
+
 (function () {
   /** stage apps radio buttons*/
   document.querySelectorAll('.radio-group-item').forEach(function (el) {
@@ -56,6 +150,8 @@ var userInfo = {};
     const $submit = byId('sumbit-pushpay');
     const $loader = byId('pushpayform-loader');
 
+    byId('active-plans').classList.add('hide');
+
     document.querySelector('.ccb-account-error').style.display = 'none';
     $ccbAccount.classList.remove('input-error');
 
@@ -66,12 +162,12 @@ var userInfo = {};
 
     $submit.style.display = 'none';
     $loader.style.display = 'inline-block';
-    let ccbAccount = $ccbAccount.value.split('.')[0].trim();
+    let ccbAccount = $ccbAccount.value.replace(/^https?:\/\//, "").split('.')[0].trim();
 
     try {
       const isCCBAddressValid = await checkCCBAddress(ccbAccount);
 
-      console.log('isCCBAddressValid', isCCBAddressValid);
+      //console.log('isCCBAddressValid', isCCBAddressValid);
       if (!isCCBAddressValid) {
         throw new Error('CCBAddress requires CCBAddress');
       }
@@ -89,6 +185,9 @@ var userInfo = {};
       $loader.style.display = 'none';
       return;
     }
+
+    // Signup for notification on the background
+    signupNotify($name.value, $email.value, false);
 
     try {
       accountInfo = await getAppsInfo($name.value, $email.value, ccbAccount);
@@ -115,13 +214,26 @@ var userInfo = {};
 
       updateBundlePricing();
 
-      const discountItems = qs('.card-summary-header-items .discount-item');
+      const discountItems = qsa('.card-summary .discount-item');
 
       if (discountItems) {
         discountItems.forEach(function (item, index) {
           item.remove();
         });
       }
+
+      // Reset all bundle buttons to their default state
+      Object.keys(DISPLAY_NAMES_MAPPING).forEach((key) => {
+        const btn = qs('#bundle_' + key);
+        if (btn) {
+          qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Selected';
+          btn.style.pointerEvents = '';
+          btn.parentNode.style.filter = '';
+        }
+      });
+
+
+      const items = [];
       Object.keys(accountInfo).forEach((key) => {
         const app = accountInfo[key];
 
@@ -130,10 +242,13 @@ var userInfo = {};
         }
 
         if (app.has_subscription) {
+          hasSubscription = true;
           qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Already in use';
           const btn = qs('#bundle_' + key);
           btn.style.pointerEvents = 'none';
           btn.parentNode.style.filter = 'grayscale(1)';
+
+          items.push(DISPLAY_NAMES_MAPPING[key]);
 
           qs('.card-summary .card-content').insertAdjacentHTML(
             'beforeend',
@@ -142,15 +257,33 @@ var userInfo = {};
               ' ' +
               app.subscription.plan_name +
               '</span> <span>$' +
-              Number(app.current_credit / 100) +
+              Number((app.current_credit || 0) / 100) +
               '</span></div>',
           );
         }
       });
 
+      if(hasSubscription) {
+        byId('header-tools-found').classList.remove('hide');
+        byId('p-tools-found').classList.remove('hide');
+
+        byId('header-tools-not-found').classList.add('hide');
+        byId('p-tools-not-found').classList.add('hide');
+
+        byId('active-plans').classList.remove('hide');
+        byId('product-names').innerHTML = joinWithAnd(items);
+
+      } else {
+        byId('header-tools-found').classList.add('hide');
+        byId('p-tools-found').classList.add('hide');
+
+        byId('header-tools-not-found').classList.remove('hide');
+        byId('p-tools-not-found').classList.remove('hide');
+      }
+
       userInfo.email = $email.value;
       userInfo.name = $name.value;
-      userInfo.ccnAccount = ccbAccount;
+      userInfo.ccbAccount = ccbAccount;
 
       const dateFormatter = new Intl.DateTimeFormat(navigator.languages, { year: 'numeric', month: 'long', day: 'numeric' });
       byId('next-payment-date').innerHTML = dateFormatter.format(new Date().setFullYear(new Date().getFullYear() + 1));
@@ -185,6 +318,13 @@ var userInfo = {};
       byId('checkout-summary').classList.remove('show');
 
       qs('.checkout-page').classList.remove('stage-checkout');
+
+       if(dcTippy) {
+        dcTippy.hide();
+        churchbeeTippy.hide();
+        ccbchimpTippy.hide();
+
+      }
     });
   });
 })();
@@ -232,19 +372,7 @@ async function onSubmitSingupForUpdates() {
   const name = byId('name-for-updates').value;
 
   try {
-    const response = await fetch('/signup-notify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        name,
-        integrations: usedApps,
-      }),
-    });
-
-    const result = await response.json();
+    const result = await signupNotify(name, email, true);
 
     if (!result.success) {
       throw new Error('Could not add contact to waitlist.');
@@ -303,10 +431,73 @@ async function onCheckoutButtonClick(event) {
   if (!SELECTED_PLAN) {
     return true;
   }
+  if(consentCheckbox.checked === false) {
+    return;
+  }
 
-  const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.ccnAccount, userInfo.name);
+  const link = await getStripeCheckoutUrl(SELECTED_PLAN.price.id, userInfo.email, userInfo.ccbAccount, userInfo.name);
 
   if (link) {
     window.location.href = link.url;
   }
+}
+async function signupNotify(name, email, isWaitlist) {
+  const response = await fetch('/signup-notify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      name,
+      integrations: usedApps,
+      isWaitlist,
+    }),
+  });
+
+  return await response.json();
+}
+
+
+
+
+function updateCheckoutState() {
+  const enabled = consentCheckbox.checked;
+
+  checkoutBtn.disabled = !enabled;
+  checkoutBtn.classList.toggle('btn-disabled', !enabled);
+
+  checkoutBtn.title = enabled
+    ? ''
+    : 'Please agree to the refund policy to proceed.';
+}
+
+(function () {
+
+  // initial state on load
+  updateCheckoutState();
+
+  // update when user toggles checkbox
+  consentCheckbox.addEventListener('change', updateCheckoutState);
+
+  document.getElementById('refund-policy-link').addEventListener('click', function (event) {
+    qs('.modal').style.display = 'flex';
+    document.body.classList.add('modal-open');
+  });
+
+  document.getElementById('modal-header-btn-close').addEventListener('click', function (event) {
+    qs('.modal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+  });
+
+})();
+
+
+
+
+function joinWithAnd(list) {
+  if (list.length === 0) return "";
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return list.join(" and ");
+  return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
 }

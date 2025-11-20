@@ -1,4 +1,5 @@
 import { getEnv } from '../../context';
+import { md5 } from '../../helpers';
 
 export async function addSubscriber(email, name, tags) {
   const env = getEnv();
@@ -28,8 +29,30 @@ export async function addSubscriber(email, name, tags) {
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Mailchimp API error: ${error}`);
+    const error = await response.json();
+    if (error.title === 'Member Exists') {
+      const normalized = email.trim().toLowerCase();
+      const subscriberHash = await md5(normalized);
+      
+      const updateUrl = `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${LIST_ID}/members/${subscriberHash}`;
+      
+      const updateResponse = await fetch(updateUrl, {
+        method: 'PUT',
+        headers: {
+          Authorization: `apikey ${MAILCHIMP_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+      
+      if (!updateResponse.ok) {
+        const updateError = await updateResponse.json();
+        throw new Error(`Mailchimp API update error: ${JSON.stringify(updateError)}`);
+      }
+      
+      return await updateResponse.json();
+    }
+    throw new Error(`Mailchimp API error: ${JSON.stringify(error)}`);
   }
 
   const data = await response.json();

@@ -25,6 +25,10 @@ export async function getCheckout(request) {
     // add here any metadata you need
     let metadataIdx = 0;
     const metadata = [];
+    if (ccb_account) {
+      metadata.push([`metadata[ccb_account_name]`, ccb_account]);
+      metadata.push([`subscription_data[metadata][ccb_account_name]`, ccb_account]);
+    }
 
     if (appsInfo.dc && appsInfo.dc.has_account) {
       metadata.push([`metadata[dc_org_id]`, appsInfo.dc.account.org_id]);
@@ -33,7 +37,7 @@ export async function getCheckout(request) {
     const sessionData = {
       client_reference_id: email,
       customer_email: email,
-      success_url: `${env.BASE_URL}/thankyou.html`,
+      success_url: `${env.BASE_URL}/login?thankyou`,
       cancel_url: env.BASE_URL,
       'line_items[0][price]': price_id,
       'line_items[0][quantity]': 1,
@@ -72,7 +76,7 @@ function getDiscountValue(appsInfo) {
         return 0;
       }
 
-      return app.current_credit;
+      return app.current_credit || 0;
       /*
 
 			const subscriptionEnd = app.subscription.subscription_end;

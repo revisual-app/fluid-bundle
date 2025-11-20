@@ -8,6 +8,10 @@
             rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/output.css">
+
+    <script src="//unpkg.com/@popperjs/core@2"></script>
+    <script src="//unpkg.com/tippy.js@6"></script>
+
     <title>FluidMin Bundle - checkout</title>
     <style>
 
@@ -17,7 +21,56 @@
 </head>
 <body>
 
+<style>
+    .hide {
+        display: none !important;
+    }
+    .btn-disabled {
+        cursor: not-allowed;
+        background-color: var(--Gray-600) !important;
+    }
+    .tippy-box[data-theme~='custom-width'] {
+        width: 370px;
+        max-width: 370px !important;
+        background-color: #E6F4D7;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn-table-cell [data-tippy-root]{
+        width: 400px;
+    }
+    #refund-policy-link {
+        color: #2563EB !important;
+    }
+    .card-refund-policy {
+        max-width: 100% !important;
+    }
 
+    .card-refund-policy .card-content{
+        text-align: left;
+    }
+
+    .card-refund-policy ol{
+        list-style: number;
+        margin-left: 20px;
+    }
+
+    .card-refund-policy ol li{
+    margin-bottom: 20px;
+    }
+
+    .cancel-access-terms{
+        list-style: disc;
+        margin-left: 40px;
+    }
+    .cancel-access-terms li{
+        margin-bottom: 0px !important;
+    }
+    .modal .card .modal-header {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+</style>
 <div class="checkout-page">
 
     <div class="main-column">
@@ -229,15 +282,11 @@
                 </a>
 
                 <div class="heading">
-                    <h2 id="header-tools-found">We’ve found your active tools</h2>
-                    <h2 id="header-tools-not-found" style="display: none">Pick what you need, save as you
-                        go</h2>
+                    <h2 id="header-tools-found" class="hide">We’ve found your active tools.</h2>
+                    <h2 id="header-tools-not-found" class="hide">Pick what you need, save as you go.</h2>
 
-                    <p id="p-tools-found"> Good news: we’re applying your bundle discount to all products, including the
-                        one you
-                        already have.</p>
-                    <p id="p-tools-not-found" style="display: none"> We’ve optimized your pricing to give you more value
-                        across tools.</p>
+                    <p id="p-tools-found" class="hide">Good news: we’re applying your bundle discount to all products, including the one you already have.</p>
+                    <p id="p-tools-not-found" class="hide">We’ve optimized your pricing to give you more value across tools.</p>
                 </div>
                 <div class="content">
 
@@ -246,7 +295,7 @@
 
 
                             <div class="plans">
-                                <div class="card-left">
+                                <div class="card-left dc">
                                     <button class="btn-table-cell hover-dark" id="bundle_dc">
                                         <div class="icon-checkbox-base">
                                             <object data="/img/icon-checkbox-base-check.svg"
@@ -304,7 +353,7 @@
                                 </div>
                                 <div class="cards-right">
 
-                                    <div class="col-left">
+                                    <div class="col-left ccbchimp">
                                         <button class="btn-table-cell locking hover-dark" id="bundle_ccbchimp">
                                             <div class="icon-checkbox-base">
                                                 <object data="/img/icon-checkbox-base-check.svg"
@@ -397,7 +446,7 @@
                                         <div class="merged merged2">
                                             <div class="row-month">
                                                 <p>$<span class="ccbchimp-and-cb-price-monthly">825</span>/mth</p>
-                                                <h2 class="">$50/mth</h2>
+                                                <h2 class="discounted-ccbchimp-and-cb-price-monthly">$50/mth</h2>
                                             </div>
 
                                         </div>
@@ -407,7 +456,7 @@
                                                 <p class="text-grey">(</p>
                                                 <p class="text-grey strikethrough">$<span
                                                         class="ccbchimp-and-cb-price-yearly">1020</span>/year</p>
-                                                <p class="text-bold">$600/year</p>
+                                                <p class="text-bold discounted-ccbchimp-and-cb-price-yearly">$600/year</p>
                                                 <p class="text-grey">)</p>
                                             </div>
                                         </div>
@@ -415,7 +464,7 @@
                                         <p class="row-billing">Billed yearly </p>
                                     </div>
 
-                                    <div class="col-right">
+                                    <div class="col-right cb">
                                         <button class="btn-table-cell locking hover-dark" id="bundle_cb">
                                             <div class="icon-checkbox-base">
                                                 <object data="/img/icon-checkbox-base-check.svg"
@@ -530,14 +579,18 @@
 
                 </div>
 
+                <div class="heading">
+                    <p id="active-plans" class="hide">* You already have a plan with <span id="product-names"></span>, so your discount has been applied.</p>
+                </div>
+
             </div>
         </div>
         <footer class="footer">
-            <p class="footer-text text-md-regular1">© Fluidministery 2025</p>
+            <p class="footer-text text-md-regular1">© Fluidministry 2025</p>
             <p class="footer-text text-md-regular1">
                 <object data="/img/checkout/section-mail.svg" class="x-close section-mail"
                         type="image/svg+xml"></object>
-                help@fluidministery.com
+                help@fluidministry.com
             </p>
         </footer>
     </div>
@@ -556,7 +609,7 @@
                     <p class="value" id="subtotal-value">$<span class="value">960</span></p>
                 </div>
 
-                <div class="card-summary-row">
+                <div class="card-summary-row extra-row">
                     <div class="card-summary-row-expandable">
                         <p class="label">Promotions</p>
                         <!--<object data="/img/checkout/chevron-down.svg" type="image/svg+xml"></object>-->
@@ -565,7 +618,7 @@
                     <p class="value" id="promotion-value">-$<span class="value"></span></p>
                 </div>
 
-                <div class="card-summary-row">
+                <div class="card-summary-row extra-row">
                     <div class="card-summary-row-expandable refund">
                         <p class="label">Prorated Credits</p>
                         <!--<object data="/img/checkout/chevron-down.svg"
@@ -587,30 +640,106 @@
 
                     <h2 id="grand-total">$<span class="value">500</span></h2>
                 </div>
+                <div class="card-summary-row-base-rate">
+                    <div class="card-summary-row-base-rate-summary">
+                        <p class="card-summary-row-base-rate-header">Base Annual Rate</p>
+                    </div>
+                    <h2 id="base-rate">$<span class="value">500</span></h2>
+                </div>
                 <p class="credit-on-file">You have $<span
                         id="credit-on-file-value"></span> in credits, which will be automatically applied to your next
                     payment. </p>
 
-                <p class="next-charge">Next charge will be $<span id="next-payment-quote"></span> on <span
-                        id="next-payment-date">Jan 11, 2027</span>. Cancel or adjust anytime.</p>
+                <p class="next-charge">Your upcoming charge will be $<span id="next-payment-quote"></span> on <span
+                        id="next-payment-date">Jan 11, 2027</span>. You can cancel or make changes anytime.</p>
 
             </div>
 
             <button class="btn btn-primary hover-bright" id="checkout-btn">Proceed to Checkout</button>
 
+
+            <div>
+
+                <label class="refund-consent" style="display: -webkit-inline-box;">
+                <input type="checkbox" id="refund-consent" checked="" style="margin-right: 10px;">
+                <p>
+                    I have read and agree to the <button type="button" id="refund-policy-link" class="link-button">Bundle Refund Policy</button> and the individual terms for each included product.
+                </p>
+                </label>
+
+            </div>
         </div>
         <footer class="footer responsive">
-            <p class="footer-text text-md-regular1">© Fluidministery 2025</p>
+            <p class="footer-text text-md-regular1">© Fluidministry 2025</p>
             <p class="footer-text text-md-regular1">
                 <object data="/img/checkout/section-mail.svg" class="x-close section-mail"
                         type="image/svg+xml"></object>
-                help@fluidministery.com
+                help@fluidministry.com
             </p>
         </footer>
     </div>
 
 
 </div>
+
+
+<div class="modal" style="display: none">
+    <div class="card card-refund-policy">
+        <div class="modal-header modal-header1">
+            <div class="modal-header-content">
+                <p class="modal-header-text1 text-md-semibold1"></p>
+                <p class="modal-header-text2 text-sm-regular">
+                </p>
+            </div>
+
+            <div id="modal-header-btn-close">
+
+                <object data="/img/checkout/close-button.svg"
+                        type="image/svg+xml"></object>
+            </div>
+
+            <div  class="card-content" style="">
+                <h3>Bundle Refund Policy</h3>
+                <p>Because this bundle includes <strong>exclusive pricing and discounts of up to 50%</strong>, the following refund terms apply:</p>
+                <ol>
+                    <li>
+                        <strong>No Refunds After Purchase</strong>
+                        <p>All bundle purchases are <strong>final</strong> No refunds will be issued once the subscription has been purchased.</p>
+                    </li>
+
+                    <li>
+                        <strong>No Prorated Refunds</strong>
+                        <p>If you cancel during the subscription period, you will <strong>not receive a prorated refund</strong> for unused time.</p>
+                    </li>
+
+                    <li>
+                        <strong>Cancel Anytime, Keep Access for the Full Term</strong>
+                        <ul class="cancel-access-terms">
+                            <li>Your subscription will remain active for the full 12-month term.</li>
+                            <li>You will continue to have access to all services until your yearly plan ends.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>One-Year Commitment Across All Products</strong>
+                        <p>By choosing the discounted bundle pricing, you agree to a <strong>minimum one-year plan</strong> for all included apps.</p>
+                    </li>
+
+                    <li>
+                        <strong>Additional Terms for Each Product</strong>
+                        <p>Each product or website in this bundle is provided by its own service.</p>
+                        <p>Your use of each product is also governed by that product’s <strong>own Terms of Service, Privacy Policy, and any other applicable agreements</strong>.</p>
+                        <p>This site functions as a <strong>bundle and billing portal</strong> to help you save money by combining these services; it does not replace or override the individual terms of each product.</p>
+                    </li>
+                    </ol>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
 
 <script src="/ui-checkout.js" type="application/javascript"></script>
 <script src="/prices.js" type="application/javascript"></script>

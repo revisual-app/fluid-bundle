@@ -4,6 +4,7 @@
 @use "./unsupported-apps";
 @use "./pushpayform";
 @use "./bundle-select";
+@use "./login";
 
 .checkout-page {
   display: flex;
@@ -355,6 +356,44 @@
     }
   }
 
+}
+
+.card-summary-row-base-rate {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-top: 1.19rem;
+
+  .card-summary-row-base-rate-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.12rem;
+    flex-grow: 1;
+  }
+
+  p {
+    font-style: normal;
+    letter-spacing: 0;
+    text-align: left;;
+
+  }
+
+  .card-summary-row-base-rate-header {
+    color: var(--Gray-900);
+    font-size: 1.12rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  h2 {
+    color: var(--Gray-900);
+    font-size: 1.41rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
 }
 
 

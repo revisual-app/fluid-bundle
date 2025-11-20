@@ -5,6 +5,8 @@ import { listPlans } from './endpoints/listPlans';
 import { getCheckout } from './endpoints/getCheckout';
 import { addToWaitlist } from './endpoints/addToWaitlist';
 import { checkAddress } from './endpoints/checkAddress';
+import { stripeWebhook } from './endpoints/stripeWebhook';
+import { loginApp } from './endpoints/loginApp';
 
 export default {
   async fetch(request, env, ctx) {
@@ -21,7 +23,14 @@ export default {
 
     try {
       let response = null;
+      let useCors = true;
+
       switch (url.pathname) {
+        case '/webhook/stripe':
+          useCors = false;
+          response = await stripeWebhook(request);
+          break;
+
         case '/get-info':
           //...
           response = await getInfo(request);
@@ -45,6 +54,17 @@ export default {
           response = await checkAddress(request);
           break;
 
+        case '/login/displaychurch':
+        case '/login/ccbchimp':
+        case '/login/churchbee':
+        case '/login/stripe-portal':
+          const appName = url.pathname.split('/')[2];
+          response = await loginApp(request, appName);
+          if (response.success && response.redirectUrl) {
+            return Response.redirect(response.redirectUrl, 302);
+          }
+          break;
+
         default:
           return new Response('Not Found', { status: 404 });
       }
@@ -54,7 +74,7 @@ export default {
       return new Response(JSON.stringify(response), {
         headers: {
           'Content-Type': 'application/json',
-          ...corsHeaders(),
+          ...(useCors ? corsHeaders() : {}),
         },
       });
     } catch (err) {

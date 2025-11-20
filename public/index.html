@@ -8,6 +8,10 @@
             rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/output.css">
+
+    <script src="//unpkg.com/@popperjs/core@2"></script>
+    <script src="//unpkg.com/tippy.js@6"></script>
+
     <title>FluidMin Bundle</title>
     <style>
 
@@ -17,6 +21,54 @@
 </head>
 <body>
 
+
+<style>
+    nav {
+        position: fixed;
+        top: 10px;
+        /* left: 0; */
+        width: 100%;
+        z-index: 1000;
+        background: white;
+        }
+
+    .bundle-banner {
+        position: relative;
+        top: -30px;
+    }
+    .bundle-banner.hide {
+        display: none;
+    }
+    .tippy-box[data-theme~='white'] {
+      background-color: white;
+      color: #333;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .tippy-arrow {
+        width: 16px;
+        height: 16px;
+        color: #dedede;
+    }
+    .testimonial-item { display: none !important; }
+    .testimonial-item.is-active { display: flex !important; }
+    button {
+        text-transform: capitalize;
+    }
+
+    .tippy-box[data-theme~='custom-width'] {
+        width: 370px;
+        max-width: 370px !important;
+        background-color: #E6F4D7;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn-table-cell [data-tippy-root]{
+        width: 400px;
+    }
+</style>
 
 <div class="page">
 
@@ -142,12 +194,25 @@
                             <li><a href="#faq" class="link">FAQ</a></li>
                             <li><a href="#about" class="link">About Us</a></li>
                         </ul>
+                        <div class="nav-mobile-cta-group">
+                            <a href="/checkout.html">
+                                <button class="btn btn-primary hover-bright">Get Started</button>
+                            </a>
+                            <a href="/login.html">
+                                <button class="btn hover-dark">Log in</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <a href="/checkout.html" class="desktop-cta">
-                <button class="btn btn-nav-cta hover-bright">Get&nbsp;Started</button>
-            </a>
+            <div class="nav-cta-group desktop-cta">
+                <a href="/login.html">
+                    <button class="btn btn-nav-login hover-dark">Log in</button>
+                </a>
+                <a href="/checkout.html">
+                    <button class="btn btn-nav-cta hover-bright">Get&nbsp;Started</button>
+                </a>
+            </div>
 
         </nav>
 
@@ -204,7 +269,7 @@
                     </div>
                     <div class="buttons">
                         <a href="#bundle">
-                            <button class="btn hover-dark">See how much you can save</button>
+                            <button class="btn hover-dark" style="padding-top: 0.75rem;padding-bottom: 0.75rem;">See How Much You Can Save</button>
                         </a>
                         <a href="/checkout.html">
                             <button class="btn btn-primary hover-bright">Get started</button>
@@ -237,7 +302,7 @@
                         existing tools. No website? Use a hosted page or QR code to share instantly.
                     </p>
                 </div>
-                <button class="btn  hover-dark">Learn More</button>
+                <button class="btn  hover-dark" onclick="window.location.href='https://display.church'" >Learn More</button>
             </div>
 
             <div class="product">
@@ -250,7 +315,7 @@
 
                     </p>
                 </div>
-                <button class="btn  hover-dark">Learn More</button>
+                <button class="btn  hover-dark" onclick="window.location.href='https://ccbchimp.com'">Learn More</button>
             </div>
 
             <div class="product">
@@ -261,7 +326,7 @@
                         directly inside your church communication tools. No code or new logins needed.
                     </p>
                 </div>
-                <button class="btn  hover-dark">Learn More</button>
+                <button class="btn  hover-dark" onclick="window.location.href='https://bee.church'">Learn More</button>
             </div>
         </div>
 
@@ -348,15 +413,12 @@
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Google Cal (included) + All Premium Integrations (e.g.
-                                    Breeze, CCB, or PCO)</p>
+                                <p class="check-item-text-wrap1">Google Cal (included) + All Premium Integrations (e.g. Breeze, CCB, or PCO)</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Includes the following add-ons: CCB (Sync private
-                                    events),
-                                    PCO (Filter by groups)</p>
+                                <p class="check-item-text-wrap1">Includes the following add-ons: CCB (Sync private events), PCO (Filter by groups)</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
@@ -372,6 +434,11 @@
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
                                 <p class="check-item-text-wrap1">Manual syncing: unlimited</p>
+                            </div>
+                            <div class="benefit">
+                                <object data="/img/check-item-text-icon2.svg" class="icon"
+                                        type="image/svg+xml"></object>
+                                <p class="check-item-text-wrap1">Automatic syncing: twice per day (12 am & 12 pm UTC)</p>
                             </div>
                         </div>
                     </div>
@@ -437,41 +504,33 @@
                 <div class="all-features" id="ccbchimp_features">
                     <div class="content">
 
-                        <p>Calendar Views: All Medium views + Detailed List<br/>
-                            Group Widgets: All Included | Event Alerts: Banner Alerts </p>
+                        <!-- <p>Calendar Views: All Medium views + Detailed List<br/>
+                            Group Widgets: All Included | Event Alerts: Banner Alerts </p> -->
                         <div class="benefits">
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">For 5 websites only</p>
+                                <p class="check-item-text-wrap1">Manual Syncing: Unlimited</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Google Cal (included) + All Premium Integrations (e.g.
-                                    Breeze, CCB, or PCO)</p>
+                                <p class="check-item-text-wrap1">Automatic Syncing: twice per day (12 am & 12 pm UTC)</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Includes the following add-ons: CCB (Sync private
-                                    events),
-                                    PCO (Filter by groups)</p>
+                                <p class="check-item-text-wrap1">Mapped Custom Fields (e.g birthdate): Yes</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Highlight featured events (Badges) included</p>
+                                <p class="check-item-text-wrap1">Rollback/Restore Options: Up to the 6 most recent syncs</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Color, font and behavior management included</p>
-                            </div>
-                            <div class="benefit">
-                                <object data="/img/check-item-text-icon2.svg" class="icon"
-                                        type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Manual syncing: unlimited</p>
+                                <p class="check-item-text-wrap1">Sync/Mailchimp Tags: Yes. Per Campus, Group or Saved Searches</p>
                             </div>
                         </div>
                     </div>
@@ -520,7 +579,7 @@
                             </a>
                         </div>
                         <div class="more-features" data-target="churchbee_features">
-                            <p class="show-more-features">
+                            <p class="show-more-features label show">
                                 Show Features
                             </p>
                             <object data="/img/buttons-button-chevron-down.svg"
@@ -537,41 +596,33 @@
                 <div class="all-features" id="churchbee_features">
                     <div class="content">
 
-                        <p>Calendar Views: All Medium views + Detailed List<br/>
-                            Group Widgets: All Included | Event Alerts: Banner Alerts </p>
+                        <!-- <p>Calendar Views: All Medium views + Detailed List<br/>
+                            Group Widgets: All Included | Event Alerts: Banner Alerts </p> -->
                         <div class="benefits">
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">For 5 websites only</p>
+                                <p class="check-item-text-wrap1">Customizable templates</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Google Cal (included) + All Premium Integrations (e.g.
-                                    Breeze, CCB, or PCO)</p>
+                                <p class="check-item-text-wrap1">Up to 25 exports</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Includes the following add-ons: CCB (Sync private
-                                    events),
-                                    PCO (Filter by groups)</p>
+                                <p class="check-item-text-wrap1">Advanced analytics for the last 6 months</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Highlight featured events (Badges) included</p>
+                                <p class="check-item-text-wrap1">Up to 7 users</p>
                             </div>
                             <div class="benefit">
                                 <object data="/img/check-item-text-icon2.svg" class="icon"
                                         type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Color, font and behavior management included</p>
-                            </div>
-                            <div class="benefit">
-                                <object data="/img/check-item-text-icon2.svg" class="icon"
-                                        type="image/svg+xml"></object>
-                                <p class="check-item-text-wrap1">Manual syncing: unlimited</p>
+                                <p class="check-item-text-wrap1">Up to 100 saved rows </p>
                             </div>
                         </div>
                     </div>
@@ -652,29 +703,187 @@
         <div class="container">
             <div class="jumbotron">
                 <div class="top">
-                    <h2 class="">$<span class="bundle-save-base-price-monthly">85</span>/mth</h2>
-                    <h2 class="">$65/mth</h2>
+                    <h2 class="monthly-saving">$<span class="bundle-save-base-price-monthly">85</span>/mth</h2>
+                    <h2 class="bundle-new-monthly-price">$65/mth</h2>
                 </div>
                 <div class="middle">
                     <p class="">Billed yearly</p>
                     <p class="">
                         <span class="grey">(</span>
-                        <span class="grey">$<span class="bundle-save-base-price-yearly">1020</span>/year</span>
-                        <strong class="text-lg-bold"> </strong>$600/year
+                        <span class="grey yearly-saving">$<span class="bundle-save-base-price-yearly">1020</span>/year</span>
+                        <strong class="text-lg-bold bundle-new-yearly-price"> $600/year </strong>
                         <span class="grey">)</span>
                     </p>
-                    <p class="">+ refunds</p>
-                    <object data="/img/row-help-icon.svg" class="header-help-icon"
-                            type="image/svg+xml"></object>
+                    <p class="">+ Prorated Credits</p>
+
+                    <svg id="prorated-credits" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                        <path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    <!-- <object data="/img/row-help-icon.svg" class="header-help-icon"
+                            type="image/svg+xml"></object> -->
                 </div>
                 <a href="/checkout.html">
                     <button class="btn btn-primary hover-bright">Get started</button>
                 </a>
             </div>
+            <div style="display: none">
+            <div class="bundle-banner bundle-1 hide">
+                <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #E6F4D7; overflow: hidden; justify-content: flex-start; align-items: center; gap: 20px; display: inline-flex">
+                    <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #E6F4D7; border-radius: 28px; outline: 8px #F5FBEE solid; outline-offset: -4px">
+                    <div style="width: 24px; height: 24px; left: 12px; top: 12px; position: absolute; overflow: hidden">
+                        <div style="width: 20px; height: 20px; left: 1px; top: 1px; position: absolute;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4F7A21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                        </div>
+                    </div>
+                    </div>
+                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">Select Display for 22&cent;/day more, add way more value.</div>
+                        <div style="color: #535862; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">You can create and embed beautiful calendars and event banners with Display Church.</div>
+                    </div>
+                    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">
+                            <div onclick="selectDisplayChurch()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Display Church</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="bundle-banner bundle-2 hide">
+                <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #E6F4D7; overflow: hidden; justify-content: flex-start; align-items: center; gap: 20px; display: inline-flex">
+                    <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #E6F4D7; border-radius: 28px; outline: 8px #F5FBEE solid; outline-offset: -4px">
+                    <div style="width: 24px; height: 24px; left: 12px; top: 12px; position: absolute; overflow: hidden">
+                        <div style="width: 20px; height: 20px; left: 1px; top: 1px; position: absolute;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4F7A21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                        </div>
+                    </div>
+                    </div>
+                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">Select Churchbee for 60&cent;/day more, add way more value.</div>
+                        <div style="color: #535862; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">You can create beatiful newsletters with Churchbee Google extension without leaving your favorite ChMS.</div>
+                    </div>
+                    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">
+                            <div onclick="selectChurchbee()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Churchbee</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bundle-banner bundle-3 hide">
+                <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #E6F4D7; overflow: hidden; justify-content: flex-start; align-items: center; gap: 20px; display: inline-flex">
+                    <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #E6F4D7; border-radius: 28px; outline: 8px #F5FBEE solid; outline-offset: -4px">
+                    <div style="width: 24px; height: 24px; left: 12px; top: 12px; position: absolute; overflow: hidden">
+                        <div style="width: 20px; height: 20px; left: 1px; top: 1px; position: absolute;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4F7A21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                        </div>
+                    </div>
+                    </div>
+                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">Select CCB Chimp for free!</div>
+                        <div style="color: #535862; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Don’t forget to add CCB Chimp with Church Bee. It’s included at no extra cost when selected together.</div>
+                    </div>
+                    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">
+                            <div onclick="selectCcb()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select CCBChimp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bundle-banner churchbee-only hide">
+                <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #335015; overflow: hidden; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex">
+                    <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #335015; border-radius: 28px; outline: 8px #3F621A solid; outline-offset: -4px">
+                    <div style="width: 24px; height: 24px; left: 12px; top: 12px; position: absolute; overflow: hidden">
+                        <div style="width: 20px; height: 20px; left: 1px; top: 1px; position: absolute;">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 7V11M11 15H11.01M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#CEEAB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    </div>
+                    </div>
+                    </div>
+                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="color: white; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">Select CCB Chimp and Display Church, add way more value.</div>
+                        <div style="color: #F5F5F5; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">These tools work best when they’re used together.</div>
+                    </div>
+                    <div style="justify-content: flex-start; align-items: center; gap: 24px; display: flex">
+                        <div data-hierarchy="Link gray" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="overflow: hidden; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div onclick="window.location.href='https://bee.church'" style="cursor: pointer; color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Buy Individually</div>
+                        </div>
+                        <div data-hierarchy="Secondary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: white; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline: 1px #D5D7DA solid; outline-offset: -1px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">
+                                <div onclick="selectAll()" style="color: #414651; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select All</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bundle-banner dc-only hide">
+                <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #335015; overflow: hidden; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex">
+                    <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #335015; border-radius: 28px; outline: 8px #3F621A solid; outline-offset: -4px">
+                    <div style="width: 24px; height: 24px; left: 12px; top: 12px; position: absolute; overflow: hidden">
+                        <div style="width: 20px; height: 20px; left: 1px; top: 1px; position: absolute;">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 7V11M11 15H11.01M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#CEEAB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    </div>
+                    </div>
+                    </div>
+                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="color: white; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">Select CCB Chimp and ChurchBee, add way more value.</div>
+                        <div style="color: #F5F5F5; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">These tools work best when they’re used together.</div>
+                    </div>
+                    <div style="justify-content: flex-start; align-items: center; gap: 24px; display: flex">
+                        <div data-hierarchy="Link gray" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="overflow: hidden; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div onclick="window.location.href='https://display.church'" style="cursor: pointer; color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Buy Individually</div>
+                        </div>
+                        <div data-hierarchy="Secondary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: white; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline: 1px #D5D7DA solid; outline-offset: -1px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">
+                                <div onclick="selectAll()" style="color: #414651; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select All</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bundle-banner ccb-only hide">
+                <div style="border-radius: 12px; width: 100%; height: 100%; padding-left: 32px; padding-right: 32px; padding-top: 20px; padding-bottom: 20px; background: #335015; overflow: hidden; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex">
+                    <div data-color="Brand" data-gradient-mask="true" data-size="lg" data-type="Light outline" style="width: 48px; height: 48px; position: relative; background: #335015; border-radius: 28px; outline: 8px #3F621A solid; outline-offset: -4px">
+                    <div style="width: 24px; height: 24px; left: 12px; top: 12px; position: absolute; overflow: hidden">
+                        <div style="width: 20px; height: 20px; left: 1px; top: 1px; position: absolute;">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 7V11M11 15H11.01M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#CEEAB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    </div>
+                    </div>
+                    </div>
+                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="color: white; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 32px; word-wrap: break-word">Select Display Church and ChurchBee, add way more value.</div>
+                        <div style="color: #F5F5F5; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">These tools work best when they’re used together.</div>
+                    </div>
+                    <div style="justify-content: flex-start; align-items: center; gap: 24px; display: flex">
+                        <div data-hierarchy="Link gray" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="overflow: hidden; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div onclick="window.location.href='https://ccbchimp.com'" style="cursor: pointer; color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Buy Individually</div>
+                        </div>
+                        <div data-hierarchy="Secondary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: white; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline: 1px #D5D7DA solid; outline-offset: -1px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">
+                                <div onclick="selectAll()" style="color: #414651; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select All</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
             <div class="plans">
-                <div class="card-left">
-                    <button class="btn-table-cell hover-dark" id="bundle_dc">
+                <div class="card-left dc">
+                    <button   class="btn-table-cell hover-dark" id="bundle_dc">
                         <div class="icon-checkbox-base">
                             <object data="/img/icon-checkbox-base-check.svg" class="palette icon-checkbox-base-check"
                                     type="image/svg+xml"></object>
@@ -690,8 +899,11 @@
                     <div class="table-cell-a">
                         <div class="row-top">
                             <p class="">Pro</p>
-                            <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                    type="image/svg+xml"></object>
+                            <svg id="tooltip-displaychurch" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                            <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                    type="image/svg+xml"></object> -->
                         </div>
 
                         <div class="row-month">
@@ -719,17 +931,41 @@
                         <div class="check-item">
                             <object data="/img/check-item-text-icon2.svg" class=""
                                     type="image/svg+xml"></object>
-                            <p class="">Google + All Premium Integrations </p>
+                            <p class="">Google Cal + All Premium Integrations </p>
                         </div>
 
-
+                        <div class="check-item hidden-feature">
+                            <object data="/img/check-item-text-icon2.svg" class=""
+                                    type="image/svg+xml"></object>
+                            <p class="">Includes the following add-ons: CCB (Sync private events), PCO (Filter by groups)</p>
+                        </div>
+                        <div class="check-item hidden-feature">
+                            <object data="/img/check-item-text-icon2.svg" class=""
+                                    type="image/svg+xml"></object>
+                            <p class="">Highlight featured events (Badges) included</p>
+                        </div>
+                        <div class="check-item hidden-feature">
+                            <object data="/img/check-item-text-icon2.svg" class=""
+                                    type="image/svg+xml"></object>
+                            <p class="">Color, font and behavior management included</p>
+                        </div>
+                        <div class="check-item hidden-feature">
+                            <object data="/img/check-item-text-icon2.svg" class=""
+                                    type="image/svg+xml"></object>
+                            <p class="">Manual syncing: unlimited</p>
+                        </div>
+                        <div class="check-item hidden-feature">
+                            <object data="/img/check-item-text-icon2.svg" class=""
+                                    type="image/svg+xml"></object>
+                            <p class="">Automatic syncing: twice per day (12 am & 12 pm UTC)</p>
+                        </div>
                     </div>
                 </div>
                 <div class="cards-right">
 
-                    <div class="col-left">
+                    <div class="col-left ccbchimp">
                         <button class="btn-table-cell locking hover-dark" id="bundle_ccbchimp">
-                            <div class="icon-checkbox-base">
+                            <div id="ccbchimp-checkbox" class="icon-checkbox-base">
                                 <object data="/img/icon-checkbox-base-check.svg"
                                         class="palette icon-checkbox-base-check"
                                         type="image/svg+xml"></object>
@@ -744,8 +980,12 @@
                         <div class="table-cell-a">
                             <div class="row-top">
                                 <p class="">CCBChimp Pro</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+<svg id="tooltip-ccbchimp" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
+
                             </div>
 
                             <div class="row-month">
@@ -784,14 +1024,29 @@
                                 <p class="">Automatic Syncing Twice per day
                                 </p>
                             </div>
+                            <div class="check-item hidden-feature">
+                                <object data="/img/check-item-text-icon2.svg" class=""
+                                        type="image/svg+xml"></object>
+                                <p class="">Mapped Custom Fields (e.g birthdate): Yes</p>
+                            </div>
+                            <div class="check-item hidden-feature">
+                                <object data="/img/check-item-text-icon2.svg" class=""
+                                        type="image/svg+xml"></object>
+                                <p class="">Rollback/estore Options: Up to the 6 most recent syncs</p>
+                            </div>
+                            <div class="check-item hidden-feature" style="margin-bottom: 127px;">
+                                <object data="/img/check-item-text-icon2.svg" class=""
+                                        type="image/svg+xml"></object>
+                                <p class="">Sync/Mailchimp Tags: Yes. Per Campus, Group or Saved Searches</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="featured-icon-locked">
                         <div class="featured-icon-inner">
-                            <object data="/img/featured-icon-link.svg" class="featured-icon-link"
+                            <object data="/img/featured-icon-link.svg" id="featured-icon-link" class="featured-icon-link"
                                     type="image/svg+xml"></object>
-                            <object data="/img/featured-icon-unlink.svg" class="featured-icon-unlink"
+                            <object data="/img/featured-icon-unlink.svg"  id="featured-icon-unlink" class="featured-icon-unlink"
                                     type="image/svg+xml"></object>
                         </div>
                     </div>
@@ -801,23 +1056,29 @@
 
                             <div class="row-top">
                                 <p class="">CCBChimp Pro</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-ccbchimp" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
 
                             <p class="text-heading table-cell-text-heading">+</p>
 
                             <div class="row-top">
                                 <p class="">Churchbee Campus</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-churchbee" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
                         </div>
 
                         <div class="merged merged2">
                             <div class="row-month">
                                 <p>$<span class="ccbchimp-and-cb-price-monthly">825</span>/mth</p>
-                                <h2 class="">$50/mth</h2>
+                                <h2 class="discounted-ccbchimp-and-cb-price-monthly">$50/mth</h2>
                             </div>
 
                         </div>
@@ -827,7 +1088,7 @@
                                 <p class="text-grey">(</p>
                                 <p class="text-grey strikethrough">$<span
                                         class="ccbchimp-and-cb-price-yearly">1020</span>/year</p>
-                                <p class="text-bold">$600/year</p>
+                                <p class="text-bold discounted-ccbchimp-and-cb-price-yearly">$600/year</p>
                                 <p class="text-grey">)</p>
                             </div>
                         </div>
@@ -835,9 +1096,9 @@
                         <p class="row-billing">Billed yearly </p>
                     </div>
 
-                    <div class="col-right">
+                    <div class="col-right cb">
                         <button class="btn-table-cell locking hover-dark" id="bundle_cb">
-                            <div class="icon-checkbox-base">
+                            <div id="churchbee-checkbox" class="icon-checkbox-base">
                                 <object data="/img/icon-checkbox-base-check.svg"
                                         class="palette icon-checkbox-base-check"
                                         type="image/svg+xml"></object>
@@ -845,15 +1106,23 @@
 
                             <p class="">Selected</p>
                         </button>
-                        <div class="card-frame">
-                            <object data="/img/card-churchbee.svg" class="card-left-displaychurch"></object>
+                        <div class="card-frame" style="padding-bottom: 0.9rem">
+                            <!-- <object data="/img/card-churchbee.svg" class="card-left-displaychurch" style="height: 50px; position: relative; top: -10px;"></object> -->
+
+                            <img style="height: 60px;position: relative; top: -10px;" src="/img/churchbee-logo.svg" class="product-logo">
+
                         </div>
 
                         <div class="table-cell-a">
                             <div class="row-top">
                                 <p class="">Churchbee Campus</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+
+                                <svg id="tooltip-churchbee" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
 
                             <div class="row-month">
@@ -890,6 +1159,21 @@
                                         type="image/svg+xml"></object>
                                 <p class="">Up to 25 exports </p>
                             </div>
+                            <div class="check-item hidden-feature">
+                                <object data="/img/check-item-text-icon2.svg" class=""
+                                        type="image/svg+xml"></object>
+                                <p class="">Advanced analytics for the last 6 months</p>
+                            </div>
+                            <div class="check-item hidden-feature">
+                                <object data="/img/check-item-text-icon2.svg" class=""
+                                        type="image/svg+xml"></object>
+                                <p class="">Up to 7 users</p>
+                            </div>
+                            <div class="check-item hidden-feature">
+                                <object data="/img/check-item-text-icon2.svg" class=""
+                                        type="image/svg+xml"></object>
+                                <p class="">Up to 100 saved rows </p>
+                            </div>
                         </div>
                     </div>
 
@@ -898,16 +1182,23 @@
 
                             <div class="row-top">
                                 <p class="">CCBChimp Pro</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-ccbchimp" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
 
                             <p class="text-heading table-cell-text-heading">+</p>
 
                             <div class="row-top">
                                 <p class="">Churchbee Campus</p>
-                                <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
-                                        type="image/svg+xml"></object>
+                                <svg id="tooltip-churchbee" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+<path d="M6.55967 5.99967C6.71641 5.55412 7.02578 5.17841 7.43298 4.9391C7.84018 4.69978 8.31894 4.6123 8.78446 4.69215C9.24998 4.772 9.67222 5.01402 9.97639 5.37536C10.2806 5.7367 10.447 6.19402 10.4463 6.66634C10.4463 7.99967 8.44634 8.66634 8.44634 8.66634M8.49967 11.333H8.50634M15.1663 7.99967C15.1663 11.6816 12.1816 14.6663 8.49967 14.6663C4.81778 14.6663 1.83301 11.6816 1.83301 7.99967C1.83301 4.31778 4.81778 1.33301 8.49967 1.33301C12.1816 1.33301 15.1663 4.31778 15.1663 7.99967Z" stroke="#A4A7AE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                                <!-- <object data="/img/row-help-icon.svg" class="chevron-down row-help-icon"
+                                        type="image/svg+xml"></object> -->
                             </div>
                         </div>
 
@@ -938,63 +1229,24 @@
             </div>
 
             <div class="plans-col">
-                <object data="/img/plans-tooltip.svg" class="plans-tooltip" type="image/svg+xml"></object>
 
-                <div class="plans-banner">
-                    <div class="modern-screen-mockup content">
-                        <div class="modern-screen-mockup-inner-shadow">
-                            <img src="/img/dc_screenshot.png" id="mockup-bundle_dc">
-                            <img src="/img/mockup-ccbchimp.png" id="mockup-bundle_ccbchimp">
-                            <img src="/img/churchbee_screenshot.png" id="mockup-bundle_cb">
-                        </div>
-                    </div>
+            </div>
 
+            <div style="text-align: center;">
+                <div class="show-more-bundle-features show" style="color: #3F621A">
+                    <p class="show-more-features label show" style=" display: inline-flex; width: 230px !important" onclick="showBundleFeatures()">
+                        Show More Features <img src="/img/buttons-button-chevron-down.svg" class="buttons-button-chevron-down">
+                    </p>
 
-                    <!-- select cta for displaychurch-->
-                    <div class="plans-text" id="select-bundle_dc">
-                        <div class="plans-text-col">
-                            <h2>Select Display for $1,01/day more, add way more value.!</h2>
-                            <p>
-                                You can create and embed beautiful calendars and event banners with Display Church.
-                            </p>
-                        </div>
+                </div>
 
-                        <button class="btn btn-primary btn-black">Select Display Church</button>
-                    </div>
-
-
-                    <!-- select cta for ccbchimp-->
-                    <div class="plans-text" id="select-bundle_ccbchimp">
-                        <div class="plans-text-col">
-                            <h2>Select CCB Chimp for free!</h2>
-                            <p>
-                                Don’t forget to add CCB Chimp with Church Bee. It’s included at no extra cost when
-                                selected together.
-                            </p>
-                        </div>
-
-                        <button class="btn btn-primary btn-black">Select CCBChimp</button>
-                    </div>
-
-
-                    <!-- select cta for churchbee-->
-                    <div class="plans-text" id="select-bundle_cb">
-                        <div class="plans-text-col">
-                            <h2>Select Churchbee for $1,6/day more, add way more value.</h2>
-                            <p>
-                                You can create beatiful newsletters with Churchbee Google extension without leaving your
-                                favorite ChMS.
-                            </p>
-                        </div>
-
-                        <button class="btn btn-primary btn-black">Select Churchbee</button>
-                    </div>
-
+                <div class="hide-more-bundle-features" style="color: #3F621A">
+                    <p class="show-more-features label show" style=" display: inline-flex; width: 230px !important" onclick="hideBundleFeatures()">
+                        Hide More Features <img style="transform: rotate(180deg)" src="/img/buttons-button-chevron-down.svg" class="buttons-button-chevron-down">
+                    </p>
 
                 </div>
             </div>
-
-
             <div class="plans-bottom">
                 <div class="circle-featured-icon circle-featured-icon1">
                     <object data="/img/circle-featured-icon-lightbulb.svg"
@@ -1008,7 +1260,7 @@
 
     </div>
     <div class="section testimonial">
-        <div class="testimonial-item">
+        <div class="testimonial-item is-active">
             <h2>“Switching to the bundle saved our church over $200 this year and made our workflows way easier.”</h2>
             <div class="content">
                 <div class="person">
@@ -1016,6 +1268,21 @@
                     <div class="details">
                         <p class="name">Sarah J.</p>
                         <p class="about">Communications Director, Grace Church</p>
+                    </div>
+                </div>
+                <object data="/img/testimonial_five_stars.svg" class="graphic frame-stars"
+                        type="image/svg+xml"></object>
+            </div>
+        </div>
+
+        <div class="testimonial-item">
+            <h2>“Switching to the bundle helped our clients save hundreds—some as much as $600 per year—while unlocking more features and simplifying their workflows.”</h2>
+            <div class="content">
+                <div class="person">
+                    <img src="/img/testimonial_avatar2.png" class="person-logo">
+                    <div class="details">
+                        <p class="name">Jason Alexis</p>
+                        <p class="about">Founder, Fluid Ministry</p>
                     </div>
                 </div>
                 <object data="/img/testimonial_five_stars.svg" class="graphic frame-stars"
@@ -1118,7 +1385,7 @@
                 <p class="title">Still have questions?</p>
                 <p class="description"> Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
             </div>
-            <button class="btn btn-primary hover-bright">Get in touch</button>
+            <button class="btn btn-primary hover-bright" onclick="window.location.href='mailto:help-bundle@fluidministry.com'">Get in touch</button>
         </div>
     </div>
 
@@ -1209,7 +1476,7 @@
 
     <footer class="footer">
         <img src="/img/fmin_logo.png" class="footer-logo">
-        <p class="footer-text text-md-regular1">© 2025 Fluidministery. All rights reserved.</p>
+        <p class="footer-text text-md-regular1">© 2025 Fluidministry. All rights reserved.</p>
     </footer>
 </div>
 
@@ -1266,6 +1533,7 @@
     <p>Thanks! We’ll notify you when it’s live.</p></div>
 
 </div>
+
 <script src="/ui-landing.js" type="application/javascript"></script>
 <script src="/prices.js" type="application/javascript"></script>
 </body>
