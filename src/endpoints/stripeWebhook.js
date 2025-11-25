@@ -2,7 +2,8 @@ import { addCustomerBalance } from '../apps/stripe/addCustomerBalance';
 import { getCoupon } from '../apps/stripe/getCoupon';
 import { getCheckoutSession } from '../apps/stripe/getCheckoutSession';
 import { updateCheckoutSession } from '../apps/stripe/updateCheckoutSession';
-import { addSubscriber } from '../apps/mailchimp/addToList';
+import { getCustomer } from '../apps/stripe/getCustomer';
+import { addSubscriber, updateSubscriberTags } from '../apps/mailchimp/addToList';
 
 export async function stripeWebhook(request) {
   if (request.method !== 'POST') {
@@ -15,6 +16,12 @@ export async function stripeWebhook(request) {
     // Handle only checkout.session.completed event
     if (event.type === 'checkout.session.completed') {
       await handleCheckoutSessionCompleted(event.data.object);
+      return { success: true, received: true };
+    }
+
+    // Handle customer.subscription.updated event
+    if (event.type === 'customer.subscription.updated') {
+      await handleSubscriptionUpdated(event.data.object);
       return { success: true, received: true };
     }
 
@@ -158,4 +165,48 @@ async function handleCheckoutSessionCompleted(session) {
   }
 
   console.log('Checkout session processing completed for:', email);
+}
+
+/**
+ * Handle customer.subscription.updated event
+ */
+async function handleSubscriptionUpdated(subscription) {
+  console.log('Subscription updated:', {
+    id: subscription.id,
+    customer: subscription.customer,
+    status: subscription.status,
+    metadata: subscription.metadata,
+  });
+
+  // Handle subscription status changes
+  if (subscription.status === 'canceled' || subscription.status === 'active') {
+    const customerId = subscription.customer;
+    
+    // Fetch customer data from Stripe to get email
+    const customer = await getCustomer(customerId);
+    
+    if (!customer) {
+      console.error('Failed to fetch customer data for:', customerId);
+      return;
+    }
+    
+    const email = customer.email;
+    const customerName = customer.name || '';
+    
+    if (email) {
+      try {
+        if (subscription.status === 'canceled') {
+          await updateSubscriberTags(email, customerName, ['cancelled_Bundle'], ['purchased_Bundle']);
+          console.log('Updated Mailchimp tags for canceled subscription:', email);
+        } else if (subscription.status === 'active') {
+          await updateSubscriberTags(email, customerName, ['purchased_Bundle'], ['cancelled_Bundle']);
+          console.log('Updated Mailchimp tags for active subscription:', email);
+        }
+      } catch (error) {
+        console.error('Failed to update Mailchimp tags:', error);
+      }
+    } else {
+      console.log('No email found for customer:', customerId);
+    }
+  }
 }
