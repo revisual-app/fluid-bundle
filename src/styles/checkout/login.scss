@@ -164,6 +164,31 @@
   .stage-container {
     max-width: 400px;
   }
+
+  .success-message {
+    padding: 16px 20px;
+    background-color: #E6F4D7;
+    border-radius: 8px;
+    border: 1px solid #ACDC79;
+    text-align: center;
+    max-width: 400px;
+
+    h3 {
+      color: var(--Gray-900);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin: 0 0 8px 0;
+    }
+
+    p {
+      color: var(--Gray-700);
+      font-size: 0.94rem;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
 }
 
 #login-stage {
@@ -185,30 +210,6 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-
-  .success-message {
-    padding: 16px 20px;
-    background-color: #E6F4D7;
-    border-radius: 8px;
-    border: 1px solid #ACDC79;
-    text-align: center;
-
-    h3 {
-      color: var(--Gray-900);
-      font-size: 1.25rem;
-      font-weight: 600;
-      line-height: 1.4;
-      margin: 0 0 8px 0;
-    }
-
-    p {
-      color: var(--Gray-700);
-      font-size: 0.94rem;
-      font-weight: 400;
-      line-height: 1.5;
-      margin: 0;
-    }
-  }
 
   #stripe-portal-btn {
     height: 56px;
