@@ -70,6 +70,26 @@
     .btn-table-cell [data-tippy-root]{
         width: 400px;
     }
+    @media (max-width: 768px) {
+        .jumbotron {
+            background-size: cover !important;       /* Fit nicely on mobile */
+            background-position: center  !important;  /* No weird cropping */
+        }
+        .nav-mobile-cta-group {
+            margin-left: 10px;
+
+        }
+        .nav-mobile-cta-group a{
+            margin-bottom: 10px;
+        }
+    }
+
+    @media screen and (max-width: 1279.9px) {
+        nav .nav-mobile-toggle .nav-mobile-menu ul {
+            padding: 0px 12px;
+        }
+    }
+
 </style>
 
 <div class="page">
