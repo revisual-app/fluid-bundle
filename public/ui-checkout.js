@@ -344,6 +344,8 @@ const preselectedApp = urlParams.get('app'); // Expected values: 'dc', 'ccbchimp
       byId('next-payment-date').innerHTML = dateFormatter.format(new Date().setFullYear(new Date().getFullYear() + 1));
 
       byId('checkout-btn').addEventListener('click', onCheckoutButtonClick);
+
+      updateCheckoutState();
     }
   });
 
