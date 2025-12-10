@@ -41,17 +41,16 @@ var DISPLAY_NAMES_MAPPING = {
   ['cb']: 'ChurchBee',
 };
 
-function qs(q) {
-  return document.querySelector(q);
-}
-
-function qsa(q) {
-  return document.querySelectorAll(q);
-}
-
-function byId(id) {
-  return document.getElementById(id);
-}
+// Parse URL query parameters to check for preselected app
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const preselectedApp = urlParams.get('app');
+  
+  if (preselectedApp && APPS_NAMES_MAPPING[preselectedApp]) {
+    // If app query param exists, only select that app
+    SELECTED_APPS = [APPS_NAMES_MAPPING[preselectedApp]];
+  }
+})();
 
 (function () {
   getPlans();
@@ -224,11 +223,11 @@ function processUncheckedApps() {
 
 
       if(appId == 'cb') {
-        churchbeeTippy.show();
+        churchbeeTippy?.show();
       } else if(appId == 'dc') {
-        dcTippy.show();
+        dcTippy?.show();
       } else if(appId == 'ccbchimp') {
-        ccbchimpTippy.show();
+        ccbchimpTippy?.show();
       }
 
   });
