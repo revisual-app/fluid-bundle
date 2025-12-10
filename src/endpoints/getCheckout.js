@@ -34,6 +34,11 @@ export async function getCheckout(request) {
       metadata.push([`metadata[dc_org_id]`, appsInfo.dc.account.org_id]);
     }
 
+    // Add current credits per app
+    Object.keys(appsInfo).forEach((appCode) => {
+      metadata.push([`metadata[${appCode}_credit]`, appsInfo[appCode].current_credit || 0]);
+    });
+
     const sessionData = {
       client_reference_id: email,
       customer_email: email,
