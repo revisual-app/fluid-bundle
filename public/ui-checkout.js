@@ -48,10 +48,6 @@ const preselectedApp = urlParams.get('app'); // Expected values: 'dc', 'ccbchimp
 })();
 
 (function () {
-  // Don't initialize tippy tooltips if an app is preselected
-  if (preselectedApp) {
-    return;
-  }
 
   const tip0 = tippy('#bundle_dc', {
     content: '<div style="">'
@@ -251,10 +247,6 @@ const preselectedApp = urlParams.get('app'); // Expected values: 'dc', 'ccbchimp
 
       qs('.checkout-page').classList.add('stage-checkout');
 
-      // Handle hiding non-selected apps if app query param is present
-      // This must be called BEFORE updateBundlePricing to ensure correct pricing
-      handlePreselectedAppDisplay();
-
       updateBundlePricing();
 
       const discountItems = qsa('.card-summary .discount-item');
@@ -270,11 +262,6 @@ const preselectedApp = urlParams.get('app'); // Expected values: 'dc', 'ccbchimp
         const btn = qs('#bundle_' + key);
         if (btn) {
           qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Selected';
-          // Don't reset the preselected app's disabled state
-          if (key !== preselectedApp) {
-            btn.style.pointerEvents = '';
-            btn.parentNode.style.filter = '';
-          }
         }
       });
 
@@ -305,20 +292,10 @@ const preselectedApp = urlParams.get('app'); // Expected values: 'dc', 'ccbchimp
               Number((app.current_credit || 0) / 100) +
               '</span></div>',
           );
-          
-          // If this is the preselected app, disable checkout button
-          if (preselectedApp && key === preselectedApp) {
-            const checkoutBtn = byId('checkout-btn');
-            if (checkoutBtn) {
-              checkoutBtn.disabled = true;
-              checkoutBtn.classList.add('btn-disabled');
-              checkoutBtn.title = 'You already have an active subscription for this app.';
-            }
-          }
         }
       });
 
-      if(hasSubscription && !preselectedApp) {
+      if(hasSubscription) {
         byId('header-tools-found').classList.remove('hide');
         byId('p-tools-found').classList.remove('hide');
 
@@ -519,24 +496,14 @@ async function signupNotify(name, email, isWaitlist) {
 
 
 function updateCheckoutState() {
-  // Check if preselected app has an active subscription
-  let hasPreselectedSubscription = false;
-  if (preselectedApp && accountInfo[preselectedApp]?.has_subscription) {
-    hasPreselectedSubscription = true;
-  }
-  
-  const enabled = consentCheckbox.checked && !hasPreselectedSubscription;
+  const enabled = consentCheckbox.checked;
 
   checkoutBtn.disabled = !enabled;
   checkoutBtn.classList.toggle('btn-disabled', !enabled);
 
-  if (hasPreselectedSubscription) {
-    checkoutBtn.title = 'You already have an active subscription for this app.';
-  } else if (!consentCheckbox.checked) {
-    checkoutBtn.title = 'Please agree to the refund policy to proceed.';
-  } else {
-    checkoutBtn.title = '';
-  }
+    checkoutBtn.title = enabled
+        ? ''
+        : 'Please agree to the refund policy to proceed.';
 }
 
 (function () {
@@ -567,97 +534,4 @@ function joinWithAnd(list) {
   if (list.length === 1) return list[0];
   if (list.length === 2) return list.join(" and ");
   return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
-}
-
-function handlePreselectedAppDisplay() {
-  if (!preselectedApp) {
-    return;
-  }
-  
-  // Hide elements based on which app is selected
-  if (preselectedApp === 'dc') {
-    // Hide cards-right (contains ccbchimp and cb)
-    const cardsRight = qs('.cards-right');
-    if (cardsRight) {
-      cardsRight.style.display = 'none';
-    }
-    // Mark ccbchimp and cb as unchecked
-    const ccbchimpBtn = qs('#bundle_ccbchimp');
-    const cbBtn = qs('#bundle_cb');
-    if (ccbchimpBtn) {
-      ccbchimpBtn.classList.add('unchecked');
-    }
-    if (cbBtn) {
-      cbBtn.classList.add('unchecked');
-    }
-  } else if (preselectedApp === 'cb') {
-    // Hide col-left ccbchimp and card-left dc
-    const ccbchimpCol = qs('.col-left.ccbchimp');
-    const cardLeft = qs('.card-left.dc');
-    if (ccbchimpCol) {
-      ccbchimpCol.style.display = 'none';
-    }
-    if (cardLeft) {
-      cardLeft.style.display = 'none';
-    }
-    // Hide featured-icon-locked for cb
-    const featuredIconLocked = qs('.featured-icon-locked');
-    if (featuredIconLocked) {
-      featuredIconLocked.style.display = 'none';
-    }
-    // Mark ccbchimp and dc as unchecked
-    const ccbchimpBtn = qs('#bundle_ccbchimp');
-    const dcBtn = qs('#bundle_dc');
-    if (ccbchimpBtn) {
-      ccbchimpBtn.classList.add('unchecked');
-    }
-    if (dcBtn) {
-      dcBtn.classList.add('unchecked');
-    }
-  } else if (preselectedApp === 'ccbchimp') {
-    // Hide col-right cb and card-left dc
-    const cbCol = qs('.col-right.cb');
-    const cardLeft = qs('.card-left.dc');
-    if (cbCol) {
-      cbCol.style.display = 'none';
-    }
-    if (cardLeft) {
-      cardLeft.style.display = 'none';
-    }
-    // Hide featured-icon-locked for ccbchimp
-    const featuredIconLocked = qs('.featured-icon-locked');
-    if (featuredIconLocked) {
-      featuredIconLocked.style.display = 'none';
-    }
-    // Mark cb and dc as unchecked
-    const cbBtn = qs('#bundle_cb');
-    const dcBtn = qs('#bundle_dc');
-    if (cbBtn) {
-      cbBtn.classList.add('unchecked');
-    }
-    if (dcBtn) {
-      dcBtn.classList.add('unchecked');
-    }
-  }
-  
-  // Ensure the preselected app button is checked and disable it
-  const btn = qs('#bundle_' + preselectedApp);
-  if (btn) {
-    btn.classList.remove('unchecked');
-    btn.style.pointerEvents = 'none';
-  }
-  
-  // Unlock cards-right to show pricing if needed (for cb or ccbchimp selection)
-  if (preselectedApp === 'cb' || preselectedApp === 'ccbchimp') {
-    const cardsRight = qs('.cards-right');
-    if (cardsRight) {
-      cardsRight.classList.add('unlocked');
-    }
-  }
-  
-  // Also hide the merged table cell that shows combined pricing
-  const mergedCells = qsa('.table-cell-merged');
-  mergedCells.forEach(cell => {
-    cell.style.display = 'none';
-  });
 }
