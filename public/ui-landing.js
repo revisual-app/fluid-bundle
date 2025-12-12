@@ -19,7 +19,7 @@ let hasSubscription = false;
     +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
   +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
                 +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
-                +'            <div onclick="selectDisplayChurch()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Display Church</div>'
+                +'            <div onclick="selectDisplayChurch()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word; cursor: pointer">Select Display Church</div>'
                 +'        </div>'
                 +'    </div>'
                                 +'</div>',
@@ -47,7 +47,7 @@ let hasSubscription = false;
     +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
   +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
                 +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
-                +'            <div onclick="selectChurchbee()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select ChurchBee</div>'
+                +'            <div onclick="selectChurchbee()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word; cursor: pointer">Select ChurchBee</div>'
                 +'        </div>'
                 +'    </div>'
                                 +'</div>',
@@ -74,7 +74,7 @@ let hasSubscription = false;
     +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
   +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
                 +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
-                +'            <div onclick="selectCcb()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select CCBChimp</div>'
+                +'            <div onclick="selectCcb()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word; cursor: pointer">Select CCBChimp</div>'
                 +'        </div>'
                 +'    </div>'
                                 +'</div>',
