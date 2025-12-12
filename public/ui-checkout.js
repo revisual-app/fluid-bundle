@@ -11,8 +11,43 @@ let hasSubscription = false;
 const consentCheckbox = document.getElementById('refund-consent');
 const checkoutBtn = document.getElementById('checkout-btn');
 
-(function () {
+// Parse URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+const preselectedApp = urlParams.get('app'); // Expected values: 'dc', 'ccbchimp', 'cb'
 
+// Apply preselected app logic
+(function() {
+  if (preselectedApp) {
+    // Auto-select CCB/Pushpay integration
+    usedApps.push('ccb');
+
+    // Change header logo based on preselected app
+    const headerLogo = qs('.header-logo');
+    if (headerLogo) {
+      const logoMap = {
+        'dc': '/img/displaychurch-logo.png',
+        'cb': '/img/churchbee-logo.svg',
+        'ccbchimp': '/img/ccbchimp-logo.png'
+      };
+      if (logoMap[preselectedApp]) {
+        headerLogo.src = logoMap[preselectedApp];
+        console.log('Changed header logo to:', logoMap[preselectedApp]);
+      }
+    }
+    
+    // Hide the app selection stage
+    byId('apps').style.display = 'none';
+    
+    // Show the CCB form directly
+    byId('pushpayform').style.display = 'flex';
+    byId('pushpayform-subtitle').style.display = 'none'; // Hide subtitle since we're skipping app selection
+    
+    // Hide back to integrations button
+    qs('#pushpayform .back-to-integrations').style.display = 'none';
+  }
+})();
+
+(function () {
 
   const tip0 = tippy('#bundle_dc', {
     content: '<div style="">'
@@ -24,7 +59,7 @@ const checkoutBtn = document.getElementById('checkout-btn');
     +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
   +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
                 +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
-                +'            <div onclick="selectDisplayChurch()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select Display Church</div>'
+                +'            <div onclick="selectDisplayChurch()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word; cursor: pointer">Select Display Church</div>'
                 +'        </div>'
                 +'    </div>'
                                 +'</div>',
@@ -52,7 +87,7 @@ const checkoutBtn = document.getElementById('checkout-btn');
     +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
   +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
                 +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
-                +'            <div onclick="selectChurchbee()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select ChurchBee</div>'
+                +'            <div onclick="selectChurchbee()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word; cursor: pointer">Select ChurchBee</div>'
                 +'        </div>'
                 +'    </div>'
                                 +'</div>',
@@ -79,7 +114,7 @@ const checkoutBtn = document.getElementById('checkout-btn');
     +'<div style="padding-left: 2px; padding-right: 2px; margin-left: 30px; display: flex">'
   +'    <div data-hierarchy="Primary" data-icon-only="False" data-loading-text="true" data-size="sm" data-state="Default" data-➡️-icon-trailing="false" data-⬅️-icon-leading="false" style="padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; background: #4F7A21; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); overflow: hidden; border-radius: 8px; outline-offset: -2px; justify-content: center; align-items: center; gap: 4px; display: flex">'
                 +'        <div style="padding-left: 2px; padding-right: 2px; justify-content: center; align-items: center; display: flex">'
-                +'            <div onclick="selectCcb()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word">Select CCBChimp</div>'
+                +'            <div onclick="selectCcb()" style="color: white; font-size: 14px; font-family: Inter; font-weight: 600; line-height: 20px; word-wrap: break-word; cursor: pointer">Select CCBChimp</div>'
                 +'        </div>'
                 +'    </div>'
                                 +'</div>',
@@ -227,11 +262,8 @@ const checkoutBtn = document.getElementById('checkout-btn');
         const btn = qs('#bundle_' + key);
         if (btn) {
           qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Selected';
-          btn.style.pointerEvents = '';
-          btn.parentNode.style.filter = '';
         }
       });
-
 
       const items = [];
       Object.keys(accountInfo).forEach((key) => {
@@ -260,6 +292,11 @@ const checkoutBtn = document.getElementById('checkout-btn');
               Number((app.current_credit || 0) / 100) +
               '</span></div>',
           );
+        } else {
+          qs('#bundle_' + key + ' .btn-table-cell-label').innerHTML = 'Selected';
+          const btn = qs('#bundle_' + key);
+          btn.style.pointerEvents = 'auto';
+          btn.parentNode.style.filter = 'none';
         }
       });
 
@@ -289,6 +326,8 @@ const checkoutBtn = document.getElementById('checkout-btn');
       byId('next-payment-date').innerHTML = dateFormatter.format(new Date().setFullYear(new Date().getFullYear() + 1));
 
       byId('checkout-btn').addEventListener('click', onCheckoutButtonClick);
+
+      updateCheckoutState();
     }
   });
 
@@ -320,9 +359,9 @@ const checkoutBtn = document.getElementById('checkout-btn');
       qs('.checkout-page').classList.remove('stage-checkout');
 
        if(dcTippy) {
-        dcTippy.hide();
-        churchbeeTippy.hide();
-        ccbchimpTippy.hide();
+        dcTippy?.hide();
+        churchbeeTippy?.hide();
+        ccbchimpTippy?.hide();
 
       }
     });
@@ -467,9 +506,9 @@ function updateCheckoutState() {
   checkoutBtn.disabled = !enabled;
   checkoutBtn.classList.toggle('btn-disabled', !enabled);
 
-  checkoutBtn.title = enabled
-    ? ''
-    : 'Please agree to the refund policy to proceed.';
+    checkoutBtn.title = enabled
+        ? ''
+        : 'Please agree to the refund policy to proceed.';
 }
 
 (function () {

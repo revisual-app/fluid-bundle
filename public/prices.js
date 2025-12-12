@@ -41,17 +41,86 @@ var DISPLAY_NAMES_MAPPING = {
   ['cb']: 'ChurchBee',
 };
 
-function qs(q) {
-  return document.querySelector(q);
+// Watch for purchase section display change
+const purchaseElement = document.getElementById('purchase');
+if (purchaseElement) {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+        const displayValue = window.getComputedStyle(purchaseElement).display;
+        if (displayValue !== 'none') {
+          const urlParams = new URLSearchParams(window.location.search);
+          const preselectedApp = urlParams.get('app');
+          
+          if (preselectedApp && APPS_NAMES_MAPPING[preselectedApp]) {
+            // Start with the preselected app
+            SELECTED_APPS = [APPS_NAMES_MAPPING[preselectedApp]];
+          }
+
+          // Add apps that have existing subscriptions
+          if (accountInfo) {
+            Object.keys(accountInfo).forEach((key) => {
+              const app = accountInfo[key];
+              if (app && app.has_subscription) {
+                const appName = APPS_NAMES_MAPPING[key];
+                if (appName && !SELECTED_APPS.includes(appName)) {
+                  SELECTED_APPS.push(appName);
+                }
+              }
+            });
+          }
+
+          // Update UI based on SELECTED_APPS
+          document.querySelectorAll('.btn-table-cell').forEach((btn) => {
+            const appId = btn.id.split('_')[1];
+            const appName = APPS_NAMES_MAPPING[appId];
+            if (!SELECTED_APPS.includes(appName)) {
+              btn.classList.add('unchecked');
+            } else {
+              btn.classList.remove('unchecked');
+            }
+          });
+          
+          if (document.querySelectorAll('.btn-table-cell.locking.unchecked').length) {
+            document.querySelector('.cards-right')?.classList.add('unlocked');
+          } else {
+            document.querySelector('.cards-right')?.classList.remove('unlocked');
+          }
+
+          getMatchingBundleProduct();
+        }
+      }
+    });
+  });
+
+  observer.observe(purchaseElement, {
+    attributes: true,
+    attributeFilter: ['style', 'class']
+  });
 }
 
-function qsa(q) {
-  return document.querySelectorAll(q);
-}
-
-function byId(id) {
-  return document.getElementById(id);
-}
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const preselectedApp = urlParams.get('app');
+  
+  if (preselectedApp && APPS_NAMES_MAPPING[preselectedApp]) {
+    // Start with the preselected app
+    SELECTED_APPS = [APPS_NAMES_MAPPING[preselectedApp]];
+    
+    // Add apps that have existing subscriptions
+    if (typeof accountInfo !== 'undefined' && accountInfo) {
+      Object.keys(accountInfo).forEach((key) => {
+        const app = accountInfo[key];
+        if (app && app.has_subscription) {
+          const appName = APPS_NAMES_MAPPING[key];
+          if (appName && !SELECTED_APPS.includes(appName)) {
+            SELECTED_APPS.push(appName);
+          }
+        }
+      });
+    }
+  }
+})();
 
 (function () {
   getPlans();
@@ -224,11 +293,11 @@ function processUncheckedApps() {
 
 
       if(appId == 'cb') {
-        churchbeeTippy.show();
+        churchbeeTippy?.show();
       } else if(appId == 'dc') {
-        dcTippy.show();
+        dcTippy?.show();
       } else if(appId == 'ccbchimp') {
-        ccbchimpTippy.show();
+        ccbchimpTippy?.show();
       }
 
   });
