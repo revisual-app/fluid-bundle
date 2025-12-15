@@ -20,6 +20,8 @@ CCBCHIMP_API_ADDRESS = ""
 CB_API_ADDRESS = ""
 BASE_URL = ""
 STRIPE_CUSTOMER_PORTAL = ""
+GTAG_ID = ""
+INTERCOM_APP_ID = ""
 
 # Production environment
 [env.production.vars]
@@ -29,6 +31,8 @@ CCBCHIMP_API_ADDRESS = "https://sync.ccbchimp.com"
 CB_API_ADDRESS = "https://my.bee.church"
 BASE_URL = "https://fmbundle.com/"
 STRIPE_CUSTOMER_PORTAL = "https://billing.stripe.com/p/login/eVq7sLddWfPc3k113y5ZC00"
+GTAG_ID = "G-W1V9XB8245"
+INTERCOM_APP_ID = "rgbdh5ho"
 
 # Staging environment
 [env.stage.vars]
@@ -38,3 +42,5 @@ CCBCHIMP_API_ADDRESS = "https://staging.ccbchimp.com"
 CB_API_ADDRESS = "https://dev.bee.church"
 BASE_URL = "https://staging.fmbundle.com/"
 STRIPE_CUSTOMER_PORTAL = "https://billing.stripe.com/p/login/test_00wbJ038KdOqbDP9fa4gg00"
+GTAG_ID = "G-PEPQKLS2YX"
+INTERCOM_APP_ID = "gr88fb4u"

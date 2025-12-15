@@ -7,6 +7,7 @@ import { addToWaitlist } from './endpoints/addToWaitlist';
 import { checkAddress } from './endpoints/checkAddress';
 import { stripeWebhook } from './endpoints/stripeWebhook';
 import { loginApp } from './endpoints/loginApp';
+import { getConfig } from './endpoints/getConfig';
 
 export default {
   async fetch(request, env, ctx) {
@@ -29,6 +30,10 @@ export default {
         case '/webhook/stripe':
           useCors = false;
           response = await stripeWebhook(request);
+          break;
+
+        case '/get-config':
+          response = await getConfig(request);
           break;
 
         case '/get-info':
